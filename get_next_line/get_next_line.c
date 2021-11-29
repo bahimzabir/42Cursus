@@ -35,13 +35,11 @@ char	*get_next_line(int fd)
 	if (!tmp)
 		return (0);
 	len = read(fd, tmp, BUFFER_SIZE);
-	while (len >= 0)
+	while (len > 0)
 	{
 		tmp[len] = '\0';
 		str = ft_strjoin(str, tmp);
 		len = read(fd, tmp, BUFFER_SIZE);
-		if (len <= 0)
-			break ;
 	}
 	free(tmp);
 	save = ft_strdup(str);
@@ -52,7 +50,7 @@ char	*get_next_line(int fd)
 	save[i + 1] = '\0';
 	return (save);
 }
-
+/*
 int	main(void)
 {
 	int	fd;
@@ -67,4 +65,9 @@ int	main(void)
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 }
+*/

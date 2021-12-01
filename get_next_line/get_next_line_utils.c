@@ -16,34 +16,16 @@
 #include <stdio.h>
 #include <unistd.h>
 
-size_t    ft_strlen(char *s)
+size_t	ft_strlen(char *s)
 {
-    size_t    i;
+	size_t	i;
 
-    i = 0;
-    if (!s)
-        return (0);
-    while (s[i] != '\0')
-        i++;
-    return (i);
-}
-
-char    *ft_strchr(char *s, int c)
-{
-    int    i;
-
-    i = 0;
-    if (!s)
-        return (0);
-    if (c == '\0')
-        return ((char *)&s[ft_strlen(s)]);
-    while (s[i] != '\0')
-    {
-        if (s[i] == (char) c)
-            return ((char *)&s[i]);
-        i++;
-    }
-    return (0);
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
 char	*ft_strjoin(char *left_str, char *buff)
@@ -74,67 +56,13 @@ char	*ft_strjoin(char *left_str, char *buff)
 	return (str);
 }
 
-char    *ft_get_line(char *left_str)
-{
-    int        i;
-    char    *str;
-
-    i = 0;
-    if (!left_str[i])
-        return (NULL);
-    while (left_str[i] && left_str[i] != '\n')
-        i++;
-    str = (char *)malloc(sizeof(char) * (i + 2));
-    if (!str)
-        return (NULL);
-    i = 0;
-    while (left_str[i] && left_str[i] != '\n')
-    {
-        str[i] = left_str[i];
-        i++;
-    }
-    if (left_str[i] == '\n')
-    {
-        str[i] = left_str[i];
-        i++;
-    }
-    str[i] = '\0';
-    return (str);
-}
-
-char    *ft_new_left_str(char *left_str)
-{
-    int        i;
-    int        j;
-    char    *str;
-
-    i = 0;
-    while (left_str[i] && left_str[i] != '\n')
-        i++;
-    if (!left_str[i])
-    {
-        free(left_str);
-        return (NULL);
-    }
-    str = (char *)malloc(sizeof(char) * (ft_strlen(left_str) - i + 1));
-    if (!str)
-        return (NULL);
-    i++;
-    j = 0;
-    while (left_str[i])
-        str[j++] = left_str[i++];
-    str[j] = '\0';
-    free(left_str);
-    return (str);
-}
-
 char	*ft_strdup(char *s1)
 {
 	char	*s2;
 	int		i;
 
 	i = 0;
-	while (s1[i])
+	while (s1[i] && s1[i] != '\n')
 		i++;
 	s2 = (char *)malloc(i * sizeof(char) + 1);
 	if (!s2)
@@ -144,7 +72,34 @@ char	*ft_strdup(char *s1)
 	{
 		s2[i] = s1[i];
 		i++;
+		if (s2[i - 1] == '\n')
+			break ;
 	}
 	s2[i] = '\0';
 	return (s2);
+}
+
+char	*ft_substr(char *s, unsigned int start, size_t len)
+{
+	size_t		i;
+	size_t		j;
+	char		*p;
+
+	if (!s)
+		return (NULL);
+	j = (size_t)ft_strlen(s);
+	if (len > j)
+		len = j;
+	p = (char *)malloc(sizeof(char) * (len + 1));
+	if (!p)
+		return (NULL);
+	i = 0;
+	while (i < len && j > start)
+	{
+		p[i] = s[start];
+		i++;
+		start++;
+	}
+	p[i] = '\0';
+	return (p);
 }

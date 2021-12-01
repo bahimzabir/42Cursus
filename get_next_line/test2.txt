@@ -1,5 +1,1 @@
-aaaaaa
-bbb
-sss
-ggg
-END
+1

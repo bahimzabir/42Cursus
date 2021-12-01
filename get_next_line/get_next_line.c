@@ -59,12 +59,11 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*str;
 	int			i;
-	static int	j = 0;
 	static char	*k;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!str && j == 0)
+	if (!str)
 	{	
 		str = malloc(sizeof(char) * 1);
 		str[0] = 0;
@@ -82,7 +81,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	ft_check(str, &i);
-	j += i;
 	str = str + i + 1;
 	return (line);
 }

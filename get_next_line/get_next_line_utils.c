@@ -61,6 +61,9 @@ char	*ft_strdup(char *s1)
 	char	*s2;
 	int		i;
 
+	if (!*s1 || !s1)
+		return (NULL);
+
 	i = 0;
 	while (s1[i] && s1[i] != '\n')
 		i++;
@@ -76,6 +79,7 @@ char	*ft_strdup(char *s1)
 			break ;
 	}
 	s2[i] = '\0';
+	//printf("%s**\n", s2);
 	return (s2);
 }
 

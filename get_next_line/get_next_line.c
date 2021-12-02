@@ -17,7 +17,7 @@ void	ft_check(char *s, int *i)
 	*i = 0;
 	while (s[*i] != '\0')
 	{
-		if (s[*i] == '\n')
+		if (s[*i] == '\n' || s[*i + 1] == '\0')
 			break ;
 		*i += 1;
 	}
@@ -74,14 +74,19 @@ char	*get_next_line(int fd)
 			k = str;
 	}
 	line = ft_strdup(str);
-	if (*line == '\0')
+	if (line == NULL)
 	{
 		free (line);
-		free (k);
+		if (k)
+		{
+			//printf("\nYEEEEY\n");
+			free (k);
+		}
 		return (NULL);
 	}
 	ft_check(str, &i);
 	str = str + i + 1;
+	//printf("\n%c\n", *(str - 2));
 	return (line);
 }
 /*
@@ -89,12 +94,19 @@ int	main(void)
 {
 	int	fd;
 
-	fd = open ("text.txt", O_RDONLY);
+	fd = open ("test2.txt", O_RDONLY);
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
-	//get_next_line(fd);
+	printf("%s", get_next_line(fd));
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
 }*/

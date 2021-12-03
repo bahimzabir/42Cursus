@@ -10,60 +10,59 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
-#include <stdlib.h>
-#include <string.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
 
-size_t	ft_strlen(char *s)
+int	ft_joinlen(char const *s1, char const *s2)
 {
-	size_t	i;
+	int	i;
+	int	j;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
+	j = 0;
+	while (s1[i])
 		i++;
+	while (s2[j])
+	{
+		j++;
+		i++;
+	}
 	return (i);
 }
 
-char	*ft_strjoin(char *left_str, char *buff)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
+	int		j;
+	char	*p;
 
-	if (!left_str)
+	if (!s1)
 	{
-		left_str = (char *)malloc(1 * sizeof(char));
-		left_str[0] = '\0';
+		s1 = malloc(sizeof(char) * 1);
+		s1 [0] = 0;
 	}
-	if (!left_str || !buff)
+	if (!s1 || !s2)
 		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
-	if (str == NULL)
+	p = (char *)malloc(sizeof(char) * (ft_joinlen(s1, s2) + 1));
+	if (!p)
 		return (NULL);
-	i = -1;
-	j = 0;
-	if (left_str)
-		while (left_str[++i] != '\0')
-			str[i] = left_str[i];
-	while (buff[j] != '\0')
-		str[i++] = buff[j++];
-	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
-	free(left_str);
-	return (str);
+	j = -1;
+	while (s1[++j])
+		p[j] = s1[j];
+	while (*s2)
+		p[j++] = *s2++;
+	p[j] = '\0';
+	free (s1);
+	return (p);
 }
 
-char	*ft_strdup(char *s1)
+char	*ft_strdup(char *s1, char *k)
 {
 	char	*s2;
 	int		i;
 
-	if (!*s1 || !s1)
+	if (!*s1)
+	{
+		free(k);
 		return (NULL);
-
+	}
 	i = 0;
 	while (s1[i] && s1[i] != '\n')
 		i++;
@@ -79,31 +78,5 @@ char	*ft_strdup(char *s1)
 			break ;
 	}
 	s2[i] = '\0';
-	//printf("%s**\n", s2);
 	return (s2);
-}
-
-char	*ft_substr(char *s, unsigned int start, size_t len)
-{
-	size_t		i;
-	size_t		j;
-	char		*p;
-
-	if (!s)
-		return (NULL);
-	j = (size_t)ft_strlen(s);
-	if (len > j)
-		len = j;
-	p = (char *)malloc(sizeof(char) * (len + 1));
-	if (!p)
-		return (NULL);
-	i = 0;
-	while (i < len && j > start)
-	{
-		p[i] = s[start];
-		i++;
-		start++;
-	}
-	p[i] = '\0';
-	return (p);
 }

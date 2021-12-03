@@ -12,43 +12,39 @@
 
 #include "get_next_line.h"
 
-void	ft_check(char *s, int *i)
+void	ft_check(char **s)
 {
-	*i = 0;
-	while (s[*i] != '\0')
+	while (**s)
 	{
-		if (s[*i] == '\n' || s[*i + 1] == '\0')
+		if (**s == '\n')
+		{
+			*s += 1;
 			break ;
-		*i += 1;
+		}
+		*s += 1;
 	}
 }
 
 char	*ft_read_file(int fd, char *str)
 {
 	char	*buff;
-	int		rd_bytes;
+	int		len;
 
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buff = malloc((1 + 1) * sizeof(char));
 	if (!buff)
 		return (NULL);
-	rd_bytes = read(fd, buff, BUFFER_SIZE);
-	if (rd_bytes <= 0)
+	len = 1;
+	while (len > 0 && buff)
 	{
-		free(buff);
-		free(str);
-		return (NULL);
-	}
-	buff[rd_bytes] = '\0';
-	while (rd_bytes > 0)
-	{
-		str = ft_strjoin(str, buff);
-		rd_bytes = read(fd, buff, BUFFER_SIZE);
-		if (rd_bytes == -1)
+		len = read(fd, buff, 1);
+		if (len < 0)
 		{
+			free (str);
 			free(buff);
 			return (NULL);
 		}
-		buff[rd_bytes] = '\0';
+		buff[len] = '\0';
+		str = ft_strjoin(str, buff);
 	}
 	free(buff);
 	return (str);
@@ -58,38 +54,27 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*str;
-	int			i;
 	static char	*k;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!str)
 	{	
-		str = malloc(sizeof(char) * 1);
-		str[0] = 0;
 		str = ft_read_file(fd, str);
 		if (!str || !*str)
 			return (NULL);
-		else
-			k = str;
+		k = str;
 	}
-	line = ft_strdup(str);
+	line = ft_strdup(str, k);
 	if (line == NULL)
 	{
-		free (line);
-		if (k)
-		{
-			//printf("\nYEEEEY\n");
-			free (k);
-		}
+		free(line);
 		return (NULL);
 	}
-	ft_check(str, &i);
-	str = str + i + 1;
-	//printf("\n%c\n", *(str - 2));
+	ft_check(&str);
 	return (line);
 }
-/*
+
 int	main(void)
 {
 	int	fd;
@@ -99,14 +84,14 @@ int	main(void)
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
+	/*printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
 	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
-	get_next_line(fd);
-}*/
+	get_next_line(fd);*/
+}

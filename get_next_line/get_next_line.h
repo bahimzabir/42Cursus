@@ -30,7 +30,7 @@ char	*ft_strjoin(char *left_str, char *buff);
 size_t	ft_strlen(char *s);
 char	*ft_get_line(char *left_str);
 char	*ft_new_left_str(char *left_str);
-char	*ft_strdup(char *s1);
+char	*ft_strdup(char *s1, char *k);
 char    *ft_substr(char *s, unsigned int start, size_t len);
 
 #endif

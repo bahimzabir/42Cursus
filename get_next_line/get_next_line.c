@@ -54,7 +54,7 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*str;
-	static char	*k;
+	static char	*k = "";
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -65,16 +65,18 @@ char	*get_next_line(int fd)
 			return (NULL);
 		k = str;
 	}
-	line = ft_strdup(str, k);
+	line = ft_strdup(str);
 	if (line == NULL)
 	{
 		free(line);
+		if (k)
+			free (k);
 		return (NULL);
 	}
 	ft_check(&str);
 	return (line);
 }
-
+/*
 int	main(void)
 {
 	int	fd;
@@ -84,14 +86,15 @@ int	main(void)
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
-	/*printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
-	get_next_line(fd);*/
+	get_next_line(fd);
 }
+*/

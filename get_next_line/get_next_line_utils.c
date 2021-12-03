@@ -53,14 +53,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (p);
 }
 
-char	*ft_strdup(char *s1, char *k)
+char	*ft_strdup(char *s1)
 {
 	char	*s2;
 	int		i;
 
 	if (!*s1)
 	{
-		free(k);
 		return (NULL);
 	}
 	i = 0;

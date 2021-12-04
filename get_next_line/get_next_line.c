@@ -12,35 +12,21 @@
 
 #include "get_next_line.h"
 
-int	ft_check(char *s)
+char	*ft_reading(int fd, char *str)
 {
-	int	i;
-
-	i = 0;
-	while (s && s[i])
-	{
-		if (s[i] == '\n')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-char	*ft_read_file(int fd, char *str)
-{
-	char	*buf;
-	int		len;
+	char		*buf;
+	ssize_t		len;
 
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
 	len = 1;
-	while (len != 0 && ft_check(str))
+	while (len != 0 && !ft_nl_check(str))
 	{
 		len = read(fd, buf, BUFFER_SIZE);
 		if (len < 0)
 		{
-			free(buf);
+			free (buf);
 			return (NULL);
 		}
 		buf[len] = '\0';
@@ -52,16 +38,16 @@ char	*ft_read_file(int fd, char *str)
 
 char	*get_next_line(int fd)
 {
-	char		*line;
 	static char	*str;
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	str = ft_read_file(fd, str);
+	str = ft_reading(fd, str);
 	if (!str)
 		return (NULL);
-	line = ft_new_line(str);
-	str = ft_newstr(str);
+	line = ft_line(str);
+	str = ft_rm_line(str);
 	return (line);
 }
 /*
@@ -70,22 +56,17 @@ int	main(void)
 	int	fd;
 
 	fd = open ("test2.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
 	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 }
 */

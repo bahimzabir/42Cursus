@@ -11,95 +11,109 @@
 /* ************************************************************************** */
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *s)
+int	ft_nl_check(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str && str[i])
+	{
+		if (str[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+size_t	ft_strlen(char	*str)
 {
 	size_t	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (str[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *str, char *buf)
 {
-	int		j;
-	char	*p;
+	char	*ptr;
+	size_t	j;
 
-	if (!s1)
+	if (!str)
 	{
-		s1 = malloc(sizeof(char) * 1);
-		s1 [0] = 0;
+		str = malloc(sizeof(char) * 1);
+		str[0] = 0;
 	}
-	if (!s1 || !s2)
+	if (!str || !buf)
 		return (NULL);
-	j = ft_strlen(s1) + ft_strlen(s2);
-	p = (char *)malloc(sizeof(char) * (j + 1));
-	if (!p)
+	j = ft_strlen(str) + ft_strlen (buf);
+	ptr = malloc (sizeof(char) * (j + 1));
+	if (!ptr)
 		return (NULL);
 	j = 0;
-	while (s1[j])
+	while (str[j])
 	{
-		p[j] = s1[j];
+		ptr[j] = str[j];
 		j++;
 	}
-	while (*s2)
-		p[j++] = *s2++;
-	p[j] = '\0';
-	free (s1);
-	return (p);
+	while (*buf)
+		ptr[j++] = *buf++;
+	ptr [j] = 0;
+	free (str);
+	return (ptr);
 }
 
-char	*ft_new_line(char *s1)
+char	*ft_line(char *str)
 {
-	char	*s2;
-	int		i;
+	char	*line;
+	size_t	i;
 
-	if (!*s1)
-		return (NULL);
 	i = 0;
-	while (s1[i] && s1[i] != '\n')
+	if (!*str)
+		return (NULL);
+	while (str[i] && str[i] != '\n')
 		i++;
-	s2 = (char *)malloc(sizeof(char) * (i + 1));
-	if (!s2)
+	line = malloc(sizeof(char) * (i + 1));
+	if (!line)
 		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (str[i])
 	{
-		s2[i] = s1[i];
+		line[i] = str[i];
 		i++;
-		if (s2[i - 1] == '\n')
+		if (line[i - 1] == '\n')
 			break ;
 	}
-	s2[i] = '\0';
-	return (s2);
+	line[i] = 0;
+	return (line);
 }
 
-char	*ft_newstr(char *str)
+char	*ft_rm_line(char *str)
 {
-	int		i;
-	int		j;
 	char	*nstr;
+	int		i;
+	int		l;
 
-	i = 0;
-	while (str[i] != '\n')
+	l = 0;
+	while (str[l] && str[l] != '\n')
+		l++;
+	if (!str[l])
 	{
-		if (!str[i])
-		{
-			free(str);
-			return (NULL);
-		}
+		free(str);
+		return (NULL);
+	}
+	nstr = malloc(sizeof(char) * (ft_strlen(str) - l + 1));
+	if (!nstr)
+		return (NULL);
+	i = 0;
+	l++;
+	while (str[l + i])
+	{
+		nstr[i] = str [l + i];
 		i++;
 	}
-	nstr = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
-	j = 0;
-	i++;
-	while (str[i + j])
-	{
-		nstr[j] = str[i + j];
-		j++;
-	}
-	nstr[j] = '\0';
-	free(str);
+	nstr[i] = 0;
+	free (str);
 	return (nstr);
 }

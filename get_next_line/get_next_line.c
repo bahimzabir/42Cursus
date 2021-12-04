@@ -50,23 +50,3 @@ char	*get_next_line(int fd)
 	str = ft_rm_line(str);
 	return (line);
 }
-/*
-int	main(void)
-{
-	int	fd;
-
-	fd = open ("test2.txt", O_RDONLY);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-}
-*/

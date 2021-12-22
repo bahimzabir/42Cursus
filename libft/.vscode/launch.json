@@ -13,7 +13,7 @@
       "environment": [],
       "program": "/Users/azabir/Desktop/42 Cursus/libft/build/Debug/outDebug",
       "internalConsoleOptions": "openOnSessionStart",
-      "MIMode": "gdb",
+      "MIMode": "lldb",
       "externalConsole": true
     }
   ]

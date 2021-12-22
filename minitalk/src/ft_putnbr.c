@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bi2di.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/21 14:02:21 by azabir            #+#    #+#             */
-/*   Updated: 2021/12/21 14:02:23 by azabir           ###   ########.fr       */
+/*   Created: 2021/11/14 16:09:18 by azabir            #+#    #+#             */
+/*   Updated: 2021/11/14 17:34:44 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<unistd.h>
 
-void ft_bi2di(char	*str)
+#include "../include/minitalk.h"
+
+void	ft_putnbr(int n)
 {
-	int	i;
-	int j;
-	int ascii;
-	int power;
+	unsigned int	r;
+	char			*c;
 
-	ascii = 0;
-	if (str[7] == '1')
-		ascii = 1;
-	i = 0;
-	while (i <= 6)
+	c = "0123456789";
+	if (n < 0)
 	{
-		if (str[i] == '1')
-		{
-			power = 1;
-			j = 6;
-			while (j >= i)
-			{
-				power = power * 2;
-				j--;
-			}
-			ascii += power;
-		}
-		i++;
+		r = -n;
+		write(1, "-", 1);
 	}
-	write (1, &ascii, 1);
+	else
+		r = n;
+	if (r >= 10)
+	{
+		ft_putnbr(r / 10);
+		write(1, &c[r % 10], 1);
+	}
+	else
+		write(1, &c[r % 10], 1);
 }

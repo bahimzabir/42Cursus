@@ -9,42 +9,42 @@
 /*   Updated: 2021/12/20 11:30:42 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <sys/types.h>
-#include <signal.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
 
-char	*ft_strjoin(char *str, char *buf);
+#include "include/minitalk.h"
 
-int main(int argc, char **argv)
+void	sig_handler(int pid, char	*str)
 {
 	int bit = 0;
 	int i = 0;
-	int j = 8;
 
-	argv[2] = ft_strjoin(argv[2], "\n");
-	while (argv[2][i])
+	while (str[i])
 	{
 		bit = 7;
 		while (bit >= 0)
 		{
-			if (argv[2][i] & (1 << bit))
+			if (str[i] & (1 << bit))
 			{
-				kill(atoi(argv[1]), SIGUSR1);
-				write(1, "1", 1);
-				usleep(50);
+				if (kill(pid, SIGUSR1) == -1)
+					ft_error("Wrong PID !");
 			}
 			else
 			{
-				kill(atoi(argv[1]), SIGUSR2);
-				write(1, "0", 1);
-				usleep(50);
+				if (kill(pid, SIGUSR2) == -1)
+					ft_error("Wrong PID !");
 			}
+			usleep(500);
 			bit--;
 		}
-		write(1, "\n", 1);
 		i++;
 	}
-	i = 8;
+}
+int main(int argc, char **argv)
+{
+	char	*str;
+
+	if (argc != 3)
+		ft_error ("[WRONG FARMAT]!\nHint: ./client {pid} {String}");
+	str = ft_strjoin(argv[2], "\n");
+	sig_handler(ft_atoi(argv[1]), str);
+	free (str);
 }

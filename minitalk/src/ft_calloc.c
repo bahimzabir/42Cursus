@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/21 13:39:08 by azabir            #+#    #+#             */
-/*   Updated: 2021/12/21 13:39:14 by azabir           ###   ########.fr       */
+/*   Created: 2021/11/09 10:14:03 by azabir            #+#    #+#             */
+/*   Updated: 2021/11/09 11:55:15 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include <string.h>
+#include "../include/minitalk.h"
 
-char	*ft_strjoin(char *str, char *buf)
+void	*ft_calloc(size_t i, size_t s)
 {
-	char	*ptr;
+	char	*p;
 	size_t	j;
 
-	if (!str)
-	{
-		str = malloc(sizeof(char) * 1);
-		str[0] = 0;
-	}
-	if (!str || !buf)
-		return (NULL);
-	j = strlen(str) + strlen (buf);
-	ptr = malloc (sizeof(char) * (j + 1));
-	if (!ptr)
+	p = (char *)malloc(i * s);
+	if (!p)
 		return (NULL);
 	j = 0;
-	while (str[j])
+	while (j < i * s)
 	{
-		ptr[j] = str[j];
+		p[j] = 0;
 		j++;
 	}
-	while (*buf)
-		ptr[j++] = *buf++;
-	ptr [j] = 0;
-	//free (str);
-	return (ptr);
+	return (p);
 }
+/*
+int main()
+{
+	char	*p1;
+	char	*p2;
+
+	p1 = (char *)calloc(3, sizeof(char));
+	p2 = (char *)ft_calloc(3, sizeof(char));
+
+	printf("%s\n%s\n", p1 ,p2);
+	free(p1);
+	free(p2);
+}*/

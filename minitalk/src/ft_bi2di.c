@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 #include "../include/minitalk.h"
 
-void ft_bi2di(char	*str)
+void	ft_bi2di(char	*str)
 {
 	int	i;
-	int j;
-	int ascii;
-	int power;
+	int	j;
+	int	ascii;
+	int	power;
 
 	ascii = 0;
 	if (str[7] == '1')

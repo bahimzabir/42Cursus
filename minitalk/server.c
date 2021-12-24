@@ -12,18 +12,18 @@
 
 #include "include/minitalk.h"
 
-char *str;
+char	*g_str;
 
 void	outzero(int i)
 {
 	i = 0;
-	//write(1, "0", 2);
-	str = ft_strjoin(str, "0");
+	g_str = ft_strjoin(g_str, "0");
 }
+
 void	outone(int j)
 {
 	j = 0;
-	str = ft_strjoin(str, "1");
+	g_str = ft_strjoin(g_str, "1");
 }
 
 int	main(void)
@@ -32,14 +32,13 @@ int	main(void)
 	write (1, "\n", 1);
 	signal(SIGUSR1, outone);
 	signal(SIGUSR2, outzero);
-	
 	while (1)
 	{
-		if (str && ft_strlen(str) == 8)
+		if (g_str && ft_strlen(g_str) == 8)
 		{
-			ft_bi2di(str);
-			free(str);
-			str = (char *)ft_calloc(1, 1);
+			ft_bi2di(g_str);
+			free(g_str);
+			g_str = (char *)ft_calloc(1, 1);
 		}
 		pause();
 	}

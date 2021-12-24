@@ -27,16 +27,3 @@ void	*ft_calloc(size_t i, size_t s)
 	}
 	return (p);
 }
-/*
-int main()
-{
-	char	*p1;
-	char	*p2;
-
-	p1 = (char *)calloc(3, sizeof(char));
-	p2 = (char *)ft_calloc(3, sizeof(char));
-
-	printf("%s\n%s\n", p1 ,p2);
-	free(p1);
-	free(p2);
-}*/

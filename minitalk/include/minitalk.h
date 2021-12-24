@@ -24,6 +24,7 @@ size_t	ft_strlen(char *s);
 int		ft_atoi(char *str);
 void	ft_putnbr(int n);
 void	*ft_calloc(size_t i, size_t s);
-void ft_error(char	*error);
+void	ft_error(char	*error);
+char	*ft_join(char *s1, char *s2);
 
 #endif

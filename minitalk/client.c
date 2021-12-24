@@ -14,9 +14,11 @@
 
 void	sig_handler(int pid, char	*str)
 {
-	int bit = 0;
-	int i = 0;
+	int	bit;
+	int	i;
 
+	bit = 0;
+	i = 0;
 	while (str[i])
 	{
 		bit = 7;
@@ -25,26 +27,27 @@ void	sig_handler(int pid, char	*str)
 			if (str[i] & (1 << bit))
 			{
 				if (kill(pid, SIGUSR1) == -1)
-					ft_error("Wrong PID !");
+					ft_error("PID error !\n");
 			}
 			else
 			{
 				if (kill(pid, SIGUSR2) == -1)
-					ft_error("Wrong PID !");
+					ft_error("PID error !\n");
 			}
-			usleep(500);
+			usleep(600);
 			bit--;
 		}
 		i++;
 	}
 }
-int main(int argc, char **argv)
+
+int	main(int argc, char **argv)
 {
 	char	*str;
 
 	if (argc != 3)
-		ft_error ("[WRONG FARMAT]!\nHint: ./client {pid} {String}");
-	str = ft_strjoin(argv[2], "\n");
+		ft_error ("[WRONG FARMAT]!\nHint: ./client {pid} {String}\n");
+	str = ft_join(argv[2], "\n");
 	sig_handler(ft_atoi(argv[1]), str);
 	free (str);
 }

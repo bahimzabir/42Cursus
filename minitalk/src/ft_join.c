@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/22 13:52:51 by azabir            #+#    #+#             */
-/*   Updated: 2021/12/22 14:05:57 by azabir           ###   ########.fr       */
+/*   Created: 2021/11/09 14:35:32 by azabir            #+#    #+#             */
+/*   Updated: 2021/11/09 15:05:32 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
-void	ft_error(char	*error)
+char	*ft_join(char *s1, char *s2)
 {
-	while (*error)
+	char	*ptr;
+	size_t	j;
+
+	if (!s1)
 	{
-		write (1, &(*error), 1);
-		error++;
+		s1 = malloc(sizeof(char) * 1);
+		s1[0] = 0;
 	}
-	exit (1);
+	if (!s1 || !s2)
+		return (NULL);
+	j = ft_strlen(s1) + ft_strlen (s2);
+	ptr = malloc (sizeof(char) * (j + 1));
+	if (!ptr)
+		return (NULL);
+	j = 0;
+	while (s1[j])
+	{
+		ptr[j] = s1[j];
+		j++;
+	}
+	while (*s2)
+		ptr[j++] = *s2++;
+	ptr [j] = 0;
+	return (ptr);
 }

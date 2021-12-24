@@ -13,17 +13,20 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRC = src/*.c
-NAME = client server
+NAME = server
+CLIENT = client
+OBJC = (client.c = client.o)
+all : $(NAME) $(CLIENT)
 
-all : $(NAME)
-
-bonus: $(NAME)
+bonus: $(NAME) $(CLIENT)
 
 $(NAME):
 	$(CC) $(CFLAGS) $(SRC) server.c -o $@
+$(CLIENT):
+	$(CC) $(CFLAGS) $(SRC) client.c -o $@
 
 clean:
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(CLIENT)
 
 fclean: clean
 

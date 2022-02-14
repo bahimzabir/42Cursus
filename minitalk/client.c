@@ -34,7 +34,7 @@ void	sig_handler(int pid, char	*str)
 				if (kill(pid, SIGUSR2) == -1)
 					ft_error("PID error !\n");
 			}
-			usleep(600);
+			usleep(500);
 			bit--;
 		}
 		i++;
@@ -43,11 +43,12 @@ void	sig_handler(int pid, char	*str)
 
 int	main(int argc, char **argv)
 {
-	char	*str;
+	int	pid;
 
+	pid = ft_atoi(argv[1]);
+	if (pid <= 0)
+		ft_error("PID error !\n");
 	if (argc != 3)
 		ft_error ("[WRONG FARMAT]!\nHint: ./client {pid} {String}\n");
-	str = ft_join(argv[2], "\n");
-	sig_handler(ft_atoi(argv[1]), str);
-	free (str);
+	sig_handler(pid, argv[2]);
 }

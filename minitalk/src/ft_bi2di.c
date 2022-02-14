@@ -14,28 +14,18 @@
 void	ft_bi2di(char	*str)
 {
 	int	i;
-	int	j;
 	int	ascii;
 	int	power;
 
 	ascii = 0;
-	if (str[7] == '1')
-		ascii = 1;
-	i = 0;
-	while (i <= 6)
+	i = 7;
+	power = 1;
+	while (i >= 0)
 	{
 		if (str[i] == '1')
-		{
-			power = 1;
-			j = 6;
-			while (j >= i)
-			{
-				power = power * 2;
-				j--;
-			}
-			ascii += power;
-		}
-		i++;
+			ascii = ascii + power;
+		power = power * 2;
+		i--;
 	}
 	write (1, &ascii, 1);
 }

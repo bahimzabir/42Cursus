@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <signal.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 void	ft_bi2di(char	*str);
 char	*ft_strjoin(char *s1, char *s2);

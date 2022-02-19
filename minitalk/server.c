@@ -12,34 +12,29 @@
 
 #include "include/minitalk.h"
 
-char	*g_str;
-
-void	outzero(int i)
+void	putbit(int sign)
 {
-	i = 0;
-	g_str = ft_strjoin(g_str, "0");
-}
+	static int	i = 0;
+	char		code[7];
 
-void	outone(int j)
-{
-	j = 0;
-	g_str = ft_strjoin(g_str, "1");
+	if (sign == SIGUSR1)
+		code[i] = '1';
+	else if (sign == SIGUSR2)
+		code[i] = '0';
+	i += 1;
+	if (i == 8)
+	{
+		ft_bi2di(code);
+		i = 0;
+	}
 }
 
 int	main(void)
 {
 	ft_putnbr(getpid());
 	write (1, "\n", 1);
-	signal(SIGUSR1, outone);
-	signal(SIGUSR2, outzero);
+	signal(SIGUSR1, putbit);
+	signal(SIGUSR2, putbit);
 	while (1)
-	{
-		if (g_str && ft_strlen(g_str) == 8)
-		{
-			ft_bi2di(g_str);
-			free(g_str);
-			g_str = (char *)ft_calloc(1, 1);
-		}
 		pause();
-	}
 }

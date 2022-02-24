@@ -15,17 +15,16 @@
 int	main(void)
 {
 	t_solong	window;
-	t_solong	player;
+	//t_solong	player;
 	char		**map;
 	int			fd;
 
-	fd = open("./maps/map1.ber", O_RDONLY);
-	if (!*map)
+	fd = open("./assets/map/map.ber", O_RDONLY);
 		map = check_map(fd, &window.x, &window.y);
-	window.mlx = mlx_init();
+	/*window.mlx = mlx_init();
 	window.win = mlx_new_window(window.mlx, window.x, window.y, "So_Long");
 	mlx_key_hook(window.mlx, player_hook, &player);
 	player.update = scean_update(&player, &map);
 	if (player.update == -1)
-		ft_exite();
+		ft_exit();*/
 }

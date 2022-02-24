@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_hook.c                                      :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/23 11:43:53 by azabir            #+#    #+#             */
-/*   Updated: 2022/02/23 11:43:55 by azabir           ###   ########.fr       */
+/*   Created: 2022/02/24 11:12:35 by azabir            #+#    #+#             */
+/*   Updated: 2022/02/24 11:12:37 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/solong.h"
 
-void	player_hook(int keycode, t_solong *player)
+int	ft_strlen(const char *s)
 {
+	int	i;
 
+	i = 0;
+	while (*s++ != '\0')
+		i++;
+	return (i);
 }

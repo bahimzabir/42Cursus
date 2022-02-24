@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/solong.h"
+#include "../include/solong.h"
 
 int	scean_update(t_solong *player, char	**map)
 {
-	
+	return(1);	
 }

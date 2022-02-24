@@ -17,6 +17,8 @@
 # include <math.h>
 # include <mlx.h>
 # include <fcntl.h>
+# include <stdlib.h>
+# include <string.h>
 
 typedef struct s_solong
 {
@@ -28,11 +30,16 @@ typedef struct s_solong
 	int		y;
 	int		i;
 	int		j;
+	int		k;
 	int		update;
 }	t_solong;
 
 char	**check_map(int fd, int *x, int *y);
 void	player_hook(int keycode, t_solong *player);
 int		scean_update(t_solong *player, char	**map);
+void	ft_exit();
+char	*ft_strjoin(char *str, char *buf);
+char	**ft_split(char const *s, char c);
+int		ft_strlen(const char *s);
 
 #endif

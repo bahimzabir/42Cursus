@@ -41,5 +41,6 @@ void	ft_exit();
 char	*ft_strjoin(char *str, char *buf);
 char	**ft_split(char const *s, char c);
 int		ft_strlen(const char *s);
+void	*ft_calloc(size_t i, size_t s);
 
 #endif

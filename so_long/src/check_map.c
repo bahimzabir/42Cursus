@@ -28,7 +28,7 @@ int	check1(char **map)
 	}
 	while (map[j])
 	{	
-		if (map[j][i - 1] != '1' || map[j][0] != '1' || ft_strlen(map[j]) != ft_strlen(map[0]))
+		if (map[j][0] != '1' || map[j][i - 1] != '1' || ft_strlen(map[j]) != ft_strlen(map[0]))
 			ft_exit();
 		j++;
 	}
@@ -39,7 +39,7 @@ int	check1(char **map)
 			ft_exit();
 		i++;
 	}
-	return (i - 1);
+	return (i);
 }
 
 int	check2 (char **map)
@@ -48,9 +48,7 @@ int	check2 (char **map)
 	
 	check.x = 0;
 	check.y = 0;
-	check.i = 0;
-	check.j = 0;
-	check.k = 0;
+
 	while(map[check.x])
 	{
 		check.y = 0;
@@ -81,6 +79,7 @@ char	**check_map(int fd, int *x, int *y)
 	char	**map2d;
 
 	c = malloc(sizeof(char) + 1);
+	c[1] = 0;
 	map = malloc(sizeof(char) + 1);
 	i = 1;
 	while (i != 0)
@@ -88,13 +87,14 @@ char	**check_map(int fd, int *x, int *y)
 		i = read(fd, c, 1);
 		if (i == 0)
 			break;
-		write (1, &*c, 1);
 		if (i == -1)
 			ft_exit();
 		map = ft_strjoin(map, c);
 	}
+	printf("\n%s\n", map);
 	map2d = ft_split(map, '\n');
-	*x = check1(map2d);
-	*y = check2(map2d);
+	*x = check1(map2d) * 50;
+	*y = check2(map2d) * 50;
+	printf("\n(%d, %d)\n", *x, *y);
 	return (map2d);
 }

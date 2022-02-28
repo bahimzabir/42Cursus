@@ -12,7 +12,7 @@
 
 #include "../include/solong.h"
 
-int	check1(char **map)
+int	check1(char **map, t_solong *win)
 {
 	int	i;
 	int	j;
@@ -42,12 +42,13 @@ int	check1(char **map)
 	return (i);
 }
 
-int	check2 (char **map)
+int	check2 (char **map, t_solong *win)
 {
 	t_solong check;
 	
 	check.x = 0;
 	check.y = 0;
+	check.j = 0;
 
 	while(map[check.x])
 	{
@@ -57,7 +58,11 @@ int	check2 (char **map)
 				if (map[check.x][check.y] == 'C')
 					check.i = 1;
 				else if (map[check.x][check.y] == 'P')
-					check.j = 1;
+				{
+					check.j += 1;
+					win->l = check.x;
+					win->k = check.y;
+				}
 				else if (map[check.x][check.y] == 'E')
 					check.k = 1;
 				else  if (map[check.x][check.y] != '1' && map[check.x][check.y] != '0' && map[check.x][check.y] != 'N')
@@ -71,7 +76,7 @@ int	check2 (char **map)
 	return(check.x);
 }
 
-char	**check_map(int fd, int *x, int *y)
+char	**check_map(int fd, t_solong *win)
 {
 	int		i;
 	char	*c;
@@ -93,8 +98,8 @@ char	**check_map(int fd, int *x, int *y)
 	}
 	printf("\n%s\n", map);
 	map2d = ft_split(map, '\n');
-	*x = check1(map2d) * 50;
-	*y = check2(map2d) * 50;
-	printf("\n(%d, %d)\n", *x, *y);
+	win->x = check1(map2d, win) * 50;
+	win->y = check2(map2d, win) * 50;
+	printf("\n(%d, %d)\n", win->x, win->y);
 	return (map2d);
 }

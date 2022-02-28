@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <string.h>
+# include <stdio.h>
 
 typedef struct s_solong
 {
@@ -30,17 +31,24 @@ typedef struct s_solong
 	int		y;
 	int		i;
 	int		j;
+	int		l;
 	int		k;
+	char	**enemy_path;
+	char	**exit_path;
+	char	**col_path;
 	int		update;
 }	t_solong;
 
-char	**check_map(int fd, int *x, int *y);
-void	player_hook(int keycode, t_solong *player);
-int		scean_update(t_solong *player, char	**map);
+char	**check_map(int fd, t_solong *win);
+int		player_hook(int keycode, t_solong *win);
+int		scean_update(t_solong *win, char	**map, int move);
 void	ft_exit();
 char	*ft_strjoin(char *str, char *buf);
 char	**ft_split(char const *s, char c);
 int		ft_strlen(const char *s);
 void	*ft_calloc(size_t i, size_t s);
+char	*ft_itoa(int r);
+int		check_collisions(t_solong *win, int move);
+int	ft_animations(t_solong *win, int event);
 
 #endif

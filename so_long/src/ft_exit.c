@@ -12,7 +12,7 @@
 
 #include "../include/solong.h"
 
-void	ft_exit()
+void	ft_exit(void)
 {
 	write(1, "\nEXIT\n", 6);
 	exit(1);

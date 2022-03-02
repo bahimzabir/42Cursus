@@ -115,4 +115,3 @@ char	**ft_split(char const *s, char c)
 	ft_copy(h, s + i, c);
 	return (h);
 }
-

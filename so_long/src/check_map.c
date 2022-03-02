@@ -12,14 +12,8 @@
 
 #include "../include/solong.h"
 
-int	check1(char **map, t_solong *win)
+int	check1(char **map, t_solong *win, int i, int j)
 {
-	int	i;
-	int	j;
-	int	k;
-
-	j = 0;
-	i = 0;
 	while (map[j][i])
 	{
 		if (j == 0 && map[j][i] != '1')
@@ -28,7 +22,8 @@ int	check1(char **map, t_solong *win)
 	}
 	while (map[j])
 	{	
-		if (map[j][0] != '1' || map[j][i - 1] != '1' || ft_strlen(map[j]) != ft_strlen(map[0]))
+		if (map[j][0] != '1' || map[j][i - 1] != '1' || ft_strlen(map[j])
+				!= ft_strlen(map[0]))
 			ft_exit();
 		j++;
 	}
@@ -42,38 +37,50 @@ int	check1(char **map, t_solong *win)
 	return (i);
 }
 
-int	check2 (char **map, t_solong *win)
+int	check3(t_solong *check, char **map, int x)
 {
-	t_solong check;
-	
-	check.x = 0;
-	check.y = 0;
-	check.j = 0;
+	while (map[x])
+	{
+		check->y = 0;
+		while (map[x][check->y])
+		{
+			if (map[x][check->y] == 'C')
+				check->i = 1;
+			else if (map[x][check->y] == 'E')
+				check->k = 1;
+			else if (map[x][check->y] != '1' && map[x][check->y]
+				!= '0' && map[x][check->y] != 'N'
+				&& map[x][check->y] != 'P')
+				ft_exit();
+			check->y += 1;
+		}
+		x += 1;
+	}
+	return (check->i + check->k);
+}
 
-	while(map[check.x])
+int	check2(char **map, t_solong *win, int x, int j)
+{
+	t_solong	check;
+
+	while (map[x])
 	{
 		check.y = 0;
-		while (map[check.x][check.y])
+		while (map[x][check.y])
+		{
+			if (map[x][check.y] == 'P')
 			{
-				if (map[check.x][check.y] == 'C')
-					check.i = 1;
-				else if (map[check.x][check.y] == 'P')
-				{
-					check.j += 1;
-					win->l = check.x;
-					win->k = check.y;
-				}
-				else if (map[check.x][check.y] == 'E')
-					check.k = 1;
-				else  if (map[check.x][check.y] != '1' && map[check.x][check.y] != '0' && map[check.x][check.y] != 'N')
-					ft_exit();
-				check.y += 1;
+				j += 1;
+				win->l = x;
+				win->k = check.y;
 			}
-		check.x += 1;
+			check.y += 1;
+		}
+		x += 1;
 	}
-	if (check.i + check.j + check.k != 3)
+	if (check3(&check, map, 0) + j != 3)
 		ft_exit();
-	return(check.x);
+	return (x);
 }
 
 char	**check_map(int fd, t_solong *win)
@@ -91,15 +98,13 @@ char	**check_map(int fd, t_solong *win)
 	{
 		i = read(fd, c, 1);
 		if (i == 0)
-			break;
+			break ;
 		if (i == -1)
 			ft_exit();
 		map = ft_strjoin(map, c);
 	}
-	printf("\n%s\n", map);
 	map2d = ft_split(map, '\n');
-	win->x = check1(map2d, win) * 50;
-	win->y = check2(map2d, win) * 50;
-	printf("\n(%d, %d)\n", win->x, win->y);
+	win->x = check1(map2d, win, 0, 0) * 50;
+	win->y = check2(map2d, win, 0, 0) * 50;
 	return (map2d);
 }

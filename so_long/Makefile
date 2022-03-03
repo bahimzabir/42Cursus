@@ -1,19 +1,19 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
-SRC = src/*.c
+SRC = src/*.c so_long.c
 NAME = solong
+
 OBJS = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME) :
-	$(CC) $(CFLAGS) so_long.c $(SRC) -o $@
+$(NAME) : $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+
 bonus : $(NAME)
+
 clean :
 	rm -rf $(OBJS)
-fclean :
-	rm -rf $(NAME) $(OBJS)
+fclean : clean
+	rm -rf $(NAME)
 re : fclean all
-
-
-

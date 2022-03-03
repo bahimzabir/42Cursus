@@ -54,5 +54,7 @@ char	*ft_itoa(int r);
 int		check_collisions(t_solong *win);
 void	ft_putstr(char *c);
 void	ft_file_to_image(t_solong *win, char *path);
+void	put_path(t_solong *win);
+int		check_file(char *path);
 
 #endif

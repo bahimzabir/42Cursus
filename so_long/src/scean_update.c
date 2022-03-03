@@ -43,9 +43,9 @@ void	put_update(t_solong *win, char **map, int l, int k)
 void	put_counter(t_solong *win)
 {
 	ft_putstr(win->move);
-	ft_file_to_image(win, "./assets/wall/wall.xpm");
-	mlx_put_image_to_window(win->mlx, win->win, win->img, 50, 0);
-	mlx_string_put(win->mlx, win->win, 50, 11, 0x000000, win->move);
+	ft_file_to_image(win, "./assets/wall/wall2.xpm");
+	mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);
+	mlx_string_put(win->mlx, win->win, 40, 11, 0xFFFFFF, win->move);
 }
 
 int	scean_update(t_solong *win)

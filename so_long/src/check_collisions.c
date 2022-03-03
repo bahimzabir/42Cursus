@@ -24,6 +24,32 @@ int	exit_status(int i, int j, t_solong *win)
 		j = 0;
 		while (map[i][j])
 		{
+			if (map[i][j] == 'N')
+				count += 1;
+			j += 1;
+		}
+		i += 1;
+	}
+	if (count == 0)
+	{
+		win->exit_path = "./assets/exit/2.xpm";
+		win->player_path = "./assets/player/3.xpm";
+	}
+	return (count);
+}
+
+int	exit_status2(int i, int j, t_solong *win)
+{
+	int		count;
+	char	**map;
+
+	map = win->map;
+	count = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
 			if (map[i][j] == 'C')
 				count += 1;
 			j += 1;
@@ -31,17 +57,20 @@ int	exit_status(int i, int j, t_solong *win)
 		i += 1;
 	}
 	if (count == 0)
-		win->exit_path = "./assets/exit/2.xpm";
+	{
+		win->enemy_path = "./assets/enemy/2.xpm";
+		win->player_path = "./assets/player/2.xpm";
+	}
 	return (count);
 }
 
-int	check_collisions(t_solong *win, int move)
+int	check_collisions(t_solong *win)
 {
 	if (win->map[win->l][win->k] == 'C')
 		win->map[win->l][win->k] = '0';
-	else if (win->map[win->l][win->k] == 'N')
-		ft_exit();
+	else if (exit_status2(0, 0, win) && win->map[win->l][win->k] == 'N')
+		ft_exit("\nGAME OVER!!\n You hit an enemy\n");
 	else if (!exit_status(0, 0, win) && win->map[win->l][win->k] == 'E')
-		ft_exit();
+		ft_exit("\nYOU WIN!!\n CONGRATS :-D\n");
 	return (1);
 }

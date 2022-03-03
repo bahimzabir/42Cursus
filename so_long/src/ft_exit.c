@@ -12,8 +12,8 @@
 
 #include "../include/solong.h"
 
-void	ft_exit(void)
+void	ft_exit(char	*msg)
 {
-	write(1, "\nEXIT\n", 6);
+	ft_putstr(msg);
 	exit(1);
 }

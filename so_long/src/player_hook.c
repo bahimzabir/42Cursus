@@ -39,7 +39,7 @@ int	player_hook(int keycode, t_solong *win)
 	else if (keycode == 1 && win->map[win->l + 1][win->k] != '1')
 		win->l += 1;
 	else if (keycode == 53)
-		ft_exit();
+		ft_exit("\nGAME STOPED: You Closed the GAME\n");
 	else
 	{	
 		if (win->map[win->l][win->k] != 'E')
@@ -47,7 +47,7 @@ int	player_hook(int keycode, t_solong *win)
 		win->update = move - 1;
 		return (1);
 	}
-	check_collisions(win, win->update);
+	check_collisions(win);
 	put_player(win);
 	move ++;
 	return (0);

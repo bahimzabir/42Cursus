@@ -17,11 +17,6 @@ char	*ft_strjoin(char *str, char *buf)
 	char	*ptr;
 	size_t	j;
 
-	if (!str)
-	{
-		str = malloc(sizeof(char) * 1);
-		str[0] = 0;
-	}
 	if (!str || !buf)
 		return (NULL);
 	j = ft_strlen(str) + ft_strlen (buf);

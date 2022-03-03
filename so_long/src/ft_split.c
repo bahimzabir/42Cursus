@@ -36,7 +36,7 @@ static int	ft_strcount(char const *l, char c)
 	return (j);
 }
 
-static char	**ft_mkstr(char **h, char const *s, char c)
+void	ft_mkstr(char **h, char const *s, char c)
 {
 	int	i;
 	int	j;
@@ -56,14 +56,13 @@ static char	**ft_mkstr(char **h, char const *s, char c)
 			i++;
 		h[j] = malloc(sizeof(char) * (k + 1));
 		if (!h[j])
-			return (NULL);
+			free(h);
 		j++;
 		k = 0;
 	}
-	return (h);
 }
 
-char	**ft_copy(char **h, char const *s, char c)
+void	ft_copy(char **h, char const *s, char c)
 {
 	int	i;
 	int	j;
@@ -87,7 +86,6 @@ char	**ft_copy(char **h, char const *s, char c)
 		j = 0;
 	}
 	h[k] = NULL;
-	return (h);
 }
 
 char	**ft_split(char const *s, char c)

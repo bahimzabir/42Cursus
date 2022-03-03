@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_animations.c                                    :+:      :+:    :+:   */
+/*   ft_file_to_image.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 01:50:06 by azabir            #+#    #+#             */
-/*   Updated: 2022/02/28 01:50:08 by azabir           ###   ########.fr       */
+/*   Created: 2022/03/02 19:25:34 by azabir            #+#    #+#             */
+/*   Updated: 2022/03/02 19:25:36 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/solong.h"
 
-int	ft_animations(t_solong *win, int event)
+void	ft_file_to_image(t_solong *win, char *path)
 {
-	return (1);
+	win->img = mlx_xpm_file_to_image(win->mlx, path,
+			&win->i, &win->j);
+	if (win->img == NULL)
+		ft_exit("\nERROR: invalid path\n");
 }

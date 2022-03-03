@@ -12,26 +12,26 @@
 
 #include "../include/solong.h"
 
-int	check1(char **map, t_solong *win, int i, int j)
+int	check1(char **map, int i, int j)
 {
 	while (map[j][i])
 	{
 		if (j == 0 && map[j][i] != '1')
-			ft_exit();
+			ft_exit("\nERROR: up wall is not completed\n");
 		i++;
 	}
 	while (map[j])
 	{	
 		if (map[j][0] != '1' || map[j][i - 1] != '1' || ft_strlen(map[j])
 				!= ft_strlen(map[0]))
-			ft_exit();
+			ft_exit("\nERROR: side walls are not ligned\n");
 		j++;
 	}
 	i = 0;
 	while (map[j - 1][i])
 	{
 		if (map [j - 1][i] != '1')
-			ft_exit();
+			ft_exit("\nERROR: down wall is not completed\n");
 		i++;
 	}
 	return (i);
@@ -51,7 +51,7 @@ int	check3(t_solong *check, char **map, int x)
 			else if (map[x][check->y] != '1' && map[x][check->y]
 				!= '0' && map[x][check->y] != 'N'
 				&& map[x][check->y] != 'P')
-				ft_exit();
+				ft_exit("\nERROR: indefined caracheter on the map\n");
 			check->y += 1;
 		}
 		x += 1;
@@ -79,32 +79,35 @@ int	check2(char **map, t_solong *win, int x, int j)
 		x += 1;
 	}
 	if (check3(&check, map, 0) + j != 3)
-		ft_exit();
+		ft_exit("\nERROR: wrong number of characters allowed\n");
 	return (x);
 }
 
-char	**check_map(int fd, t_solong *win)
+void	check_map(int fd, t_solong *win)
 {
 	int		i;
 	char	*c;
-	char	*map;
-	char	**map2d;
 
 	c = malloc(sizeof(char) + 1);
 	c[1] = 0;
-	map = malloc(sizeof(char) + 1);
+	win->map1 = malloc(sizeof(char) + 1);
 	i = 1;
 	while (i != 0)
 	{
 		i = read(fd, c, 1);
 		if (i == 0)
 			break ;
-		if (i == -1)
-			ft_exit();
-		map = ft_strjoin(map, c);
+		if (i <= -1)
+		{
+			free(c);
+			free (win->map1);
+			ft_exit("\nERROR: can't read from the file\n");
+		}
+		win->map1 = ft_strjoin(win->map1, c);
 	}
-	map2d = ft_split(map, '\n');
-	win->x = check1(map2d, win, 0, 0) * 50;
-	win->y = check2(map2d, win, 0, 0) * 50;
-	return (map2d);
+	free (c);
+	win->map = ft_split(win->map1, '\n');
+	free(win->map1);
+	win->x = check1(win->map, 0, 0) * 50;
+	win->y = check2(win->map, win, 0, 0) * 50;
 }

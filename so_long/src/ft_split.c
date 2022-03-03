@@ -94,8 +94,6 @@ char	**ft_split(char const *s, char c)
 	int		i;
 	int		j;
 
-	if (s[0] == c)
-		ft_exit("\nERROR: There is an empty line up of your map\n");
 	if (!s || !*s)
 	{
 		h = malloc(sizeof(char *) * 1);

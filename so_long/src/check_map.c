@@ -85,19 +85,18 @@ int	check2(char **map, t_solong *win, int x, int j)
 
 void	check_map(int fd, t_solong *win)
 {
-	int		i;
 	char	*c;
 
 	c = malloc(sizeof(char) + 1);
 	c[1] = 0;
 	win->map1 = malloc(sizeof(char) + 1);
-	i = 1;
-	while (i != 0)
+	win->k = 1;
+	while (win->k != 0)
 	{
-		i = read(fd, c, 1);
-		if (i == 0)
+		win->k = read(fd, c, 1);
+		if (win->k == 0)
 			break ;
-		if (i <= -1)
+		if (win->k <= -1)
 		{
 			free(c);
 			free (win->map1);
@@ -106,6 +105,7 @@ void	check_map(int fd, t_solong *win)
 		win->map1 = ft_strjoin(win->map1, c);
 	}
 	free (c);
+	check_newline(win);
 	win->map = ft_split(win->map1, '\n');
 	free(win->map1);
 	win->x = check1(win->map, 0, 0) * 50;

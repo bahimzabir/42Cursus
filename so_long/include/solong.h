@@ -56,5 +56,6 @@ void	ft_putstr(char *c);
 void	ft_file_to_image(t_solong *win, char *path);
 void	put_path(t_solong *win);
 int		check_file(char *path);
+void	check_newline(t_solong *win);
 
 #endif

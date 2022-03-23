@@ -17,21 +17,21 @@ int	check1(char **map, int i, int j)
 	while (map[j][i])
 	{
 		if (j == 0 && map[j][i] != '1')
-			ft_exit("\nERROR: up wall is not completed\n");
+			ft_exit("ERROR\n up wall is not completed\n");
 		i++;
 	}
 	while (map[j])
 	{	
 		if (map[j][0] != '1' || map[j][i - 1] != '1' || ft_strlen(map[j])
 				!= ft_strlen(map[0]))
-			ft_exit("\nERROR: side walls are not ligned\n");
+			ft_exit("ERROR\n side walls are not ligned\n");
 		j++;
 	}
 	i = 0;
 	while (map[j - 1][i])
 	{
 		if (map [j - 1][i] != '1')
-			ft_exit("\nERROR: down wall is not completed\n");
+			ft_exit("ERROR\n down wall is not completed\n");
 		i++;
 	}
 	return (i);
@@ -42,6 +42,7 @@ int	check3(t_solong *check, char **map, int x)
 	while (map[x])
 	{
 		check->y = 0;
+		check->k = 0;
 		while (map[x][check->y])
 		{
 			if (map[x][check->y] == 'C')
@@ -51,7 +52,7 @@ int	check3(t_solong *check, char **map, int x)
 			else if (map[x][check->y] != '1' && map[x][check->y]
 				!= '0' && map[x][check->y] != 'N'
 				&& map[x][check->y] != 'P')
-				ft_exit("\nERROR: indefined caracheter on the map\n");
+				ft_exit("ERROR\n indefined caracheter on the map\n");
 			check->y += 1;
 		}
 		x += 1;
@@ -79,7 +80,7 @@ int	check2(char **map, t_solong *win, int x, int j)
 		x += 1;
 	}
 	if (check3(&check, map, 0) + j != 3)
-		ft_exit("\nERROR: wrong number of characters allowed\n");
+		ft_exit("ERROR\n wrong number of characters allowed\n");
 	return (x);
 }
 
@@ -100,7 +101,7 @@ void	check_map(int fd, t_solong *win)
 		{
 			free(c);
 			free (win->map1);
-			ft_exit("\nERROR: can't read from the file\n");
+			ft_exit("ERROR\n can't read from the file\n");
 		}
 		win->map1 = ft_strjoin(win->map1, c);
 	}

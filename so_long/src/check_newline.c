@@ -18,19 +18,19 @@ void	check_newline(t_solong *win)
 
 	i = 0;
 	if (win->map1[0] == '\0')
-		ft_exit("\nERROR: Your map is empty\n");
+		ft_exit("ERROR\n Your map is empty\n");
 	if (win->map1[0] == '\n')
-		ft_exit("\nERROR: There is an empty line up your map\n");
+		ft_exit("ERROR\n There is an empty line up your map\n");
 	while (win->map1[i])
 	{
 		if (win->map1[i] == '\n')
 		{
 			if (win->map1 [i + 1] != '1' && win->map1 [i + 1] != '\0')
-				ft_exit("\nERROR: There is an empty line in your map\n");
+				ft_exit("ERROR\n There is an empty line in your map\n");
 		}
 		i++;
 	}
 	i--;
 	if (win->map1[i] == '\n')
-		ft_exit("\nERROR: There is an empty line down your map\n");
+		ft_exit("ERROR\n There is an empty line down your map\n");
 }

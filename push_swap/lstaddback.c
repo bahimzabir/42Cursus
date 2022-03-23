@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   lstaddback.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 23:05:10 by azabir            #+#    #+#             */
-/*   Updated: 2021/11/27 23:07:01 by azabir           ###   ########.fr       */
+/*   Created: 2022/03/22 11:11:17 by azabir            #+#    #+#             */
+/*   Updated: 2022/03/22 11:11:21 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+ 
+ #include "push_swap.h"
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-
-# include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <stdlib.h>
-
-int	get_next_line(char **line);
-
-#endif
+ void lstaddback(t_list *stack_list, int data)
+ {
+	t_list	*newnode;
+	t_list *temp;
+	temp = stack_list;
+	newnode = lstmake(data);
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+		//write (1, "ok\n", 5);
+	}
+	temp->next = newnode;
+	newnode->prev = temp;
+ }

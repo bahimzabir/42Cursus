@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
 SRC = src/*.c so_long.c
-NAME = solong
+NAME = so_long
 
 OBJS = $(SRC:.c=.o)
 

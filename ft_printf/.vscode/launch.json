@@ -9,9 +9,9 @@
         ""
       ],
       "stopAtEntry": true,
-      "cwd": "/Users/azabir/Desktop/solong",
+      "cwd": "/Users/azabir/Desktop/42 Cursus/ft_printf",
       "environment": [],
-      "program": "/Users/azabir/Desktop/solong/build/Debug/outDebug",
+      "program": "/Users/azabir/Desktop/42 Cursus/ft_printf/build/Debug/outDebug",
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "gdb",
       "externalConsole": true

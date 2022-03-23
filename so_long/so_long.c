@@ -71,11 +71,11 @@ int	main(int argv, char **argc)
 	int			fd;
 
 	if (argv != 2 || !check_file(argc[1]))
-		ft_exit("\nERROR: your input is invalid\n");
+		ft_exit("ERROR\n your input is invalid\n");
 	put_path(&window);
 	fd = open(argc[1], O_RDONLY);
 	if (fd <= 0)
-		ft_exit("Error: can't open the map file!\n");
+		ft_exit("Error\n can't open the map file!\n");
 	check_map(fd, &window);
 	window.mlx = mlx_init();
 	window.win = mlx_new_window(window.mlx, window.x, window.y, "So_Long");

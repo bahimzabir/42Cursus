@@ -17,5 +17,5 @@ void	ft_file_to_image(t_solong *win, char *path)
 	win->img = mlx_xpm_file_to_image(win->mlx, path,
 			&win->i, &win->j);
 	if (win->img == NULL)
-		ft_exit("\nERROR: invalid path\n");
+		ft_exit("ERROR\n invalid path\n");
 }

@@ -24,6 +24,7 @@ void	arr_to_list(char **arr, t_list  **stack_list)
 	{
 	lstaddback(*stack_list, ft_atoi(arr[i]));
 		i++;
+		//test
 	}
 }
 

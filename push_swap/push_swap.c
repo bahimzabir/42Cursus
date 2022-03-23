@@ -27,6 +27,11 @@ void	arr_to_list(char **arr, t_list  **stack_list)
 	}
 }
 
+void	ft_move(t_list **stack, int ref)
+{
+	if (ref == 01)
+		ft_sa(*stack);
+}
 
 int	main(int arc, char **arv)
 {
@@ -36,6 +41,12 @@ int	main(int arc, char **arv)
 	if (arc <= 1)
 	 return (1);
 	arr_to_list(arv , &sta);
+	/*while (sta->next != NULL)
+	{
+		printf("%d\n", sta->data);
+		sta = sta->next;
+	}*/
+	ft_move(&sta, 01);
 	while (sta->next != NULL)
 	{
 		printf("%d\n", sta->data);

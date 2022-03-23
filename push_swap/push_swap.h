@@ -15,6 +15,7 @@ typedef struct s_list
 int		ft_atoi(char *s);
 t_list	*lstmake(int data);
 void lstaddback(t_list *stack_list, int data);
+void	ft_sa(t_list *stack);
 
 
 

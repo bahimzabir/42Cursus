@@ -34,7 +34,7 @@ static long long int	ft_mknumber(char *s, int sign)
 int	ft_atoi(char *s)
 {
 	int	i;
-	int sign;
+	int	sign;
 
 	i = 0;
 	sign = 1;
@@ -44,4 +44,4 @@ int	ft_atoi(char *s)
 		i++;
 	}
 	return (sign * ft_mknumber((char *)s + i, sign));
-}	
+}

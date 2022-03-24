@@ -12,17 +12,15 @@
 
 #include "push_swap.h"
 
-void	arr_to_list(char **arr, t_list  **stack_list)
+void	arr_to_list(char **arr, t_list **stack_list)
 {
 	int	i;
 
 	i = 2;
-
-	
 	*stack_list = lstmake (ft_atoi(arr[1]));
 	while (arr [i])
 	{
-	lstaddback(*stack_list, ft_atoi(arr[i]));
+		lstaddback(*stack_list, ft_atoi(arr[i]));
 		i++;
 	}
 }
@@ -39,13 +37,8 @@ int	main(int arc, char **arv)
 	t_list	*stb;
 
 	if (arc <= 1)
-	 return (1);
-	arr_to_list(arv , &sta);
-	/*while (sta->next != NULL)
-	{
-		printf("%d\n", sta->data);
-		sta = sta->next;
-	}*/
+		return (1);
+	arr_to_list(arv, &sta);
 	ft_move(&sta, 01);
 	while (sta->next != NULL)
 	{
@@ -53,5 +46,5 @@ int	main(int arc, char **arv)
 		sta = sta->next;
 	}
 	printf("%d", sta->data);
-	return(0);
+	return (0);
 }

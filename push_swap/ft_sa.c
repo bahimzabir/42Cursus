@@ -14,11 +14,10 @@
 
 void	ft_sa(t_list *stack)
 {
-	int data;
+	int	data;
 
 	data = stack->next->data;
 	stack->next->data = stack->data;
 	stack->data = data;
-	
 	write (1, "sa\n", 3);
 }

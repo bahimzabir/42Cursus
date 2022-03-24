@@ -15,10 +15,20 @@
 void	ft_pa(t_list **sta, t_list **stb)
 {
 	t_list	*temp;
-	temp = *stb;
-	*stb = (*stb)->next;
-	(*stb)->prev = NULL;
-	temp->next = *sta;
-	(*sta)->prev = temp;
-	*sta = temp;
+
+	if (*stb != NULL)
+	{
+		temp = *stb;
+		if ((*stb)->next)
+		{
+			*stb = (*stb)->next;
+			(*stb)->prev = NULL;
+		}
+		else
+			*stb = NULL;
+		temp->next = *sta;
+		if (*sta)
+			(*sta)->prev = temp;
+		*sta = temp;
+	}
 }

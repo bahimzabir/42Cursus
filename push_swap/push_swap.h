@@ -31,5 +31,6 @@ void	ft_sa(t_list *stack);
 void	ft_sb(t_list *stack);
 void	ft_ss(t_list *sta, t_list *stb);
 void	ft_pa(t_list **sta, t_list **stb);
+void	ft_pb(t_list **sta, t_list **stb);
 
 #endif

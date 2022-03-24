@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
 
-void	ft_pa(t_list **sta, t_list **stb)
+void	ft_pb(t_list **sta, t_list **stb)
 {
 	t_list	*temp;
+
 	temp = *sta;
 	*sta = (*sta)->next;
 	(*sta)->prev = NULL;

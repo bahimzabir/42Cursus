@@ -37,28 +37,41 @@ void	ft_move(t_list **stack, int ref)
 		ft_sa(*stack);
 }
 
+void	print_list(t_list *tmp)
+{
+	if (tmp)
+	{
+	while (tmp && tmp->next != NULL)
+	{
+		printf("%d\n", tmp->data);
+		tmp = tmp->next;
+	}
+	printf("%d\n######\n", tmp->data);
+	}
+}
+
 int	main(int arc, char **arv)
 {
 	t_list	*sta;
 	t_list	*stb;
-	
+
 	if (arc <= 1)
 		return (1);
 	arr_to_list(arv, &stb);
 	arr_to_list(arv, &sta);
 	ft_move(&sta, 01);
+	print_list(sta);
 	ft_push(&stb, &sta);
-	while (sta->next != NULL)
-	{
-		printf("%d\n", sta->data);
-		sta = sta->next;
-	}
-	printf("%d\n######\n", sta->data);
-	while (stb->next != NULL)
-	{
-		printf("%d\n", stb->data);
-		stb = stb->next;
-	}
-	printf("%d", stb->data);
+	print_list(stb);
+	ft_push(&stb, &sta);
+	print_list(stb);
+	print_list(sta);
+	ft_push(&stb, &sta);
+	print_list(stb);
+	ft_push(&stb, &sta);
+	print_list(stb);
+	ft_push(&sta, &stb);
+	ft_push(&sta, &stb);
+	print_list(sta);
 	return (0);
 }

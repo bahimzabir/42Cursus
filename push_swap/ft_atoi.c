@@ -17,6 +17,8 @@ static long long int	ft_mknumber(char *s, int sign)
 	long long int	r;
 
 	r = 0;
+	if (!*s)
+		exit(1);
 	while (*s)
 	{
 		if (!(*s >= '0' && *s <= '9'))

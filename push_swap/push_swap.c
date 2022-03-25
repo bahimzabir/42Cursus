@@ -35,6 +35,9 @@ void	ft_move(t_list **stack, int ref)
 {
 	if (ref == 01)
 		ft_sa(*stack);
+	else if (ref == 04)
+		ft_ra(stack);
+	
 }
 
 void	print_list(t_list *tmp)
@@ -59,19 +62,8 @@ int	main(int arc, char **arv)
 		return (1);
 	arr_to_list(arv, &stb);
 	arr_to_list(arv, &sta);
-	ft_move(&sta, 01);
 	print_list(sta);
-	ft_push(&stb, &sta);
-	print_list(stb);
-	ft_push(&stb, &sta);
-	print_list(stb);
-	print_list(sta);
-	ft_push(&stb, &sta);
-	print_list(stb);
-	ft_push(&stb, &sta);
-	print_list(stb);
-	ft_push(&sta, &stb);
-	ft_push(&sta, &stb);
+	ft_ra(&sta);
 	print_list(sta);
 	return (0);
 }

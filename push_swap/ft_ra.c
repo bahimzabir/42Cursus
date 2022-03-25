@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pb.c                                            :+:      :+:    :+:   */
+/*   ft_ra.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 20:22:20 by azabir            #+#    #+#             */
-/*   Updated: 2022/03/24 20:22:22 by azabir           ###   ########.fr       */
+/*   Created: 2022/03/25 10:04:49 by azabir            #+#    #+#             */
+/*   Updated: 2022/03/25 10:04:51 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_pb(t_list **sta, t_list **stb)
+void	ft_ra(t_list **sta)
 {
-		t_list	*temp;
+	t_list	*temp1;
+	t_list	*temp2;
 
-	if (*sta != NULL)
+	if (*sta)
 	{
-		temp = *sta;
+		temp1 = *sta;
+		while (temp1->next != NULL)
+			temp1 = temp1->next;
+		temp2 = *sta;
 		if ((*sta)->next)
-		{
 			*sta = (*sta)->next;
-			(*sta)->prev = NULL;
-		}
-		else
-			*sta = NULL;
-		temp->next = *stb;
-		*stb = temp;
-		(*stb)->prev = temp;
+		temp1->next = temp2;
+		temp2->prev = temp1;
+		temp2->next = NULL;
+		write (1, "ra\n", 3);
 	}
-	write (1, "pb\n", 3);
 }

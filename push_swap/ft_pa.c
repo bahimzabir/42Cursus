@@ -27,8 +27,8 @@ void	ft_pa(t_list **sta, t_list **stb)
 		else
 			*stb = NULL;
 		temp->next = *sta;
-		if (*sta)
-			(*sta)->prev = temp;
 		*sta = temp;
+		(*sta)->prev = temp;
 	}
+	write (1, "pa\n", 3);
 }

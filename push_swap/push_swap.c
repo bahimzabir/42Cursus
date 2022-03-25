@@ -63,7 +63,9 @@ int	main(int arc, char **arv)
 	arr_to_list(arv, &stb);
 	arr_to_list(arv, &sta);
 	print_list(sta);
-	ft_rra(&sta);
+	print_list(stb);
+	ft_rrr(&sta, &stb);
+	print_list(stb);
 	print_list(sta);
 	return (0);
 }

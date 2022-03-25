@@ -24,17 +24,19 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-int		ft_atoi(char *s);
-t_list	*lstmake(int data);
 void	lstaddback(t_list *stack_list, int data);
-void	ft_sa(t_list *stack);
-void	ft_sb(t_list *stack);
-void	ft_ss(t_list *sta, t_list *stb);
+void	ft_rrr(t_list **sta, t_list **stb);
 void	ft_pa(t_list **sta, t_list **stb);
 void	ft_pb(t_list **sta, t_list **stb);
+void	ft_rr(t_list **sta, t_list **stb);
+void	ft_ss(t_list *sta, t_list *stb);
+void	ft_sa(t_list *stack);
+void	ft_sb(t_list *stack);
+void	ft_rra(t_list **sta);
+void	ft_rrb(t_list **stb);
 void	ft_ra(t_list **sta);
 void	ft_rb(t_list **stb);
-void	ft_rr(t_list **sta, t_list **stb);
-void	ft_rra(t_list **sta);
+t_list	*lstmake(int data);
+int		ft_atoi(char *s);
 
 #endif

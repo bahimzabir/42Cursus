@@ -10,4 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 
+void	ft_rrb(t_list **stb)
+{
+	t_list	*temp1;
+	t_list	*temp2;
+
+	if (*stb && (*stb)->next)
+	{
+		temp1 = *stb;
+		while (temp1->next != NULL)
+			temp1 = temp1->next;
+		temp2 = temp1;
+		temp2 = temp2->prev;
+		temp2->next = NULL;
+		temp1->next = *stb;
+		temp1->prev = NULL;
+		*stb = temp1;
+		write (1, "rrb\n", 4);
+	}
+}

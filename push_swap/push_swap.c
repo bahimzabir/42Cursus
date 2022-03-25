@@ -25,21 +25,6 @@ void	arr_to_list(char **arr, t_list **stack_list)
 	}
 }
 
-void ft_push(t_list **sta, t_list **stb)
-{
-	//*sta = *stb;
-	ft_pa(sta, stb);
-}
-
-void	ft_move(t_list **stack, int ref)
-{
-	if (ref == 01)
-		ft_sa(*stack);
-	else if (ref == 04)
-		ft_ra(stack);
-	
-}
-
 void	print_list(t_list *tmp)
 {
 	if (tmp)
@@ -61,16 +46,6 @@ int	main(int arc, char **arv)
 	if (arc <= 1)
 		return (1);
 	arr_to_list(arv, &sta);
-	print_list(sta);
-	ft_pb(&stb, &sta);
-	print_list(stb);
-	ft_pb(&stb, &sta);
-	print_list(stb);
-	ft_pb(&stb, &sta);
-	print_list(stb);
-	ft_pb(&stb, &sta);
-	print_list(stb);
-	ft_pa(&sta, &stb);
 	print_list(sta);
 	return (0);
 }

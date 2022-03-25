@@ -12,15 +12,15 @@
 
 #include "push_swap.h"
 
-void	ft_sa(t_list *stack)
+void	ft_sa(t_list **stack)
 {
 	int	data;
 
-	if (stack->data && stack->next->data)
+	if ((*stack)->data && (*stack)->next->data)
 	{
-		data = stack->next->data;
-		stack->next->data = stack->data;
-		stack->data = data;
+		data = (*stack)->next->data;
+		(*stack)->next->data = (*stack)->data;
+		(*stack)->data = data;
 		write (1, "sa\n", 3);
 	}
 }

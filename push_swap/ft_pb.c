@@ -26,7 +26,6 @@ void	ft_pb(t_list **stb, t_list **sta)
 		}
 		else
 			*sta = NULL;
-		(*stb)->prev = temp;
 		temp->next = *stb;
 		temp->prev = NULL;
 		*stb = temp;

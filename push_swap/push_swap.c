@@ -60,12 +60,17 @@ int	main(int arc, char **arv)
 
 	if (arc <= 1)
 		return (1);
-	arr_to_list(arv, &stb);
 	arr_to_list(arv, &sta);
 	print_list(sta);
+	ft_pb(&stb, &sta);
 	print_list(stb);
-	ft_rrr(&sta, &stb);
+	ft_pb(&stb, &sta);
 	print_list(stb);
+	ft_pb(&stb, &sta);
+	print_list(stb);
+	ft_pb(&stb, &sta);
+	print_list(stb);
+	ft_pa(&sta, &stb);
 	print_list(sta);
 	return (0);
 }

@@ -64,10 +64,10 @@ int	main(int arc, char **arv)
 	arr_to_list(arv, &sta);
 	print_list(sta);
 	print_list(stb);
-	ft_pa(&sta, &stb);
+	ft_pb(&stb, &sta);
 	print_list(sta);
 	print_list(stb);
-	ft_pb(&stb, &sta);
+	ft_rr(&sta, &stb);
 	print_list(sta);
 	print_list(stb);
 	return (0);

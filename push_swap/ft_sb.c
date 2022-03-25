@@ -16,8 +16,11 @@ void	ft_sb(t_list *stack)
 {
 	int	data;
 
-	data = stack->next->data;
-	stack->next->data = stack->data;
-	stack->data = data;
-	write (1, "sb\n", 3);
+	if (stack->data && stack->next->data)
+	{
+		data = stack->next->data;
+		stack->next->data = stack->data;
+		stack->data = data;
+		write (1, "sb\n", 3);
+	}	
 }

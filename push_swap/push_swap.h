@@ -35,5 +35,6 @@ void	ft_pb(t_list **sta, t_list **stb);
 void	ft_ra(t_list **sta);
 void	ft_rb(t_list **stb);
 void	ft_rr(t_list **sta, t_list **stb);
+void	ft_rra(t_list **sta);
 
 #endif

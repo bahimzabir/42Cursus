@@ -19,6 +19,8 @@
 
 typedef struct s_list
 {
+
+	struct s_list	*index;
 	struct s_list	*prev;
 	int				data;
 	struct s_list	*next;
@@ -27,7 +29,7 @@ typedef struct s_list
 void	lstaddback(t_list *stack_list, int data);
 void	ft_rrr(t_list **sta, t_list **stb);
 void	ft_pa(t_list **sta, t_list **stb);
-void	ft_pb(t_list **stb, t_list **sta);
+void	ft_pb(t_list **sta, t_list **stb);
 void	ft_rr(t_list **sta, t_list **stb);
 void	ft_ss(t_list *sta, t_list *stb);
 void	ft_sa(t_list **stack);

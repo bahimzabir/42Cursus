@@ -29,13 +29,13 @@ void	print_list(t_list *tmp)
 {
 	if (tmp)
 	{
-	while (tmp && tmp->next != NULL)
-	{
-		printf("%d\n", tmp->data);
-		tmp = tmp->next;
+		while (tmp)
+		{
+			printf("%d\n", tmp->data);
+			tmp = tmp->next;
+		}
 	}
-	printf("%d\n######\n", tmp->data);
-	}
+	printf("\n#####\n");
 }
 
 int	main(int arc, char **arv)
@@ -47,10 +47,13 @@ int	main(int arc, char **arv)
 		return (1);
 	arr_to_list(arv, &sta);
 	print_list(sta);
-	ft_rra(&sta);
+	ft_pb(&sta, &stb);
 	print_list(sta);
-	ft_sa(&sta);
-	//ft_pa(&sta, &stb);
+	ft_pb(&sta, &stb);
 	print_list(sta);
+	ft_pb(&sta, &stb);
+	print_list(sta);
+	/*ft_pb(&sta, &stb);
+	print_list(sta);*/
 	return (0);
 }

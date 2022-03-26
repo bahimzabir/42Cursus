@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_pb(t_list **stb, t_list **sta)
+void	ft_pb(t_list **sta, t_list **stb)
 {
 	t_list	*temp;
 

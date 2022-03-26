@@ -47,5 +47,10 @@ int	main(int arc, char **arv)
 		return (1);
 	arr_to_list(arv, &sta);
 	print_list(sta);
+	ft_rra(&sta);
+	print_list(sta);
+	ft_sa(&sta);
+	//ft_pa(&sta, &stb);
+	print_list(sta);
 	return (0);
 }

@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lstmake.c                                          :+:      :+:    :+:   */
+/*   indexing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 11:10:36 by azabir            #+#    #+#             */
-/*   Updated: 2022/03/22 11:10:42 by azabir           ###   ########.fr       */
+/*   Created: 2022/03/26 17:17:17 by azabir            #+#    #+#             */
+/*   Updated: 2022/03/26 17:17:19 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*lstmake(int data)
+void	indexing(t_list **stack, int arc)
 {
-	t_list	*head;
+	t_list	*temp;
+	int		data;
+	int		index;
 
-	head = malloc(sizeof(t_list));
-	if (!head)
-		return (0);
-	head->prev = NULL;
-	head->data = data;
-	head->index = 0;
-	head->next = NULL;
-	return (head);
+	index = 0;
+	temp = *stack;
+	data = temp->data;
+	while (temp)
+	{
+
+	}
+
 }

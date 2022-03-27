@@ -55,10 +55,12 @@ int	main(int arc, char **arv)
 	t_list	*sta;
 	t_list	*stb;
 
+	stb = NULL;
 	if (arc <= 1)
 		return (1);
 	arr_to_list(arv, &sta);
 	indexing(&sta, arc);
+	ft_sa(&sta);
 	print_list(sta);
 	print_index(sta);
 	return (0);

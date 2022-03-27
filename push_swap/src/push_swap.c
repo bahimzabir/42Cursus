@@ -50,6 +50,12 @@ void	print_index(t_list *tmp)
 	printf("\n#####\n");
 }
 
+void	push_swap(t_list **sta, t_list **stb)
+{
+	ft_sa(sta);
+	ft_sb(stb);
+}
+
 int	main(int arc, char **arv)
 {
 	t_list	*sta;
@@ -59,14 +65,8 @@ int	main(int arc, char **arv)
 	if (arc <= 1)
 		return (1);
 	arr_to_list(arv, &sta);
-	ft_pb (&sta, &stb);
-	ft_pb (&sta, &stb);
-	ft_pb (&sta, &stb);
 	indexing(&sta, arc);
+	push_swap(&sta, &stb);
 	print_list(sta);
-	print_list(stb);
-	ft_ss(&sta, &stb);
-	print_list(sta);
-	print_list(stb);
 	return (0);
 }

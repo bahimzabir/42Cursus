@@ -16,7 +16,7 @@ void	ft_sa(t_list **stack)
 {
 	int	data;
 
-	if ((*stack)->data && (*stack)->next->data)
+	if (*stack && (*stack)->next)
 	{
 		data = (*stack)->next->data;
 		(*stack)->next->data = (*stack)->data;

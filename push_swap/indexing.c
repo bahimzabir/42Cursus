@@ -15,15 +15,27 @@
 void	indexing(t_list **stack, int arc)
 {
 	t_list	*temp;
-	int		data;
+	t_list	*holder;
 	int		index;
 
-	index = 0;
-	temp = *stack;
-	data = temp->data;
-	while (temp)
+	index = 1;
+	holder = *stack;
+	while (holder)
 	{
-
+		temp = *stack;
+		while (temp)
+		{
+			if ((holder->data > temp->data))
+			{
+				if (holder->data == temp->data)
+					exit(1);
+				index++;
+			}
+			temp = temp->next;
+		}
+		holder->index = index;
+		holder = holder->next;
+		index = 1;
 	}
 
 }

@@ -37,6 +37,18 @@ void	print_list(t_list *tmp)
 	}
 	printf("\n#####\n");
 }
+void	print_index(t_list *tmp)
+{
+	if (tmp)
+	{
+		while (tmp)
+		{
+			printf("%d\n", tmp->index);
+			tmp = tmp->next;
+		}
+	}
+	printf("\n#####\n");
+}
 
 int	main(int arc, char **arv)
 {
@@ -46,14 +58,8 @@ int	main(int arc, char **arv)
 	if (arc <= 1)
 		return (1);
 	arr_to_list(arv, &sta);
+	indexing(&sta, arc);
 	print_list(sta);
-	ft_pb(&sta, &stb);
-	print_list(sta);
-	ft_pb(&sta, &stb);
-	print_list(sta);
-	ft_pb(&sta, &stb);
-	print_list(sta);
-	/*ft_pb(&sta, &stb);
-	print_list(sta);*/
+	print_index(sta);
 	return (0);
 }

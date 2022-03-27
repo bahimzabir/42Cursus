@@ -53,6 +53,7 @@ void	print_index(t_list *tmp)
 void	push_swap(t_list **sta, t_list **stb)
 {
 	ft_sa(sta);
+	ft_pb(sta, stb);
 	ft_sb(stb);
 }
 

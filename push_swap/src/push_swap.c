@@ -59,9 +59,14 @@ int	main(int arc, char **arv)
 	if (arc <= 1)
 		return (1);
 	arr_to_list(arv, &sta);
+	ft_pb (&sta, &stb);
+	ft_pb (&sta, &stb);
+	ft_pb (&sta, &stb);
 	indexing(&sta, arc);
-	ft_sa(&sta);
 	print_list(sta);
-	print_index(sta);
+	print_list(stb);
+	ft_ss(&sta, &stb);
+	print_list(sta);
+	print_list(stb);
 	return (0);
 }

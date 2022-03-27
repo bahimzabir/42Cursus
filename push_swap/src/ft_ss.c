@@ -12,15 +12,28 @@
 
 #include "push_swap.h"
 
-void	ft_ss(t_list *sta, t_list *stb)
+void	ft_swap(t_list **stack)
 {
 	int	data;
 
-	data = sta->next->data;
-	sta->next->data = sta->data;
-	sta->data = data;
-	data = stb->next->data;
-	stb->next->data = stb->data;
-	stb->data = data;
-	write (1, "ss\n", 3);
+	if ((*stack) && (*stack)->next)
+	{
+		data = (*stack)->next->data;
+		(*stack)->next->data = (*stack)->data;
+		(*stack)->data = data;
+		data = (*stack)->next->index;
+		(*stack)->next->index = (*stack)->index;
+		(*stack)->index = data;
+	}	
+}
+
+void	ft_ss(t_list **sta, t_list **stb)
+{
+	if ((*sta && (*sta)->next) || (*stb  && (*stb)->next))
+	{
+		write (1, "HERE\n", 5);
+		ft_swap(sta);
+		ft_swap(stb);
+		write (1, "ss\n", 3);
+	}
 }

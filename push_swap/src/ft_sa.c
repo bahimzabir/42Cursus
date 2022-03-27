@@ -21,6 +21,9 @@ void	ft_sa(t_list **stack)
 		data = (*stack)->next->data;
 		(*stack)->next->data = (*stack)->data;
 		(*stack)->data = data;
+		data = (*stack)->next->index;
+		(*stack)->next->index = (*stack)->index;
+		(*stack)->index = data;
 		write (1, "sa\n", 3);
 	}
 }

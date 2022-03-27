@@ -39,5 +39,4 @@ void	indexing(t_list **stack, int arc)
 		holder = holder->next;
 		index = 1;
 	}
-
 }

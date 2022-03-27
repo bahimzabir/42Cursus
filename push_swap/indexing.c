@@ -17,22 +17,24 @@ void	indexing(t_list **stack, int arc)
 	t_list	*temp;
 	t_list	*holder;
 	int		index;
+	int		dep;
 
 	index = 1;
+	dep = 1;
 	holder = *stack;
 	while (holder)
 	{
 		temp = *stack;
 		while (temp)
 		{
-			if ((holder->data > temp->data))
-			{
-				if (holder->data == temp->data)
-					exit(1);
+			if (holder->data > temp->data)
 				index++;
-			}
+			else if (holder->data == temp->data)
+				dep ++;
 			temp = temp->next;
 		}
+		if (dep > arc)
+			exit(1);
 		holder->index = index;
 		holder = holder->next;
 		index = 1;

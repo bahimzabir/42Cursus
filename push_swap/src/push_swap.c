@@ -50,11 +50,35 @@ void	print_index(t_list *tmp)
 	printf("\n#####\n");
 }
 
-void	push_swap(t_list **sta, t_list **stb)
+void	push_swap(t_list **sta, t_list **stb, int arc)
 {
-	ft_sa(sta);
-	ft_pb(sta, stb);
-	ft_sb(stb);
+	int		i;
+	int		j;
+	t_list	*temp;
+
+	temp = *sta;
+	i = 1;
+	if (arc <= 10)
+	{
+		/*make a fun that check the best one (ra or rra),
+		 try to work on any number of data then try to make (ss & rr & rrr) useful AF*/
+		j = 0;
+		while (i <= 10)
+		{
+			while ((*sta)->index != i)
+				ft_ra(sta);
+			ft_pb(sta, stb);
+			i++;
+			if (i == 10)
+				while (i >= 1)
+				{
+					ft_pa(sta, stb);
+					i--;
+				}
+			if (i == 0)
+				break;
+		}
+	}
 }
 
 int	main(int arc, char **arv)
@@ -67,7 +91,8 @@ int	main(int arc, char **arv)
 		return (1);
 	arr_to_list(arv, &sta);
 	indexing(&sta, arc);
-	push_swap(&sta, &stb);
-	print_list(sta);
+	//print_list(sta);
+	push_swap(&sta, &stb, arc - 1);
+	//print_list(sta);
 	return (0);
 }

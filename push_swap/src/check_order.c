@@ -14,10 +14,13 @@
 
 int	check_order(t_list	*stack)
 {
-	while (stack->next != NULL)
+	t_list	*temp;
+
+	temp = stack;
+	while (temp->next)
 	{
-		if (stack->data <= stack->next->data)
-			stack = stack->next;
+		if (temp->index <= temp->next->index)
+			temp = temp->next;
 		else
 			return (0);
 	}

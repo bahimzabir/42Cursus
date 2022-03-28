@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+		/*make a fun that check the best one (ra or rra),
+		 try to work on any number of data then try to make (ss & rr & rrr) useful AF*/
 #include "push_swap.h"
 
 void	arr_to_list(char **arr, t_list **stack_list)
@@ -58,26 +60,24 @@ void	push_swap(t_list **sta, t_list **stb, int arc)
 
 	temp = *sta;
 	i = 1;
-	if (arc <= 10)
-	{
-		/*make a fun that check the best one (ra or rra),
-		 try to work on any number of data then try to make (ss & rr & rrr) useful AF*/
 		j = 0;
-		while (i <= 10)
-		{
-			while ((*sta)->index != i)
-				ft_ra(sta);
-			ft_pb(sta, stb);
-			i++;
-			if (i == 10)
-				while (i >= 1)
-				{
-					ft_pa(sta, stb);
-					i--;
-				}
-			if (i == 0)
-				break;
-		}
+	while (i <= arc)
+	{
+		
+		while ((*sta)->index != i)
+			ft_rra(sta);
+		if (i == arc && check_order(*sta) == 1)
+			break;
+		ft_pb(sta, stb);
+		i++;
+		if (i == arc && check_order(*sta) == 1)
+			while (i >= 1)
+			{
+				ft_pa(sta, stb);
+				i--;
+			}
+		if (i == 0)
+			break;
 	}
 }
 
@@ -91,8 +91,18 @@ int	main(int arc, char **arv)
 		return (1);
 	arr_to_list(arv, &sta);
 	indexing(&sta, arc);
-	//print_list(sta);
-	push_swap(&sta, &stb, arc - 1);
-	//print_list(sta);
+	ft_rra(&sta);
+	print_list(sta);
+	ft_rra(&sta);
+	print_list(sta);
+	ft_rra(&sta);
+	print_list(sta);
+	ft_rra(&sta);
+	print_list(sta);
+	ft_rra(&sta);
+	print_list(sta);
+	ft_rra(&sta);
+	print_list(sta);
+	//push_swap(&sta, &stb, arc - 1);
 	return (0);
 }

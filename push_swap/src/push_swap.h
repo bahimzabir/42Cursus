@@ -33,6 +33,7 @@ void	ft_pb(t_list **sta, t_list **stb);
 void	ft_rr(t_list **sta, t_list **stb);
 void	indexing(t_list **stack, int arc);
 void	ft_ss(t_list **sta, t_list **stb);
+int		check_order(t_list	*stack);
 int		ft_listlen(t_list *list);
 void	ft_sa(t_list **stack);
 void	ft_sb(t_list **stack);

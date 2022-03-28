@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rrb.c                                           :+:      :+:    :+:   */
+/*   do_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 12:07:34 by azabir            #+#    #+#             */
-/*   Updated: 2022/03/25 12:07:36 by azabir           ###   ########.fr       */
+/*   Created: 2022/03/28 15:49:30 by azabir            #+#    #+#             */
+/*   Updated: 2022/03/28 15:49:35 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rrb(t_list **stb)
+void	do_move(t_list **sta, t_list **stb)
 {
-	t_list	*temp1;
-	t_list	*temp2;
-
-	if (*stb && (*stb)->next)
-	{
-		temp1 = *stb;
-		while (temp1->next != NULL)
-			temp1 = temp1->next;
-		temp2 = temp1;
-		temp2 = temp2->prev;
-		temp2->next = NULL;
-		temp1->next = *stb;
-		(*stb)->prev = temp1;
-		temp1->prev = NULL;
-		*stb = temp1;
-		write (1, "rrb\n", 4);
-	}
+	sta = stb;
 }

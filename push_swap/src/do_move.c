@@ -21,12 +21,14 @@ void	do_move(t_list **sta, int	arc, int i)
 	temp = *sta;
 	count = 1;
 	index =  temp->index + 1;
+	if (temp->index - temp->next->index > 0)
+		ft_sa(sta);
 	while (temp->index != i)
 	{
 		temp = temp->next;
 		count++;
 	}
-	if (count > (arc / 2))
+	if (count >= (arc / 2))
 	{
 		while ((*sta)->index != i)
 			ft_rra(sta);

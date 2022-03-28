@@ -64,11 +64,12 @@ void	push_swap(t_list **sta, t_list **stb, int arc)
 	while (i <= arc)
 	{
 		
-		while ((*sta)->index != i)
+		while (((*sta)->index != i) && (check_order(*sta) == 0))
 			do_move(sta, arc, i);
-		if (i == arc && check_order(*sta) == 1)
+		if ((i == arc || check_order(*sta) == 1) && !(*stb))
 			break;
-		ft_pb(sta, stb);
+		if (check_order(*sta) == 0)
+			ft_pb(sta, stb);
 		i++;
 		if (i == arc && check_order(*sta) == 1)
 			while (i >= 1)
@@ -92,6 +93,6 @@ int	main(int arc, char **arv)
 	arr_to_list(arv, &sta);
 	indexing(&sta, arc);
 	push_swap(&sta, &stb, arc - 1);
-	print_list(sta);
+	//print_list(sta);
 	return (0);
 }

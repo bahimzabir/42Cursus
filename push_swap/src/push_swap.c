@@ -65,7 +65,7 @@ void	push_swap(t_list **sta, t_list **stb, int arc)
 	{
 		
 		while ((*sta)->index != i)
-			ft_rra(sta);
+			do_move(sta, arc, i);
 		if (i == arc && check_order(*sta) == 1)
 			break;
 		ft_pb(sta, stb);
@@ -91,18 +91,7 @@ int	main(int arc, char **arv)
 		return (1);
 	arr_to_list(arv, &sta);
 	indexing(&sta, arc);
-	ft_rra(&sta);
+	push_swap(&sta, &stb, arc - 1);
 	print_list(sta);
-	ft_rra(&sta);
-	print_list(sta);
-	ft_rra(&sta);
-	print_list(sta);
-	ft_rra(&sta);
-	print_list(sta);
-	ft_rra(&sta);
-	print_list(sta);
-	ft_rra(&sta);
-	print_list(sta);
-	//push_swap(&sta, &stb, arc - 1);
 	return (0);
 }

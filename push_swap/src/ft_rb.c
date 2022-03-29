@@ -12,22 +12,22 @@
 
 #include "push_swap.h"
 
-void	ft_rb(t_list **sta)
+void	ft_rb(t_list **stb)
 {
 	t_list	*temp1;
 	t_list	*temp2;
 
-	if (*sta)
+	if (*stb && (*stb)->next)
 	{
-		temp1 = *sta;
+		temp1 = *stb;
 		while (temp1->next != NULL)
 			temp1 = temp1->next;
-		temp2 = *sta;
-		if ((*sta)->next)
-			*sta = (*sta)->next;
+		temp2 = *stb;
+		*stb = (*stb)->next;
 		temp1->next = temp2;
 		temp2->prev = temp1;
 		temp2->next = NULL;
+		(*stb)->prev = NULL;
 		write (1, "ra\n", 3);
 	}
 }

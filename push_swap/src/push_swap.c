@@ -29,15 +29,16 @@ void	arr_to_list(char **arr, t_list **stack_list)
 
 void	print_list(t_list *tmp)
 {
+	printf("-----------------\n");
 	if (tmp)
 	{
 		while (tmp)
 		{
-			printf("%d\n", tmp->data);
+			printf("%d ", tmp->data);
 			tmp = tmp->next;
 		}
 	}
-	printf("\n#####\n");
+	printf("\n-----------------\n");
 }
 void	print_index(t_list *tmp)
 {
@@ -51,8 +52,14 @@ void	print_index(t_list *tmp)
 	}
 	printf("\n#####\n");
 }
-
 void	push_swap(t_list **sta, t_list **stb, int arc)
+{
+	int		i;
+	t_list	*temp;
+
+
+}
+/*void	push_swap(t_list **sta, t_list **stb, int arc)
 {
 	int		i;
 	int		j;
@@ -60,7 +67,7 @@ void	push_swap(t_list **sta, t_list **stb, int arc)
 
 	temp = *sta;
 	i = 1;
-		j = 0;
+	j = 0;
 	while (i <= arc)
 	{
 		
@@ -81,7 +88,7 @@ void	push_swap(t_list **sta, t_list **stb, int arc)
 			break;
 	}
 }
-
+*/
 int	main(int arc, char **arv)
 {
 	t_list	*sta;

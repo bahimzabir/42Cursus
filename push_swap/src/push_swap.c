@@ -57,6 +57,14 @@ void	push_swap(t_list **sta, t_list **stb, int arc)
 	int		i;
 	t_list	*temp;
 
+	i = 0;
+	while (check_order(*sta))
+	{
+		while(i++ < (arc / 2) + 1)
+			ft_pb(sta, stb);
+		while(sta)
+
+	}
 
 }
 /*void	push_swap(t_list **sta, t_list **stb, int arc)

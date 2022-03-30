@@ -107,7 +107,7 @@ void	push_swap1(t_list **sta, t_list **stb, int arc)
 			ft_ra(sta);
 		}
 
-		
+
 		if (i == 0)
 			break;
 	}
@@ -130,3 +130,4 @@ int	main(int arc, char **arv)
 	//print_list(sta);
 	return (0);
 }
+

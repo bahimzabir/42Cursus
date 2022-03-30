@@ -85,7 +85,7 @@ void	print_index(t_list *tmp)
 // 	}
 
 // }
-void	push_swap(t_list **sta, t_list **stb, int arc)
+void	push_swap1(t_list **sta, t_list **stb, int arc)
 {
 	int		i;
 	int		j;
@@ -125,7 +125,8 @@ int	main(int arc, char **arv)
 		return (1);
 	arr_to_list(arv, &sta);
 	indexing(&sta, arc);
-	push_swap(&sta, &stb, arc - 1);
+	if (arc <= 51)
+		push_swap1(&sta, &stb, arc - 1);
 	//print_list(sta);
 	return (0);
 }

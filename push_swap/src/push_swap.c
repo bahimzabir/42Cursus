@@ -52,7 +52,7 @@ void	print_index(t_list *tmp)
 	}
 	printf("\n#####\n");
 }
-/*void	push_swap(t_list **sta, t_list **stb, int arc)
+void	push_swap(t_list **sta, t_list **stb, int arc)
 {
 	int		i;
 	t_list	*temp;
@@ -60,14 +60,25 @@ void	print_index(t_list *tmp)
 	i = 1;
 	while (check_order(*sta))
 	{
-		while (((*sta)->index != i))
-			do_move(sta, arc, i);
-		while()
+		while (((*sta)->index > arc / 2))
+			do_move(sta, stb, arc, i);
+		if ((check_order(*sta) == 1) && !(*stb))
+			break;
+		ft_pb(sta, stb);
+		i++;
 
+		// you are working in algo that push the beggest part to stb, then returns them back
+		// so every number takes it's place, note that the part lift on sta should be ordred!
+
+		if (i >= arc / 2)
+		{
+			while (check_order(*sta))
+
+		}
 	}
 
-}*/
-void	push_swap(t_list **sta, t_list **stb, int arc)
+}
+/*void	push_swap(t_list **sta, t_list **stb, int arc)
 {
 	int		i;
 	int		j;
@@ -96,7 +107,7 @@ void	push_swap(t_list **sta, t_list **stb, int arc)
 			break;
 	}
 }
-
+*/
 int	main(int arc, char **arv)
 {
 	t_list	*sta;

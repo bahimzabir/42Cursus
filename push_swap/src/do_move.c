@@ -12,7 +12,20 @@
 
 #include "push_swap.h"
 
-void	do_move(t_list **sta, int	arc, int i)
+int	ft_move(t_list **sta, t_list **stb)
+{
+	int	i;
+
+	i = 0;
+	if ((*stb && (*stb)->next))
+		if ((*stb)->next->index > (*stb)->index)
+			i = 2;
+	if ((*sta)->index > (*sta)->next->index)
+			i++;
+	return (i);
+}
+
+void	do_move(t_list **sta, t_list **stb, int	arc, int i)
 {
 	int		index;
 	int		count;
@@ -21,8 +34,13 @@ void	do_move(t_list **sta, int	arc, int i)
 	temp = *sta;
 	count = 1;
 	index =  temp->index + 1;
-	if ((temp->index - temp->next->index) > 0)
+
+	if (ft_move(sta, stb) == 1)
 		ft_sa(sta);
+	else if (ft_move(sta, stb) == 2)
+		ft_sb(stb);
+	else if (ft_move(sta, stb) == 3)
+		ft_ss(sta, stb);
 	while (temp->index != i)
 	{
 		temp = temp->next;

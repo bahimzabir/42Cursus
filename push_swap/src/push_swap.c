@@ -82,22 +82,46 @@ void	print_index(t_list *tmp)
 			break;
 	}
 }*/
+
+void	ft_move2(t_list **stb, int i, int c)
+{
+	int		count;
+	t_list	*temp;
+
+	count = 1;
+	temp = *stb;
+
+	while (temp->index - i != -1)
+	{
+		temp = temp->next;
+		count++;
+	}
+	if (count > c)
+		while ((*stb)->index - i != -1)
+			ft_rrb(stb);
+	else
+		while ((*stb)->index - i != -1)
+			ft_rb(stb);
+}
+
 void	push_swap1(t_list **sta, t_list **stb, int arc)
 {
 	int		i;
 	int		j;
-	t_list	*temp;
+	int		c;
 
-	temp = *sta;
 	i = arc / 3;
 	j = 1;
-	while (i <= arc)
+	c = 0;
+	while (!(*stb) && !check_order(*sta))
 	{
-		
-		while (i > arc)
+		while (check_order(*sta) == 0 && i <= arc)
 		{
 			if ((*sta)->index <= i && check_order(*sta) == 0)
+			{
 				ft_pb(sta, stb);
+				c++;
+			}
 			j++;
 			if (j == arc)
 			{
@@ -106,9 +130,19 @@ void	push_swap1(t_list **sta, t_list **stb, int arc)
 			}
 			ft_ra(sta);
 		}
-
-
-		if (i == 0)
+		while (*stb)
+		{
+			if ((*sta)->index - (*stb)->index == 1)
+			{
+				ft_pa(sta, stb);
+				c--;
+			}
+			else
+			{
+				ft_move2(stb, (*sta)->index, c);
+			}
+		}
+		if (!(*stb) && check_order(*sta) == 1)
 			break;
 	}
 }
@@ -127,7 +161,7 @@ int	main(int arc, char **arv)
 		push_swap1(&sta, &stb, arc - 1);
 	if (arc <= 502)
 		push_swap1(&sta, &stb, arc - 1);
-	//print_list(sta);
+	print_list(sta);
+
 	return (0);
 }
-

@@ -28,6 +28,6 @@ void	ft_rb(t_list **stb)
 		temp2->prev = temp1;
 		temp2->next = NULL;
 		(*stb)->prev = NULL;
-		write (1, "ra\n", 3);
+		write (1, "rb\n", 3);
 	}
 }

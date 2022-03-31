@@ -24,6 +24,8 @@ void	ft_pb(t_list **sta, t_list **stb)
 			*sta = (*sta)->next;
 			(*sta)->prev = NULL;
 		}
+		else
+			*sta = NULL;
 		temp->next = *stb;
 		*stb = temp;
 		write (1, "pb\n", 3);

@@ -17,7 +17,9 @@ int	check_order(t_list	*stack)
 	t_list	*temp;
 
 	temp = stack;
-	while (temp->next)
+	if (!stack)
+		return(1);
+	while (temp && temp->next)
 	{
 		if (temp->index - temp->next->index == -1)
 			temp = temp->next;

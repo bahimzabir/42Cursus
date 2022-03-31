@@ -81,6 +81,56 @@ void	print_index(t_list *tmp)
 	}
 }*/
 
+int	lst_counter(t_list *list)
+{
+	int		i;
+	t_list	*temp;
+
+	i = 0;
+	temp = list;
+	while (temp)
+	{
+		temp = temp->next;
+		i++;
+	}
+	return (i);
+}
+
+void	range_move(t_list **sta, int i)
+{
+	int		count;
+	int		size;
+	t_list	*temp;
+
+	temp = *sta;
+	count = 0;
+	size = lst_counter(temp);
+	while (temp->index <= i)
+	{
+		temp = temp->next;
+		count++;	
+	}
+	if (count <= size/2 + 1)
+			ft_ra(sta);
+	else
+			ft_rra(sta);
+
+}
+
+int	range_check(t_list *list, int i)
+{
+	t_list	*temp;
+
+	temp = list;
+	while (temp)
+	{
+		if (temp->index <= i)
+			return (1);
+		temp = temp->next;
+	}
+	return (0);
+}
+
 void	ft_move2(t_list **stb, t_list **sta, int c)
 {
 	int		count;
@@ -95,10 +145,15 @@ void	ft_move2(t_list **stb, t_list **sta, int c)
 	}
 	if (count <= c/2 + 1)
 		while ((*stb) && (((*sta)->index) - ((*stb)->index)) != 1)
+		{
 			ft_rb(stb);
+		}
 	else
-		while ((*stb) && (*stb)->index - (*sta)->index != -1)
+		while ((*stb) && (*stb)->index - (*sta)->index != -1 )
+		{
 			ft_rrb(stb);
+			write(1, "HERE\n", 5);
+		}
 }
 
 void	push_swap1(t_list **sta, t_list **stb, int arc)
@@ -112,19 +167,17 @@ void	push_swap1(t_list **sta, t_list **stb, int arc)
 	c = 0;
 	while (!(*stb) && !check_order(*sta))
 	{
-		while (check_order(*sta) == 0 || i >= arc)
+		while (check_order(*sta) == 0)
 		{
 			if ((*sta)->index <= i)
-			{
 				ft_pb(sta, stb);
-				c++;
-			}
-			else
-				ft_ra(sta);
+			else if(range_check(*sta, i))
+				range_move(sta, i);
 			if (j >= arc)
 			{
 				i = i + arc / 5;
-
+				if (i == arc)
+					i--;
 				j = 0;
 			}
 			j++;
@@ -132,12 +185,9 @@ void	push_swap1(t_list **sta, t_list **stb, int arc)
 		while (*stb)
 		{
 			if ((*sta)->index - (*stb)->index == 1)
-			{
 				ft_pa(sta, stb);
-				c--;
-			}
 			else
-				ft_move2(stb, sta, c);
+				ft_move2(stb, sta, lst_counter(*stb));
 		}
 	}
 }
@@ -156,6 +206,7 @@ int	main(int arc, char **arv)
 		push_swap1(&sta, &stb, arc - 1);
 	if (arc <= 502)
 		push_swap1(&sta, &stb, arc - 1);
+		print_list (sta);
 
 	return (0);
 }

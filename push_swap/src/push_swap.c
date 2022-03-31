@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-		/*make a fun that check the best one (ra or rra),
-		 try to work on any number of data then try to make (ss & rr & rrr) useful AF*/
 #include "push_swap.h"
 
 void	arr_to_list(char **arr, t_list **stack_list)
@@ -85,7 +83,6 @@ void	print_index(t_list *tmp)
 
 void	ft_move2(t_list **stb, t_list **sta, int c)
 {
-	//there is a infinit loop in this fun, find it!!
 	int		count;
 	t_list	*temp;
 
@@ -110,25 +107,27 @@ void	push_swap1(t_list **sta, t_list **stb, int arc)
 	int		j;
 	int		c;
 
-	i = arc / 3;
+	i = arc / 5;
 	j = 1;
 	c = 0;
 	while (!(*stb) && !check_order(*sta))
 	{
-		while (check_order(*sta) == 0)
+		while (check_order(*sta) == 0 || i >= arc)
 		{
-			if ((*sta)->index <= i && check_order(*sta) == 0)
+			if ((*sta)->index <= i)
 			{
 				ft_pb(sta, stb);
 				c++;
 			}
-			j++;
-			if (j == arc)
+			else
+				ft_ra(sta);
+			if (j >= arc)
 			{
-				i += arc/3;
-				j = 1;
+				i = i + arc / 5;
+
+				j = 0;
 			}
-			ft_ra(sta);
+			j++;
 		}
 		while (*stb)
 		{
@@ -140,8 +139,6 @@ void	push_swap1(t_list **sta, t_list **stb, int arc)
 			else
 				ft_move2(stb, sta, c);
 		}
-		/*if (!(*stb) && check_order(*sta) == 1)
-			break;*/
 	}
 }
 
@@ -159,7 +156,6 @@ int	main(int arc, char **arv)
 		push_swap1(&sta, &stb, arc - 1);
 	if (arc <= 502)
 		push_swap1(&sta, &stb, arc - 1);
-	//print_list(sta);
 
 	return (0);
 }

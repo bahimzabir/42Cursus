@@ -145,16 +145,13 @@ void	ft_move2(t_list **stb, t_list **sta, int c)
 	}
 	if (count <= c/2 + 1)
 		while ((*stb) && (((*sta)->index) - ((*stb)->index)) != 1)
-		{
 			ft_rb(stb);
-		}
 	else
 		while ((*stb) && (*stb)->index - (*sta)->index != -1 )
-		{
 			ft_rrb(stb);
-			write(1, "HERE\n", 5);
-		}
 }
+
+//when you trying 103 charachters, it's just looping, fix it
 
 void	push_swap1(t_list **sta, t_list **stb, int arc)
 {
@@ -206,7 +203,8 @@ int	main(int arc, char **arv)
 		push_swap1(&sta, &stb, arc - 1);
 	if (arc <= 502)
 		push_swap1(&sta, &stb, arc - 1);
-		print_list (sta);
+		//print_list (sta);
+		//print_list (stb);
 
 	return (0);
 }

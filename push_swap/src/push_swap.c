@@ -173,8 +173,8 @@ void	push_swap1(t_list **sta, t_list **stb, int arc)
 			if (j >= arc)
 			{
 				i = i + arc / 5;
-				if (i == arc)
-					i--;
+				if (i >= arc)
+					i = arc - 1;
 				j = 0;
 			}
 			j++;

@@ -51,7 +51,7 @@ void	print_index(t_list *tmp)
 	printf("\n#####\n");
 }
 
-/*void	push_swap1(t_list **sta, t_list **stb, int arc)
+void	push_swap1(t_list **sta, t_list **stb, int arc)
 {
 	int		i;
 	int		j;
@@ -79,7 +79,7 @@ void	print_index(t_list *tmp)
 		if (i == 0)
 			break;
 	}
-}*/
+}
 
 int	lst_counter(t_list *list)
 {
@@ -151,9 +151,12 @@ void	ft_move2(t_list **stb, t_list **sta, int c)
 			ft_rrb(stb);
 }
 
-//when you trying 103 charachters, it's just looping, fix it
+void	ft_move3(t_list **stb, t_list **sta, int c)
+{
+	
+}
 
-void	push_swap1(t_list **sta, t_list **stb, int arc)
+void	push_swap2(t_list **sta, t_list **stb, int arc)
 {
 	int		i;
 	int		j;
@@ -189,6 +192,42 @@ void	push_swap1(t_list **sta, t_list **stb, int arc)
 	}
 }
 
+void	push_swap3(t_list **sta, t_list **stb, int arc)
+{
+	int		i;
+	int		j;
+	int		c;
+
+	i = arc / 5;
+	j = 1;
+	c = 0;
+	while (!(*stb) && !check_order(*sta))
+	{
+		while (check_order(*sta) == 0)
+		{
+			if ((*sta)->index <= i)
+				ft_pb(sta, stb);
+			else if(range_check(*sta, i))
+				range_move(sta, i);
+			if (j >= arc)
+			{
+				i = i + arc / 5;
+				if (i >= arc)
+					i = arc - 1;
+				j = 0;
+			}
+			j++;
+		}
+		while (*stb)
+		{
+			if ((*sta)->index - (*stb)->index == 1)
+				ft_pa(sta, stb);
+			else
+				ft_move3(stb, sta, lst_counter(*stb));
+		}
+	}
+}
+
 int	main(int arc, char **arv)
 {
 	t_list	*sta;
@@ -202,7 +241,7 @@ int	main(int arc, char **arv)
 	if (arc <= 51)
 		push_swap1(&sta, &stb, arc - 1);
 	if (arc <= 502)
-		push_swap1(&sta, &stb, arc - 1);
+		push_swap2(&sta, &stb, arc - 1);
 		//print_list (sta);
 		//print_list (stb);
 

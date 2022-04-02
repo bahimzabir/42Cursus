@@ -25,7 +25,7 @@ int	ft_move(t_list **sta, t_list **stb)
 	return (i);
 }
 
-void	do_move(t_list **sta, t_list **stb, int	arc, int i)
+/*void	do_move(t_list **sta, t_list **stb, int	arc, int i)
 {
 	int		index;
 	int		count;
@@ -58,39 +58,39 @@ void	do_move(t_list **sta, t_list **stb, int	arc, int i)
 		ft_ra(sta);
 		temp = *sta;
 	}
-}
-// void	do_move(t_list **sta, t_list **stb, int	arc, int i)
-// {
-// 	int		index;
-// 	int		count;
-// 	t_list	*temp;
+}*/
+void	do_move(t_list **sta, t_list **stb, int	arc, int i)
+{
+	int		index;
+	int		count;
+	t_list	*temp;
 
-// 	temp = *sta;
-// 	count = 1;
-// 	index =  temp->index + 1;
+	temp = *sta;
+	count = 1;
+	index =  temp->index + 1;
 
 	
-// 	if (ft_move(sta, stb) == 1)
-// 		ft_sa(sta);
-// 	else if (ft_move(sta, stb) == 2)
-// 		ft_sb(stb);
-// 	else if (ft_move(sta, stb) == 3)
-// 		ft_ss(sta, stb);
-// 	while (temp->index != i)
-// 	{
-// 		temp = temp->next;
-// 		count++;
-// 	}
-// 	if (count > (arc / 2) + 1)
-// 		while ((*sta)->index != i)
-// 			ft_rra(sta);
-// 	else
-// 		while ((*sta)->index != i)
-// 			ft_ra(sta);
-// 	if (temp->index == arc)
-// 	{
-// 		ft_ra(sta);
-// 		temp = *sta;
-// 	}
-// }
+	if (ft_move(sta, stb) == 1)
+		ft_sa(sta);
+	else if (ft_move(sta, stb) == 2)
+		ft_sb(stb);
+	else if (ft_move(sta, stb) == 3)
+		ft_ss(sta, stb);
+	while (temp->index != i)
+	{
+		temp = temp->next;
+		count++;
+	}
+	if (count > (arc / 2) + 1)
+		while ((*sta)->index != i)
+			ft_rra(sta);
+	else
+		while ((*sta)->index != i)
+			ft_ra(sta);
+	if (temp->index == arc)
+	{
+		ft_ra(sta);
+		temp = *sta;
+	}
+}
 

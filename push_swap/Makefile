@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 SRC = src/*.c
 NAME =  push_swap
 OBJS = $(SRC:.c=.o)

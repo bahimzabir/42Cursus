@@ -274,6 +274,7 @@ void	push_swap3(t_list **sta, t_list **stb, int arc)
 	c = 0;
 	while (!(*stb) && !check_order(*sta))
 	{
+		// add a func that check range and resolve the infinit loop
 		while ((*sta) && check_order(*sta) == 0)
 		{
 			if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i + 1)

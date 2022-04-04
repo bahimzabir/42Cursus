@@ -70,7 +70,7 @@ void	simple_push(t_list **sta, t_list **stb, int arc)
 				}
 			else
 				ft_ra(sta);
-			if ((*stb) && (*stb)->index <= arc / 4)
+			if ((*stb) && (*stb)->index <= 30)
 				ft_rb(stb);
 			if (j == arc || !check_range(*sta, i, arc))
 			{
@@ -90,4 +90,3 @@ void	simple_push(t_list **sta, t_list **stb, int arc)
 		}
 	}
 }
-

@@ -264,7 +264,16 @@ void	push_swap2(t_list **sta, t_list **stb, int arc)
 
 int	check_range(t_list *list, int i, int arc)
 {
-	 
+	 t_list	*temp;
+
+	 temp = list;
+	 while (temp)
+	 {
+		 if (temp->index >= arc / 2 - i && temp->index <= arc / 2 + i - 1)
+		 	return (1);
+		temp = temp->next;
+	 }
+	 return (0);
 }
 
 void	push_swap3(t_list **sta, t_list **stb, int arc)
@@ -273,31 +282,31 @@ void	push_swap3(t_list **sta, t_list **stb, int arc)
 	int		j;
 	int		c;
 
-	i = arc / 8;
+	i = 15;
 	j = 1;
 	c = 0;
 	while (!(*stb) && !check_order(*sta))
 	{
 		// add a func that check range and resolve the infinit loop
-		while (check_order(*sta) == 0 && i <= arc / 2)
+		while (i <= arc / 2 && !check_order(*sta))
 		{
-			if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i)
+			if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i - 1 )
 				ft_pb(sta, stb);
-			else if(range_check(*sta, i))
-				range_move(sta, i);
-			if ((*stb) && (*stb)->index <= arc / 2 - arc / 4)
+			else
+				ft_ra(sta);
+			if ((*stb) && (*stb)->index <= arc / 4)
 				ft_rb(stb);
-			if (j >= arc)
+			if (j == arc || !check_range(*sta, i, arc))
 			{
-				i = i + arc / 8;
+				i = i + 15;
 				if (i >= arc / 2)
 					i = arc / 2;
 				j = 0;
 			}
 			j++;
-			 print_list (*sta);
-			 printf ("%d\n", i);
-			 printf ("%d\n", arc);
+			// print_list (*sta);
+			// printf ("%d\n", i);
+			// printf ("%d\n", arc);
 		}
 		while (*stb)
 		{
@@ -305,10 +314,7 @@ void	push_swap3(t_list **sta, t_list **stb, int arc)
 				ft_pa(sta, stb);
 			else
 				ft_move2(stb, sta, lst_counter(*stb));
-			/*if ((*sta)->index - list_end(*sta) == -1)
-				ft_rra(sta);*/
 		}
-		//write (1, "HERE\n", 5);
 	}
 }
 

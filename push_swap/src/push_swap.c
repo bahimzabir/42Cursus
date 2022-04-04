@@ -262,6 +262,10 @@ void	push_swap2(t_list **sta, t_list **stb, int arc)
 	}
 }
 
+int	check_range(t_list *list, int i, int arc)
+{
+	 
+}
 
 void	push_swap3(t_list **sta, t_list **stb, int arc)
 {
@@ -275,9 +279,9 @@ void	push_swap3(t_list **sta, t_list **stb, int arc)
 	while (!(*stb) && !check_order(*sta))
 	{
 		// add a func that check range and resolve the infinit loop
-		while ((*sta) && check_order(*sta) == 0)
+		while (check_order(*sta) == 0 && i <= arc / 2)
 		{
-			if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i + 1)
+			if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i)
 				ft_pb(sta, stb);
 			else if(range_check(*sta, i))
 				range_move(sta, i);
@@ -291,9 +295,9 @@ void	push_swap3(t_list **sta, t_list **stb, int arc)
 				j = 0;
 			}
 			j++;
-			// print_list (*sta);
-			// printf ("%d\n", i);
-			// printf ("%d\n", arc);
+			 print_list (*sta);
+			 printf ("%d\n", i);
+			 printf ("%d\n", arc);
 		}
 		while (*stb)
 		{

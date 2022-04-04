@@ -27,6 +27,11 @@ typedef struct s_list
 }	t_list;
 
 void	do_move(t_list **sta, t_list **stb, int	arc, int i);
+void	simple_push(t_list **sta, t_list **stb, int arc);
+void	range_push(t_list **sta, t_list **stb, int arc);
+void	basic_push(t_list **sta, t_list **stb, int arc);
+void	fast_move(t_list **stb, t_list **sta, int c);
+int		check_range(t_list *list, int i, int arc);
 void	lstaddback(t_list *stack_list, int data);
 void	ft_rrr(t_list **sta, t_list **stb);
 void	ft_pa(t_list **sta, t_list **stb);
@@ -34,8 +39,12 @@ void	ft_pb(t_list **sta, t_list **stb);
 void	ft_rr(t_list **sta, t_list **stb);
 void	indexing(t_list **stack, int arc);
 void	ft_ss(t_list **sta, t_list **stb);
+int		check_index(t_list *list, int i);
+void	range_move(t_list **sta, int i);
 int		check_order(t_list	*stack);
+int		list_counter(t_list *list);
 int		ft_listlen(t_list *list);
+int		list_end(t_list *list);
 void	ft_sa(t_list **stack);
 void	ft_sb(t_list **stack);
 void	ft_rra(t_list **sta);

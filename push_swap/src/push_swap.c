@@ -283,7 +283,7 @@ void	push_swap3(t_list **sta, t_list **stb, int arc)
 	int		c;
 
 	// i = 30 is give 6000 in 500 and i = 15 gives 700 in 100 the best so far;
-	i = 30;
+	i = 20;
 	j = 1;
 	c = 0;
 	while (!(*stb) && !check_order(*sta))
@@ -293,13 +293,18 @@ void	push_swap3(t_list **sta, t_list **stb, int arc)
 		{
 			if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i - 1 )
 				ft_pb(sta, stb);
+			else if ((*sta)->index <= 70)
+				{
+					ft_pb(sta, stb);
+					ft_rb(stb);
+				}
 			else
 				ft_ra(sta);
 			if ((*stb) && (*stb)->index <= arc / 4)
 				ft_rb(stb);
 			if (j == arc || !check_range(*sta, i, arc))
 			{
-				i = i + 30;
+				i = i + 18;
 				if (i >= arc / 2)
 					i = arc / 2;
 				j = 0;

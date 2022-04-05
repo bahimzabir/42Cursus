@@ -12,6 +12,20 @@
 
 #include "push_swap.h"
 
+void	print_list2(t_list *tmp)
+{
+	printf("-----------------\n");
+	if (tmp)
+	{
+		while (tmp)
+		{
+			printf("%d ", tmp->data);
+			tmp = tmp->next;
+		}
+	}
+	printf("\n-----------------\n");
+}
+
 void	range_push(t_list **sta, t_list **stb, int arc)
 {
 	int		i;
@@ -26,9 +40,12 @@ void	range_push(t_list **sta, t_list **stb, int arc)
 	{
 		while (i <= arc / 2 && !check_order(*sta))
 		{
+		// print_list2(*sta);
+		// print_list2(*stb);
+		// printf("from %d to %d and i = %d\n", arc / 2 - i, arc / 2 + i - 1, i);
 			if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i - 1 )
 				ft_pb(sta, stb);
-			else if ((*sta)->index <= i + 1)
+			else if ((*sta)->index <= i)
 				{
 					ft_pb(sta, stb);
 					ft_rb(stb);
@@ -39,7 +56,7 @@ void	range_push(t_list **sta, t_list **stb, int arc)
 				ft_rb(stb);
 			if (j == arc || !check_range(*sta, i, arc))
 			{
-				i = i + 20;
+				i = i + 15;
 				if (i >= arc / 2)
 					i = arc / 2;
 				j = 0;

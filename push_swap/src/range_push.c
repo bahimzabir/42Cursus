@@ -26,50 +26,53 @@ void	print_list2(t_list *tmp)
 	printf("\n-----------------\n");
 }
 
-void	range_push(t_list **sta, t_list **stb, int arc)
+void	push_to_b(t_list **sta, t_list **stb, int arc, int i)
 {
-	int		i;
-	int		j;
-	int		c;
-
-	// i = 30 is give 6000 in 500 and i = 10 and i += 9 gives 700 in 100 the best so far;
-	i = 30;
-	j = 1;
-	c = 0;
-	while (!(*stb) && !check_order(*sta))
+	while (i <= arc / 2 && !check_order(*sta))
 	{
-		while (i <= arc / 2 && !check_order(*sta))
-		{
-		// print_list2(*sta);
-		// print_list2(*stb);
-		// printf("from %d to %d and i = %d\n", arc / 2 - i, arc / 2 + i - 1, i);
-			if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i - 1 )
-				ft_pb(sta, stb);
-			else if ((*sta)->index <= i)
-				{
-					ft_pb(sta, stb);
-					ft_rb(stb);
-				}
-			else
-				ft_ra(sta);
-			if ((*stb) && (*stb)->index <= arc / 4)
-				ft_rb(stb);
-			if (j == arc || !check_range(*sta, i, arc))
+		if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i - 1)
+			ft_pb(sta, stb);
+		else if ((*sta)->index <= i)
 			{
-				i = i + 15;
-				if (i >= arc / 2)
-					i = arc / 2;
-				j = 0;
+				ft_pb(sta, stb);
+				ft_rb(stb);
 			}
-			j++;
+		else
+			ft_ra(sta);
+		if ((*stb) && (*stb)->index <= arc / 2)
+			ft_rb(stb);
+		if (!check_range(*sta, i, arc))
+		{
+			i = i + 15;
+			if (i >= arc / 2)
+				i = arc / 2;
+			j = 0;
 		}
-		while (*stb)
+	}
+}
+
+void	push_to_a(t_list **sta, t_list **stb)
+{
+	while (*stb)
 		{
 			if ((*sta)->index - (*stb)->index == 1)
 				ft_pa(sta, stb);
 			else
 				fast_move(stb, sta, list_counter(*stb));
 		}
+}
+
+void	range_push(t_list **sta, t_list **stb, int arc)
+{
+	int		i;
+	int		j;
+
+	i = 30;
+	j = 1;
+	while (!(*stb) && !check_order(*sta))
+	{
+		push_to_b (sta, stb, arc, 30);
+		push_to_a(sta, stb);
 	}
 }
 

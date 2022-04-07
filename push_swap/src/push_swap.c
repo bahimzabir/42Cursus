@@ -64,7 +64,7 @@ int	main(int arc, char **arv)
 	if (arc <= 51)
 		basic_push(&sta, &stb, arc - 1);
 	else if (arc <= 200)
-		range_push(&sta, &stb, arc - 1);
+		simple_push(&sta, &stb, arc - 1);
 	else if (arc > 200)
 		range_push(&sta, &stb, arc - 1);
 	return (0);

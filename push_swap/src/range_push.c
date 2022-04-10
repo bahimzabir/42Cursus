@@ -79,7 +79,7 @@ void	push_to_a(t_list **sta, t_list **stb, int arc)
 	arc = 1;
 	while (*stb)
 		{
-			if ((*sta)->index - (*stb)->index == 1 || ((*sta)->index - (*stb)->next->index == 2 && check_order(*sta)))
+			if ((*sta)->index - (*stb)->index == 1 /*|| ((*sta)->index - (*stb)->next->index == 2 && check_order(*sta))*/)
 			{
 				ft_pa(sta, stb);
 				if ((*sta)->index - (*sta)->next->index == 1)

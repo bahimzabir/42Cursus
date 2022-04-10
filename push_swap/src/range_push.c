@@ -19,7 +19,7 @@ void	print_list2(t_list *tmp)
 	{
 		while (tmp)
 		{
-			printf("%d ", tmp->data);
+			printf("%d ", tmp->index);
 			tmp = tmp->next;
 		}
 	}
@@ -28,6 +28,9 @@ void	print_list2(t_list *tmp)
 
 void	push_to_b(t_list **sta, t_list **stb, int arc, int i)
 {
+	int	j;
+
+	j = 22;
 	while (i <= arc / 2 && !check_order(*sta))
 	{
 		if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i - 1)
@@ -42,24 +45,23 @@ void	push_to_b(t_list **sta, t_list **stb, int arc, int i)
 		if ((*stb) && (*stb)->index <= arc / 3)
 			ft_rb(stb);
 		if (!check_range(*sta, i, arc))
-			i = i + 22;
+		{
+			i = i + j;
+		}
 		if (i >= arc / 2)
 				i = arc / 2;
 	}
 }
 
-int	check_custom_range(t_list *list, int a, int b)
+int	check_custom_range(t_list *list, int a)
 {
 	 t_list	*temp;
 
 	 temp = list;
 	 while (temp)
 	 {
-		 if (temp->index >= b && temp->index <= a)
-		 {
-			//write (1, "HERE2\n", 6);
+		 if (temp->index >= a)
 		 	return (1);
-		 }
 		temp = temp->next;
 	 }
 	 return (0);
@@ -69,28 +71,43 @@ int	check_custom_range(t_list *list, int a, int b)
 void	push_to_a(t_list **sta, t_list **stb, int arc)
 {
 	int	i;
+	int	j;
 
 	i = 1;
+	j = 0;
+
 	arc = 1;
 	while (*stb)
 		{
-			if ((*sta)->index - (*stb)->index == 1)
+			if ((*sta)->index - (*stb)->index == 1 || ((*sta)->index - (*stb)->next->index == 2 && check_order(*sta)))
+			{
 				ft_pa(sta, stb);
+				if ((*sta)->index - (*sta)->next->index == 1)
+					ft_sa(sta);
+				i++;
+			}
 			else
 				fast_move(stb, sta, list_counter(*stb));
-			/*else
+			/*if (i == 150)
 			{
-				while (check_custom_range(*stb, arc / 4, arc / 2))
+				while (list_end(*stb) >= 176)
+					ft_rrb(stb);
+				while (j <= 101)
 				{
-					if ((*stb) && (*stb)->index >= arc / 4 && (*stb)->index <= arc / 2)
+					if ((*stb) && (*stb)->index >= 200)
+					{
 						ft_pa(sta, stb);
+						j++;
+					}
 					else
-						ft_rrb(stb);
+						ft_rb(stb);
+					i++;
+					if (!check_custom_range(*stb, 200))
+						break;
 				}
-				i = 0;
-			}
 				while (!check_order(*sta))
-					ft_pb(sta, stb);*/
+					ft_pb(sta, stb);
+			}*/
 		}
 }
 

@@ -47,46 +47,125 @@ void	simple_push(t_list **sta, t_list **stb, int arc)
 		}
 	}
 }*/
+
+void	print_list3(t_list *tmp)
+{
+	printf("-----------------\n");
+	if (tmp)
+	{
+		while (tmp)
+		{
+			printf("%d ", tmp->index);
+			tmp = tmp->next;
+		}
+	}
+	printf("\n-----------------\n");
+}
+
+void	push_to_b2(t_list **sta, t_list **stb, int arc, int i)
+{
+	int	j;
+
+	j = 9;
+	while (i <= arc / 2 && !check_order(*sta))
+	{
+		if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i - 1)
+			ft_pb(sta, stb);
+		else if ((*sta)->index >= arc / 3 - i && (*sta)->index <= arc / 3)
+			{
+				ft_pb(sta, stb);
+				ft_rb(stb);
+			}
+		else
+			ft_ra(sta);
+		if ((*stb) && (*stb)->index <= arc / 3)
+			ft_rb(stb);
+		if (!check_range(*sta, i, arc))
+		{
+			i = i + j;
+		}
+		if (i >= arc / 2)
+				i = arc / 2;
+	}
+}
+
+int	check_custom_range2(t_list *list, int a)
+{
+	 t_list	*temp;
+
+	 temp = list;
+	 while (temp)
+	 {
+		 if (temp->index >= a)
+		 	return (1);
+		temp = temp->next;
+	 }
+	 return (0);
+}
+
+
+void	push_to_a2(t_list **sta, t_list **stb, int arc)
+{
+	int	i;
+	int	j;
+	int	index;
+
+	i = 1;
+	j = 0;
+
+	arc = 1;
+	while (*stb)
+		{
+			if (check_order(*sta))
+				index = (*sta)->index - 1;
+			/*print_list2(*sta);
+			printf("---- %d ----\n", index);
+			print_list2(*stb);*/
+			if ((*stb)->index == index || ((*stb)->index == index - 1 && check_order(*sta)))
+			{
+				ft_pa(sta, stb);
+				if ((*sta)->index - (*sta)->next->index == 1)
+					ft_sa(sta);
+				i++;
+			}
+			else
+			{
+				//printf("---- HERE ----\n");
+				fast_move(stb, index, list_counter(*stb));
+			}
+			/*if (i == 150)
+			{
+				while (list_end(*stb) >= 176)
+					ft_rrb(stb);
+				while (j <= 101)
+				{
+					if ((*stb) && (*stb)->index >= 200)
+					{
+						ft_pa(sta, stb);
+						j++;
+					}
+					else
+						ft_rb(stb);
+					i++;
+					if (!check_custom_range(*stb, 200))
+						break;
+				}
+				while (!check_order(*sta))
+					ft_pb(sta, stb);
+			}*/
+		}
+}
+
 void	simple_push(t_list **sta, t_list **stb, int arc)
 {
-	int		i;
+		int		i;
 	int		j;
-	int		c;
 
-	// i = 30 is give 6000 in 500 and i = 10 and i += 9 gives 700 in 100 the best so far;
-	i = 10;
+	i = 30;
 	j = 1;
-	c = 0;
 	while (!(*stb) && !check_order(*sta))
 	{
-		while (i <= arc / 2 && !check_order(*sta))
-		{
-			if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i - 1 )
-				ft_pb(sta, stb);
-			else if ((*sta)->index <= i + 1)
-				{
-					ft_pb(sta, stb);
-					ft_rb(stb);
-				}
-			else
-				ft_ra(sta);
-			if ((*stb) && (*stb)->index <= 30)
-				ft_rb(stb);
-			if (j == arc || !check_range(*sta, i, arc))
-			{
-				i = i + 9;
-				if (i >= arc / 2)
-					i = arc / 2;
-				j = 0;
-			}
-			j++;
-		}
-		while (*stb)
-		{
-			if ((*sta)->index - (*stb)->index == 1)
-				ft_pa(sta, stb);
-			else
-				fast_move(stb, sta, list_counter(*stb));
-		}
+		push_to_b2 (sta, stb, arc, 10);
+		push_to_a2(sta, stb, arc);
 	}
 }

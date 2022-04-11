@@ -12,23 +12,23 @@
 
 #include "push_swap.h"
 
-void	fast_move(t_list **stb, t_list **sta, int c)
+void	fast_move(t_list **stb, int	index, int c)
 {
 	int		count;
 	t_list	*temp;
 
 	count = 1;
 	temp = *stb;
-	while (temp && temp->index - (*sta)->index != -1)
+	while (temp && temp->index != index)
 	{
 		temp = temp->next;
 		count++;
 	}
 	if (count <= c/2 + 1)
-		while ((*stb) && (((*sta)->index) - ((*stb)->index)) != 1)
+		while ((*stb) && (index != (*stb)->index))
 			ft_rb(stb);
 	else
-		while ((*stb) && (*stb)->index - (*sta)->index != -1 )
+		while ((*stb) && (*stb)->index != index)
 			ft_rrb(stb);
 }
 

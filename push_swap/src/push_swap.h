@@ -30,7 +30,7 @@ void	do_move(t_list **sta, t_list **stb, int	arc, int i);
 void	simple_push(t_list **sta, t_list **stb, int arc);
 void	range_push(t_list **sta, t_list **stb, int arc);
 void	basic_push(t_list **sta, t_list **stb, int arc);
-void	fast_move(t_list **stb, t_list **sta, int c);
+void	fast_move(t_list **stb, int index, int c);
 int		check_range(t_list *list, int i, int arc);
 void	lstaddback(t_list *stack_list, int data);
 void	ft_rrr(t_list **sta, t_list **stb);

@@ -74,7 +74,7 @@ void	push_to_a(t_list **sta, t_list **stb, int arc)
 	int	j;
 	int	index;
 
-	i = 1;
+	i = 500;
 	j = 0;
 
 	arc = 1;
@@ -90,18 +90,19 @@ void	push_to_a(t_list **sta, t_list **stb, int arc)
 				ft_pa(sta, stb);
 				if ((*sta)->index - (*sta)->next->index == 1)
 					ft_sa(sta);
-				i++;
+				i--;
 			}
 			else
 			{
 				//printf("---- HERE ----\n");
 				fast_move(stb, index, list_counter(*stb));
 			}
-			/*if (i == 150)
+			/*if ((*stb) && i - (*stb)->index >= 45 && !j)
 			{
+				//printf ("------- index = %d -------\n", (*stb)->index);
 				while (list_end(*stb) >= 176)
 					ft_rrb(stb);
-				while (j <= 101)
+				while (j <= 199)
 				{
 					if ((*stb) && (*stb)->index >= 200)
 					{

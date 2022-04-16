@@ -22,7 +22,7 @@ static long long int	ft_mknumber(char *s, int sign)
 	while (*s)
 	{
 		if (!(*s >= '0' && *s <= '9'))
-			exit (1);
+			ft_exit();
 		r = (r * 10) + (*s - '0');
 		if (sign < 0 && r > 2147483649)
 			ft_exit();

@@ -15,7 +15,8 @@
 void	swap_move(t_list **sta, t_list **stb)
 {
 	if ((*stb) && (*sta) && (*stb)->next && (*sta)->next
-		&& (*stb)->next->index - (*stb)->index == 1 && (*sta)->next->index - (*sta)->index == -1)
+		&& (*stb)->next->index - (*stb)->index == 1
+		&& (*sta)->next->index - (*sta)->index == -1)
 		ft_ss(sta, stb);
 	else if((*sta) && (*sta)->next && (*sta)->next->index - (*sta)->index == -1)
 		ft_sa(sta);

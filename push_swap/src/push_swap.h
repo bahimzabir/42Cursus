@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include <stdio.h> 
 # include <unistd.h>
 
 typedef struct s_list
@@ -33,6 +32,7 @@ void	basic_push(t_list **sta, t_list **stb, int arc);
 void	fast_move(t_list **stb, int index, int c);
 int		check_range(t_list *list, int i, int arc);
 void	lstaddback(t_list *stack_list, int data);
+void	swap_move(t_list **sta, t_list **stb);
 void	ft_rrr(t_list **sta, t_list **stb);
 void	ft_pa(t_list **sta, t_list **stb);
 void	ft_pb(t_list **sta, t_list **stb);

@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   range_move.c                                       :+:      :+:    :+:   */
+/*   swap_move.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/04 17:02:18 by azabir            #+#    #+#             */
-/*   Updated: 2022/04/04 17:02:53 by azabir           ###   ########.fr       */
+/*   Created: 2022/04/16 18:48:27 by azabir            #+#    #+#             */
+/*   Updated: 2022/04/16 18:49:06 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	range_move(t_list **sta, int i)
+void	swap_move(t_list **sta, t_list **stb)
 {
-	int		count;
-	int		size;
-	t_list	*temp;
-
-	temp = *sta;
-	count = 0;
-	size = list_counter(temp);
-	if ((*sta)->next && (*sta)->index - (*sta)->next->index == 1)
+	if ((*stb) && (*sta) && (*stb)->next && (*sta)->next
+		&& (*stb)->next->index - (*stb)->index == 1 && (*sta)->next->index - (*sta)->index == -1)
+		ft_ss(sta, stb);
+	else if((*sta) && (*sta)->next && (*sta)->next->index - (*sta)->index == -1)
 		ft_sa(sta);
-	while (temp->index <= i)
-	{
-		temp = temp->next;
-		count++;
-	}
-	if (!check_order(*sta))
-	{
-		if (count <= size/2 + 1)
-			ft_ra(sta);
-		else
-			ft_rra(sta);
-	}
+	else if((*stb) && (*stb)->next && (*stb)->next->index - (*stb)->index == 1)
+		ft_sb(stb);
 }
+

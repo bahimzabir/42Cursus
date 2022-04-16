@@ -25,32 +25,6 @@ void	arr_to_list(char **arr, t_list **stack_list)
 	}
 }
 
-void	print_list(t_list *tmp)
-{
-	printf("-----------------\n");
-	if (tmp)
-	{
-		while (tmp)
-		{
-			printf("%d ", tmp->data);
-			tmp = tmp->next;
-		}
-	}
-	printf("\n-----------------\n");
-}
-void	print_index(t_list *tmp)
-{
-	if (tmp)
-	{
-		while (tmp)
-		{
-			printf("%d\n", tmp->index);
-			tmp = tmp->next;
-		}
-	}
-	printf("\n#####\n");
-}
-
 int	main(int arc, char **arv)
 {
 	t_list	*sta;

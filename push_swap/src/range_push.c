@@ -12,31 +12,6 @@
 
 #include "push_swap.h"
 
-void	print_list2(t_list *tmp)
-{
-	printf("-----------------\n");
-	if (tmp)
-	{
-		while (tmp)
-		{
-			printf("%d ", tmp->index);
-			tmp = tmp->next;
-		}
-	}
-	printf("\n-----------------\n");
-}
-
-void	swap_move(t_list **sta, t_list **stb)
-{
-	if ((*stb) && (*sta) && (*stb)->next && (*sta)->next
-		&& (*stb)->next->index - (*stb)->index == 1 && (*sta)->next->index - (*sta)->index == -1)
-		ft_ss(sta, stb);
-	else if((*sta) && (*sta)->next && (*sta)->next->index - (*sta)->index == -1)
-		ft_sa(sta);
-	else if((*stb) && (*stb)->next && (*stb)->next->index - (*stb)->index == 1)
-		ft_sb(stb);
-}
-
 void	push_to_b(t_list **sta, t_list **stb, int arc, int i)
 {
 	float	j;
@@ -137,4 +112,3 @@ void	range_push(t_list **sta, t_list **stb, int arc)
 	push_to_b (sta, stb, arc, 22);
 	push_to_a(sta, stb);
 }
-

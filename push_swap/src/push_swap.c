@@ -67,6 +67,5 @@ int	main(int arc, char **arv)
 		simple_push(&sta, &stb, arc - 1);
 	else if (arc > 200)
 		range_push(&sta, &stb, arc - 1);
-	//print_list(sta);
 	return (0);
 }

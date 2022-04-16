@@ -25,9 +25,9 @@ static long long int	ft_mknumber(char *s, int sign)
 			exit (1);
 		r = (r * 10) + (*s - '0');
 		if (sign < 0 && r > 2147483649)
-			return (0);
+			ft_exit();
 		else if (r > 2147483647 && sign > 0)
-			return (-1);
+			ft_exit();
 		s++;
 	}
 	return (r);

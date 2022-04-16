@@ -34,7 +34,7 @@ void	indexing(t_list **stack, int arc)
 			temp = temp->next;
 		}
 		if (dep > arc)
-			exit(1);
+			ft_exit();
 		holder->index = index;
 		holder = holder->next;
 		index = 1;

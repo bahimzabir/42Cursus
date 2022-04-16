@@ -53,5 +53,6 @@ void	ft_ra(t_list **sta);
 void	ft_rb(t_list **stb);
 t_list	*lstmake(int data);
 int		ft_atoi(char *s);
+void	ft_exit(void);
 
 #endif

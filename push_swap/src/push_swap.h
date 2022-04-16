@@ -15,6 +15,8 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <string.h>
 
 typedef struct s_list
 {
@@ -28,6 +30,7 @@ void	do_move(t_list **sta, t_list **stb, int arc, int i);
 void	simple_push(t_list **sta, t_list **stb, int arc);
 void	range_push(t_list **sta, t_list **stb, int arc);
 void	basic_push(t_list **sta, t_list **stb, int arc);
+void	arr_to_list(char **arr, t_list **stack_list);
 void	fast_move(t_list **stb, int index, int c);
 int		check_range(t_list *list, int i, int arc);
 void	lstaddback(t_list *stack_list, int data);
@@ -51,6 +54,7 @@ void	ft_rrb(t_list **stb);
 void	ft_ra(t_list **sta);
 void	ft_rb(t_list **stb);
 t_list	*lstmake(int data);
+int		g_nl(char **line);
 int		ft_atoi(char *s);
 void	ft_exit(void);
 

@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   arr_to_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/20 17:33:22 by azabir            #+#    #+#             */
-/*   Updated: 2022/03/20 17:34:16 by azabir           ###   ########.fr       */
+/*   Created: 2022/04/16 21:01:24 by azabir            #+#    #+#             */
+/*   Updated: 2022/04/16 21:02:01 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int arc, char **arv)
+void	arr_to_list(char **arr, t_list **stack_list)
 {
-	t_list	*sta;
-	t_list	*stb;
+	int	i;
 
-	stb = NULL;
-	if (arc <= 1)
-		return (1);
-	arr_to_list(arv, &sta);
-	indexing(&sta, arc);
-	if (arc <= 51)
-		basic_push(&sta, &stb, arc - 1);
-	else if (arc <= 200)
-		simple_push(&sta, &stb, arc - 1);
-	else if (arc > 200)
-		range_push(&sta, &stb, arc - 1);
-	return (0);
+	i = 2;
+	*stack_list = lstmake (ft_atoi(arr[1]));
+	while (arr [i])
+	{
+		lstaddback(*stack_list, ft_atoi(arr[i]));
+		i++;
+	}
 }

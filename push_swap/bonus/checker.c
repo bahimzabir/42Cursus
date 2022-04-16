@@ -10,13 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/push_swap.h"
+#include "../src/push_swap.h"
 
 int	main(int arc, char **arv)
 {
-	if (arc >= 1)
-	{
-		execv("push_swap", arv);
-	}
+	t_list **sta;
+	t_list **stb;
+
+	arr_to_list(arv, &sta);
+	indexing(&sta, arc);
 }
 

@@ -15,12 +15,10 @@
 void	basic_push(t_list **sta, t_list **stb, int arc)
 {
 	int		i;
-	int		j;
 	t_list	*temp;
 
 	temp = *sta;
 	i = 1;
-	j = 0;
 	while (i <= arc)
 	{
 		while (((*sta)->index != i) && (check_order(*sta) == 0))

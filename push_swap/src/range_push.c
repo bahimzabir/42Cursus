@@ -53,6 +53,34 @@ int	check_custom_range(t_list *list, int a)
 	return (0);
 }
 
+int	stack_organizer(t_list **stb, t_list **sta, int i, int j)
+{
+	if ((*stb) && i - (*stb)->index >= 45 && !j)
+	{
+		while (list_end(*stb) >= 90)
+			ft_rrb(stb);
+		while (j <= 249)
+		{
+			swap_move(sta, stb);
+			if ((*stb) && (*stb)->index >= 251)
+			{
+				ft_pa(sta, stb);
+					j++;
+			}
+			else
+				ft_rb(stb);
+			if (!check_custom_range(*stb, 251))
+				break ;
+		}
+		while (!check_order(*sta))
+		{
+			ft_pb(sta, stb);
+			swap_move(sta, stb);
+		}
+	}
+	return (j);
+}
+
 void	push_to_a(t_list **sta, t_list **stb)
 {
 	int	i;
@@ -74,30 +102,7 @@ void	push_to_a(t_list **sta, t_list **stb)
 		}
 		else
 			fast_move(stb, index, list_counter(*stb));
-		if ((*stb) && i - (*stb)->index >= 45 && !j)
-		{
-			while (list_end(*stb) >= 90)
-				ft_rrb(stb);
-			while (j <= 249)
-			{
-				swap_move(sta, stb);
-				if ((*stb) && (*stb)->index >= 251)
-				{
-					ft_pa(sta, stb);
-					j++;
-				}
-				else
-					ft_rb(stb);
-				i++;
-				if (!check_custom_range(*stb, 251))
-					break ;
-			}
-			while (!check_order(*sta))
-			{
-				ft_pb(sta, stb);
-				swap_move(sta, stb);
-			}
-		}
+		j = stack_organizer(stb, sta, i, j);
 	}
 }
 

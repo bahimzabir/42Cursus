@@ -31,7 +31,7 @@ void	ft_ss(t_list **sta, t_list **stb)
 {
 	if ((*sta && (*sta)->next) || (*stb  && (*stb)->next))
 	{
-		write (1, "HERE\n", 5);
+		//write (1, "HERE\n", 5);
 		ft_swap(sta);
 		ft_swap(stb);
 		write (1, "ss\n", 3);

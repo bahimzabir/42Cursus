@@ -26,6 +26,17 @@ void	print_list2(t_list *tmp)
 	printf("\n-----------------\n");
 }
 
+void	swap_move(t_list **sta, t_list **stb)
+{
+	if ((*stb) && (*sta) && (*stb)->next && (*sta)->next
+		&& (*stb)->next->index - (*stb)->index == 1 && (*sta)->next->index - (*sta)->index == -1)
+		ft_ss(sta, stb);
+	else if((*sta) && (*sta)->next && (*sta)->next->index - (*sta)->index == -1)
+		ft_sa(sta);
+	else if((*stb) && (*stb)->next && (*stb)->next->index - (*stb)->index == 1)
+		ft_sb(stb);
+}
+
 void	push_to_b(t_list **sta, t_list **stb, int arc, int i)
 {
 	float	j;
@@ -79,15 +90,12 @@ void	push_to_a(t_list **sta, t_list **stb)
 
 	while (*stb)
 		{
-			if ((*stb)->next && (*stb)->index - (*stb)->next->index == 1)
-					ft_sb(stb);
 			if (check_order(*sta))
 				index = (*sta)->index - 1;
 			if ((*stb)->index == index || ((*stb)->index == index - 1 && check_order(*sta)))
 			{
 				ft_pa(sta, stb);
-				if ((*sta)->index - (*sta)->next->index == 1)
-					ft_sa(sta);
+				swap_move(sta, stb);
 				i--;
 			}
 			else
@@ -98,6 +106,7 @@ void	push_to_a(t_list **sta, t_list **stb)
 					ft_rrb(stb);
 				while (j <= 249)
 				{
+					swap_move(sta, stb);
 					if ((*stb) && (*stb)->index >= 251)
 					{
 						ft_pa(sta, stb);
@@ -110,7 +119,10 @@ void	push_to_a(t_list **sta, t_list **stb)
 						break;
 				}
 				while (!check_order(*sta))
+				{
 					ft_pb(sta, stb);
+					swap_move(sta, stb);
+				}
 			}
 		}
 }

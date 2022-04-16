@@ -16,6 +16,7 @@ void	ft_rrb(t_list **stb)
 {
 	t_list	*temp1;
 	t_list	*temp2;
+
 	if (*stb && (*stb)->next)
 	{
 		temp1 = *stb;

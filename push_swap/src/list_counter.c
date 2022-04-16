@@ -26,4 +26,3 @@ int	list_counter(t_list *list)
 	}
 	return (i);
 }
-

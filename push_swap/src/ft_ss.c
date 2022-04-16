@@ -29,7 +29,7 @@ void	ft_swap(t_list **stack)
 
 void	ft_ss(t_list **sta, t_list **stb)
 {
-	if ((*sta && (*sta)->next) || (*stb  && (*stb)->next))
+	if ((*sta && (*sta)->next) || (*stb && (*stb)->next))
 	{
 		ft_swap(sta);
 		ft_swap(stb);

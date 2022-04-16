@@ -30,7 +30,7 @@ void	range_move(t_list **sta, int i)
 	}
 	if (!check_order(*sta))
 	{
-		if (count <= size/2 + 1)
+		if (count <= size / 2 + 1)
 			ft_ra(sta);
 		else
 			ft_rra(sta);

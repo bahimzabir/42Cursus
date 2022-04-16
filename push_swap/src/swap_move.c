@@ -18,9 +18,10 @@ void	swap_move(t_list **sta, t_list **stb)
 		&& (*stb)->next->index - (*stb)->index == 1
 		&& (*sta)->next->index - (*sta)->index == -1)
 		ft_ss(sta, stb);
-	else if((*sta) && (*sta)->next && (*sta)->next->index - (*sta)->index == -1)
+	else if ((*sta) && (*sta)->next
+		&& (*sta)->next->index - (*sta)->index == -1)
 		ft_sa(sta);
-	else if((*stb) && (*stb)->next && (*stb)->next->index - (*stb)->index == 1)
+	else if ((*stb) && (*stb)->next
+		&& (*stb)->next->index - (*stb)->index == 1)
 		ft_sb(stb);
 }
-

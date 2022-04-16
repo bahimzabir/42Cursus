@@ -16,6 +16,7 @@ void	ft_rra(t_list **sta)
 {
 	t_list	*temp1;
 	t_list	*temp2;
+
 	if (*sta && (*sta)->next)
 	{
 		temp1 = *sta;
@@ -30,6 +31,5 @@ void	ft_rra(t_list **sta)
 		temp2->next = NULL;
 		*sta = temp1;
 		write (1, "rra\n", 4);
-	}	
-
+	}
 }

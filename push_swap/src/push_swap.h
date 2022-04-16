@@ -18,14 +18,13 @@
 
 typedef struct s_list
 {
-
 	int				index;
 	struct s_list	*prev;
 	int				data;
 	struct s_list	*next;
 }	t_list;
 
-void	do_move(t_list **sta, t_list **stb, int	arc, int i);
+void	do_move(t_list **sta, t_list **stb, int arc, int i);
 void	simple_push(t_list **sta, t_list **stb, int arc);
 void	range_push(t_list **sta, t_list **stb, int arc);
 void	basic_push(t_list **sta, t_list **stb, int arc);

@@ -33,7 +33,6 @@ void	ft_rrstack(t_list **stack)
 
 void	ft_rrr(t_list **sta, t_list **stb)
 {
-
 	if (*sta && *stb)
 	{
 		ft_rrstack(sta);

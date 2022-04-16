@@ -28,9 +28,9 @@ void	print_list2(t_list *tmp)
 
 void	push_to_b(t_list **sta, t_list **stb, int arc, int i)
 {
-	int	j;
+	float	j;
 
-	j = 21;
+	j = 22;
 	while (i <= arc / 2 && !check_order(*sta))
 	{
 		if ((*sta)->index >= arc / 2 - i && (*sta)->index <= arc / 2 + i - 1)
@@ -68,7 +68,7 @@ int	check_custom_range(t_list *list, int a)
 }
 
 
-void	push_to_a(t_list **sta, t_list **stb, int arc)
+void	push_to_a(t_list **sta, t_list **stb)
 {
 	int	i;
 	int	j;
@@ -77,9 +77,10 @@ void	push_to_a(t_list **sta, t_list **stb, int arc)
 	i = 500;
 	j = 0;
 
-	arc = 1;
 	while (*stb)
 		{
+			if ((*stb)->next && (*stb)->index - (*stb)->next->index == 1)
+					ft_sb(stb);
 			if (check_order(*sta))
 				index = (*sta)->index - 1;
 			if ((*stb)->index == index || ((*stb)->index == index - 1 && check_order(*sta)))
@@ -93,11 +94,11 @@ void	push_to_a(t_list **sta, t_list **stb, int arc)
 				fast_move(stb, index, list_counter(*stb));
 			if ((*stb) && i - (*stb)->index >= 45 && !j)
 			{
-				while (list_end(*stb) >= 50)
+				while (list_end(*stb) >= 90)
 					ft_rrb(stb);
 				while (j <= 249)
 				{
-					if ((*stb) && (*stb)->index >= 250)
+					if ((*stb) && (*stb)->index >= 251)
 					{
 						ft_pa(sta, stb);
 						j++;
@@ -105,7 +106,7 @@ void	push_to_a(t_list **sta, t_list **stb, int arc)
 					else
 						ft_rb(stb);
 					i++;
-					if (!check_custom_range(*stb, 250))
+					if (!check_custom_range(*stb, 251))
 						break;
 				}
 				while (!check_order(*sta))
@@ -121,7 +122,7 @@ void	range_push(t_list **sta, t_list **stb, int arc)
 
 	i = 30;
 	j = 1;
-		push_to_b (sta, stb, arc, 22);
-		push_to_a(sta, stb, arc);
+	push_to_b (sta, stb, arc, 22);
+	push_to_a(sta, stb);
 }
 

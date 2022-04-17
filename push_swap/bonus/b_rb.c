@@ -30,4 +30,3 @@ void	b_rb(t_list **stb)
 		(*stb)->prev = NULL;
 	}
 }
-

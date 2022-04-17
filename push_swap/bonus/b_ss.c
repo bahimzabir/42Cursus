@@ -35,4 +35,3 @@ void	b_ss(t_list **sta, t_list **stb)
 		b_swap(stb);
 	}
 }
-

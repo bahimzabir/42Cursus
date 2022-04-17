@@ -32,4 +32,3 @@ void	b_rra(t_list **sta)
 		*sta = temp1;
 	}
 }
-

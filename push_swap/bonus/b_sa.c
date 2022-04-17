@@ -26,4 +26,3 @@ void	b_sa(t_list **stack)
 		(*stack)->index = data;
 	}
 }
-

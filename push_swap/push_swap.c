@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "src/push_swap.h"
 
 int	main(int arc, char **arv)
 {

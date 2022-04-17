@@ -12,19 +12,25 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRC = src/*.c
+SRC = src/*.c push_swap.c
+SRCB = src/*.c bonus/*.c
 NAME =  push_swap
+BONUS = checker
 OBJS = $(SRC:.c=.o)
+OBJSB = $(SRCB:.c=.o)
 
 all: $(NAME)
+
+bonus : $(BONUS)
 
 $(NAME) : $(SRC)
 	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
-bonus : $(NAME)
+$(BONUS) : $(SRCB)
+	$(CC) $(CFLAGS) $(SRCB) -o $(BONUS)
 
 clean :
-	rm -rf $(OBJS)
+	rm -rf $(OBJS) $(OBJSB)
 fclean : clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(BONUS)
 re : fclean all

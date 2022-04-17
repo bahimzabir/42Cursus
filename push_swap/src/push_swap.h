@@ -41,21 +41,27 @@ void	ft_pb(t_list **sta, t_list **stb);
 void	ft_rr(t_list **sta, t_list **stb);
 void	indexing(t_list **stack, int arc);
 void	ft_ss(t_list **sta, t_list **stb);
+char	*ft_strjoin(char *str, char *buf);
 int		check_index(t_list *list, int i);
 void	range_move(t_list **sta, int i);
 int		check_order(t_list	*stack);
 int		list_counter(t_list *list);
 int		ft_listlen(t_list *list);
 int		list_end(t_list *list);
+int		ft_nl_check(char *str);
+char	*ft_rm_line(char *str);
+char	*get_next_line(int fd);
+size_t	ft_strlen(char	*str);
 void	ft_sa(t_list **stack);
 void	ft_sb(t_list **stack);
 void	ft_rra(t_list **sta);
 void	ft_rrb(t_list **stb);
 void	ft_ra(t_list **sta);
 void	ft_rb(t_list **stb);
+char	*ft_line(char *s1);
 t_list	*lstmake(int data);
-int		g_nl(char **line);
 int		ft_atoi(char *s);
+char	*g_nl(int fd);
 void	ft_exit(void);
 
 #endif

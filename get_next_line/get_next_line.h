@@ -18,6 +18,11 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-int	get_next_line(char **line);
+int		ft_nl_check(char *str);
+size_t	ft_strlen(char	*str);
+char	*ft_strjoin(char *str, char *buf);
+char	*ft_line(char *s1);
+char	*ft_rm_line(char *str);
+char	*get_next_line(int fd);
 
 #endif

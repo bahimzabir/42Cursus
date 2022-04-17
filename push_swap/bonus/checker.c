@@ -30,27 +30,27 @@ int	ft_strcmp(char *s1, char *s2)
 void	moves_handler(t_list **sta, t_list **stb, char *move)
 {
 	if (ft_strcmp(move, "sa\n"))
-		ft_sa(sta);
+		b_sa(sta);
 	else if (ft_strcmp(move, "sb\n"))
-		ft_sb(stb);
+		b_sb(stb);
 	else if (ft_strcmp(move, "ss\n"))
-		ft_ss(sta, stb);
+		b_ss(sta, stb);
 	else if (ft_strcmp(move, "ra\n"))
-		ft_ra(sta);
+		b_ra(sta);
 	else if (ft_strcmp(move, "rb\n"))
-		ft_rb(stb);
+		b_rb(stb);
 	else if (ft_strcmp(move, "rr\n"))
-		ft_rr(sta, stb);
+		b_rr(sta, stb);
 	else if (ft_strcmp(move, "rra\n"))
-		ft_rra(sta);
+		b_rra(sta);
 	else if (ft_strcmp(move, "rrb\n"))
-		ft_rrb(stb);
+		b_rrb(stb);
 	else if (ft_strcmp(move, "rrr\n"))
-		ft_rrr(sta, stb);
+		b_rrr(sta, stb);
 	else if (ft_strcmp(move, "pa\n"))
-		ft_pa(sta, stb);
+		b_pa(sta, stb);
 	else if (ft_strcmp(move, "pb\n"))
-		ft_pb(sta, stb);
+		b_pb(sta, stb);
 	else
 		ft_exit();
 }
@@ -69,7 +69,7 @@ int	main(int arc, char **arv)
 		moves_handler (&sta, &stb, line);
 		line = g_nl(0);
 	}
-	if (check_order(sta))
+	if (check_order(sta) && !stb)
 		write (1, "OK\n", 3);
 	else
 		write (1, "KO\n", 3);

@@ -18,13 +18,13 @@ static long long int	ft_mknumber(char *s, int sign)
 
 	r = 0;
 	if (!*s)
-		exit(1);
+		ft_exit();
 	while (*s)
 	{
 		if (!(*s >= '0' && *s <= '9'))
 			ft_exit();
 		r = (r * 10) + (*s - '0');
-		if (sign < 0 && r > 2147483649)
+		if (sign < 0 && r > 2147483648)
 			ft_exit();
 		else if (r > 2147483647 && sign > 0)
 			ft_exit();

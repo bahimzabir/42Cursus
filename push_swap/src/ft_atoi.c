@@ -40,9 +40,10 @@ int	ft_atoi(char *s)
 
 	i = 0;
 	sign = 1;
-	if (s[i] == '-')
+	if (s[i] == '-' || s[i] == '+')
 	{
-		sign = -sign;
+		if (s[i] == '-')
+			sign = -sign;
 		i++;
 	}
 	return (sign * ft_mknumber((char *)s + i, sign));

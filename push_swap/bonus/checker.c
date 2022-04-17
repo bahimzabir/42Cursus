@@ -61,16 +61,19 @@ int	main(int arc, char **arv)
 	t_list	*stb;
 	char	*line;
 
-	arr_to_list(arv, &sta);
-	indexing(&sta, arc);
-	line = g_nl(0);
-	while (line)
+	if (arc >= 2)
 	{
-		moves_handler (&sta, &stb, line);
+		arr_to_list(arv, &sta);
+		indexing(&sta, arc);
 		line = g_nl(0);
+		while (line)
+		{
+			moves_handler (&sta, &stb, line);
+			line = g_nl(0);
+		}
+		if (check_order(sta) && !stb)
+			write (1, "OK\n", 3);
+		else
+			write (1, "KO\n", 3);
 	}
-	if (check_order(sta) && !stb)
-		write (1, "OK\n", 3);
-	else
-		write (1, "KO\n", 3);
 }

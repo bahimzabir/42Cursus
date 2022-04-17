@@ -21,12 +21,14 @@ void	ft_rrstack(t_list **stack)
 	{
 		temp1 = *stack;
 		while (temp1->next != NULL)
+		{
+			temp2 = temp1;
 			temp1 = temp1->next;
-		temp2 = temp1;
-		temp2 = temp2->prev;
-		temp2->next = NULL;
+		}
 		temp1->next = *stack;
+		(*stack)->prev = temp1;
 		temp1->prev = NULL;
+		temp2->next = NULL;
 		*stack = temp1;
 	}
 }

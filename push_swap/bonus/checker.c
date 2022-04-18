@@ -69,11 +69,13 @@ int	main(int arc, char **arv)
 		while (line)
 		{
 			moves_handler (&sta, &stb, line);
+			free (line);
 			line = g_nl(0);
 		}
 		if (check_order(sta) && !stb)
 			write (1, "OK\n", 3);
 		else
 			write (1, "KO\n", 3);
+		free (line);
 	}
 }

@@ -29,5 +29,6 @@ typedef struct s_philo
 }	t_philo;
 
 void	ft_exit(void);
+int		ft_atoi(char *s);
 
 #endif

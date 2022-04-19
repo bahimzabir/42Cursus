@@ -18,19 +18,19 @@ void	fill_data(t_philo *data, char	**arv)
 
 	i = 1;
 	if (arv[i])
-		(*data).nof == ft_atoi(arv[i]);
+		(*data).nof = ft_atoi(arv[i]);
 	i++;
 	if (arv[i])
-		(*data).ttd == ft_atoi(arv[i]);
+		(*data).ttd = ft_atoi(arv[i]);
 	i++;
 	if (arv[i])
-		(*data).tte == ft_atoi(arv[i]);
+		(*data).tte = ft_atoi(arv[i]);
 	i++;
 	if (arv[i])
-		(*data).tts == ft_atoi(arv[i]);
+		(*data).tts = ft_atoi(arv[i]);
 	i++;
 	if (arv[i])
-		(*data).tme == ft_atoi(arv[i]);
+		(*data).tme = ft_atoi(arv[i]);
 }
 
 int	main(int arc, char **arv)
@@ -39,5 +39,13 @@ int	main(int arc, char **arv)
 	if (arc == 6 || arc == 5)
 	{
 		fill_data(&data, arv);
+	printf("nof == %d\n", data.nof);
+	printf("ttd == %d\n", data.ttd);
+	printf("tte == %d\n", data.tte);
+	printf("tts == %d\n", data.tts);
+	if (data.tme)
+		printf("tme == %d\n", data.tme);
 	}
+	else
+		ft_exit();
 }

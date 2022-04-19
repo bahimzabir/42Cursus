@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 20:48:40 by azabir            #+#    #+#             */
-/*   Updated: 2022/04/18 20:48:42 by azabir           ###   ########.fr       */
+/*   Created: 2022/04/19 10:20:24 by azabir            #+#    #+#             */
+/*   Updated: 2022/04/19 10:20:26 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-#define PHILO_H
+#include "../philo.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <pthread.h>
-# include <string.h>
-
-typedef struct s_philo
+void	ft_exit(void)
 {
-	int	nof;
-	int	ttd;
-	int	tte;
-	int	tts;
-	int	tme;
-}	t_philo;
-
-void	ft_exit(void);
-
-#endif
+	write (1, "Error\n", 6);
+	exit(1);
+}

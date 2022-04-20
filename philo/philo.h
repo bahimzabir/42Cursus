@@ -22,11 +22,28 @@
 typedef struct s_philo
 {
 	int	nof;
-	int	ttd;
+	int	ttd;∏
 	int	tte;
 	int	tts;
 	int	tme;
+	int	*philos;
+	int	*forks;
 }	t_philo;
+
+typedef struct s_action
+{
+	int		id;
+	int		philo;
+	int		time;
+	struct s_action *next;
+} t_action;
+
+typedef struct s_fork
+{
+	int		busy;
+	struct s_fork *next;
+} t_fork;
+
 
 void	ft_exit(void);
 int		ft_atoi(char *s);

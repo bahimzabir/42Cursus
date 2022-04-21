@@ -12,42 +12,17 @@
 
 #include "philo.h"
 
-int *ft_philos(int	nof)
-{
-	int *i;
-	int	j;
-
-	i = malloc(sizeof(int) * nof);
-	j = 0;
-	while(j < nof)
-	{
-		i[j] = j + 1;
-		j++;
-	}
-	return (i);
-}
-
-int *ft_forks(int	nof)
-{
-	int *i;
-	int	j;
-
-	i = malloc(sizeof(int) * nof);
-	j = 0;
-	while(j < nof)
-	{
-		i[j] = 1;
-		j++;
-	}
-	return (i);
-}
-
 void	*ft_actions(void	*arg)
 {
 	t_philo	*temp;
-	pthread_mutex_t mut;
+	pthread_mutex_t lock;
 
 	temp = (t_philo *)arg;
+	pthread_mutex_init (&lock, NULL);
+
+	
+
+	pthread_mutex_destroy (&lock);
 	return (NULL);
 }
 
@@ -70,28 +45,7 @@ void	threads_handler(t_philo *data)
 	}
 }
 
-void	fill_data(t_philo *data, char	**arv)
-{
-	int	i;
 
-	i = 1;
-	if (arv[i])
-		(*data).nof = ft_atoi(arv[i]);
-	i++;
-	if (arv[i])
-		(*data).ttd = ft_atoi(arv[i]);
-	i++;
-	if (arv[i])
-		(*data).tte = ft_atoi(arv[i]);
-	i++;
-	if (arv[i])
-		(*data).tts = ft_atoi(arv[i]);
-	i++;
-	if (arv[i])
-		(*data).tme = ft_atoi(arv[i]);
-	data->philos = ft_philos(data->nof);
-	data->forks = ft_forks(data->nof);
-}
 
 int	main(int arc, char **arv)
 {

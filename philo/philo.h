@@ -22,7 +22,7 @@
 typedef struct s_philo
 {
 	int	nof;
-	int	ttd;∏
+	int	ttd;
 	int	tte;
 	int	tts;
 	int	tme;
@@ -47,5 +47,8 @@ typedef struct s_fork
 
 void	ft_exit(void);
 int		ft_atoi(char *s);
+int 	*ft_forks(int	nof);
+int 	*ft_philos(int	nof);
+void	fill_data(t_philo *data, char	**arv);
 
 #endif

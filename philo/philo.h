@@ -26,8 +26,9 @@ typedef struct s_philo
 	int	tte;
 	int	tts;
 	int	tme;
-	pthread_t 		*philo;
-	pthread_mutex_t	fork;
+	int	philo;
+	pthread_t 		*philos;
+	pthread_mutex_t	*fork;
 }	t_philo;
 
 typedef struct s_action

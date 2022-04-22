@@ -14,34 +14,31 @@
 
 void	*ft_actions(void	*arg)
 {
-	t_philo	*temp;
-	pthread_mutex_t lock;
-	temp = (t_philo *)arg;
-	pthread_mutex_init (&lock, NULL);
-	printf("philo %d is eating\n", *(temp->philos));
-	pthread_mutex_lock(&lock);
-	(temp->philos)++;
-	pthread_mutex_unlock(&lock);
-	pthread_mutex_destroy(&lock);
-	return (NULL);
+	int	*i;
+
+	i = (int *)arg;
+
+	printf ("philo %d doing something\n", *i);
+
+	return(NULL);
 }
 
 void	threads_handler(t_philo *data)
 {
-	pthread_t	philo[(*data).nof];
-	int			i;
+	int	i;
 
-	i = 0;
-	while (i < data->nof)
+	i = (int)malloc(sizeof(int));
+	data->philos = malloc(sizeof(t_philo) * data->nof);
+	i = 1;
+	while (i <= data->nof)
 	{
-		pthread_create(&philo[i], NULL, &ft_actions, data);
-		//(data->philos)++;
+		pthread_create(&(data->philos[i - 1]), NULL, ft_actions, &i);
 		i++;
 	}
-	i = 0;
-	while (i < data->nof)
+	i = 1;
+	while (i <= data->nof)
 	{
-		pthread_join(philo[i], NULL);
+		pthread_join((data->philos[i - 1]), NULL);
 		i++;
 	}
 }

@@ -16,13 +16,13 @@ void	*ft_actions(void	*arg)
 {
 	t_philo	*temp;
 	pthread_mutex_t lock;
-
 	temp = (t_philo *)arg;
 	pthread_mutex_init (&lock, NULL);
-
-	
-
-	pthread_mutex_destroy (&lock);
+	printf("philo %d is eating\n", *(temp->philos));
+	pthread_mutex_lock(&lock);
+	(temp->philos)++;
+	pthread_mutex_unlock(&lock);
+	pthread_mutex_destroy(&lock);
 	return (NULL);
 }
 
@@ -35,6 +35,7 @@ void	threads_handler(t_philo *data)
 	while (i < data->nof)
 	{
 		pthread_create(&philo[i], NULL, &ft_actions, data);
+		//(data->philos)++;
 		i++;
 	}
 	i = 0;
@@ -44,8 +45,6 @@ void	threads_handler(t_philo *data)
 		i++;
 	}
 }
-
-
 
 int	main(int arc, char **arv)
 {

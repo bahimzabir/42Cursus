@@ -31,6 +31,7 @@ void	fill_data(t_philo *data, char	**arv)
 	i++;
 	if (arv[i])
 		(*data).tme = ft_atoi(arv[i]);
+	
 	data->philos = ft_philos(data->nof);
 	data->forks = ft_forks(data->nof);
 }

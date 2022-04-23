@@ -19,6 +19,12 @@
 # include <pthread.h>
 # include <string.h>
 
+typedef struct s_thread
+{
+	int				*id;
+	pthread_t 		*philo;
+} t_thread;
+
 typedef struct s_philo
 {
 	int	nof;
@@ -26,25 +32,9 @@ typedef struct s_philo
 	int	tte;
 	int	tts;
 	int	tme;
-	int	philo;
-	pthread_t 		*philos;
 	pthread_mutex_t	*fork;
+	t_thread philos;
 }	t_philo;
-
-typedef struct s_action
-{
-	int		id;
-	int		philo;
-	int		time;
-	struct s_action *next;
-} t_action;
-
-typedef struct s_fork
-{
-	int		busy;
-	struct s_fork *next;
-} t_fork;
-
 
 void	ft_exit(void);
 int		ft_atoi(char *s);

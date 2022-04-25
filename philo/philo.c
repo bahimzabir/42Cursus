@@ -20,12 +20,14 @@ void	*ft_actions(void	*arg)
 	th = (t_philo *)arg;
 	i = *(th->philos.id);
 	pthread_mutex_lock(&(th->fork)[i  + 1]);
+	printf ("philo %d is taking a fork\n", (i));
 	pthread_mutex_lock(&(th->fork)[i]);
-	printf ("philo %d is doing something\n", (i));
+	printf ("philo %d is taking a fork\n", (i));
+	printf ("philo %d is eating\n", (i));
 	sleep(1);
-	printf ("philo %d is done\n", (i));
 	pthread_mutex_unlock(&(th->fork)[i - 1]);
 	pthread_mutex_unlock(&(th->fork)[i]);
+	printf ("philo %d is done\n", (i));
 	return(NULL);
 }
 

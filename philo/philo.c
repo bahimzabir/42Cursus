@@ -15,18 +15,25 @@
 void	*ft_actions(void	*arg)
 {
 	t_philo	*th;
+	int		i;
 
 	th = (t_philo *)arg;
-	printf ("philo %d doing something\n", *(th->philos.id));
+	i = *(th->philos.id);
+	pthread_mutex_lock(&(th->fork)[i  + 1]);
+	pthread_mutex_lock(&(th->fork)[i]);
+	printf ("philo %d is doing something\n", (i));
+	sleep(5);
+	printf ("philo %d is done\n", (i));
+	pthread_mutex_unlock(&(th->fork)[i - 1]);
+	pthread_mutex_unlock(&(th->fork)[i]);
 	return(NULL);
-	free(th->philos.id);
 }
 
 void	threads_handler(t_philo *data)
 {
 	int	j;
 
-	data->philos.philo = malloc(sizeof(pthread_t) * data->nof);
+	data->philos.philo = malloc(sizeof(t_thread) * data->nof);
 	j = 1;
 	while (j <= data->nof)
 	{
@@ -39,20 +46,26 @@ void	threads_handler(t_philo *data)
 	j = 1;
 	while (j <= data->nof)
 	{
-		pthread_join((data->philos.philo[*(data->philos.id) - 1]), NULL);
+		data->philos.id = malloc(sizeof(int));
+		*(data->philos.id) = j;
+		pthread_join((data->philos.philo[*(data->philos.id)]), NULL);
 		j++;
 	}
-//	free((data->philos.id));
 }
 
 int	main(int arc, char **arv)
 {
+	int	j;
 	t_philo	data;
 	if (arc != 6 && arc != 5)
 		ft_exit();
 	fill_data(&data, arv);
-	threads_handler(&data);
 	data.fork = malloc(sizeof(pthread_mutex_t) * data.nof);
-	free (data.philos.philo);
-	while (1);
+	j = 1;
+	while (j <= data.nof)
+	{
+		pthread_mutex_init(&(data.fork)[j - 1], NULL);
+		j++;
+	}
+	threads_handler(&data);
 }

@@ -22,7 +22,7 @@ void	*ft_actions(void	*arg)
 	pthread_mutex_lock(&(th->fork)[i  + 1]);
 	pthread_mutex_lock(&(th->fork)[i]);
 	printf ("philo %d is doing something\n", (i));
-	sleep(5);
+	sleep(1);
 	printf ("philo %d is done\n", (i));
 	pthread_mutex_unlock(&(th->fork)[i - 1]);
 	pthread_mutex_unlock(&(th->fork)[i]);

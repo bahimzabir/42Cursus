@@ -34,6 +34,7 @@ typedef struct s_philo
 	int	tte;
 	int	tts;
 	int	tme;
+	int	*index;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	*print;
 	t_philosopher	*philos;

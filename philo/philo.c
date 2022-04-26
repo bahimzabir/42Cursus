@@ -16,18 +16,21 @@ void	*ft_actions(void	*arg)
 {
 	t_philo	*th;
 	int		i;
-
 	th = (t_philo *)arg;
 	i = *(th->philos.id);
-	pthread_mutex_lock(&(th->fork)[i  + 1]);
-	printf ("philo %d is taking a fork\n", (i));
+while (1)
+{
 	pthread_mutex_lock(&(th->fork)[i]);
 	printf ("philo %d is taking a fork\n", (i));
+	pthread_mutex_lock(&(th->fork)[(i  + 1) % th->nof]);
+	printf ("philo %d is taking a fork\n", (i));
 	printf ("philo %d is eating\n", (i));
-	sleep(1);
-	pthread_mutex_unlock(&(th->fork)[i - 1]);
+	usleep(th->tte * 1000);
 	pthread_mutex_unlock(&(th->fork)[i]);
+	pthread_mutex_unlock(&(th->fork)[(i  + 1) % th->nof]);
 	printf ("philo %d is done\n", (i));
+	usleep (th->tts * 1000);
+}
 	return(NULL);
 }
 

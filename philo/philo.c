@@ -20,16 +20,17 @@ void	*ft_actions(void	*arg)
 	i = *(th->philos.id);
 while (1)
 {
+	printf ("philo %d is thinking\n", (i));
 	pthread_mutex_lock(&(th->fork)[i]);
-	printf ("philo %d is taking a fork\n", (i));
+	printf ("philo %d has taking a fork\n", (i));
 	pthread_mutex_lock(&(th->fork)[(i  + 1) % th->nof]);
-	printf ("philo %d is taking a fork\n", (i));
+	printf ("philo %d has taking a fork\n", (i));
 	printf ("philo %d is eating\n", (i));
-	usleep(th->tte * 1000);
+	usleep(1000 *th->tte);
 	pthread_mutex_unlock(&(th->fork)[i]);
 	pthread_mutex_unlock(&(th->fork)[(i  + 1) % th->nof]);
-	printf ("philo %d is done\n", (i));
-	usleep (th->tts * 1000);
+	printf ("philo %d is sleeping\n", (i));
+	usleep (1000 *th->tts);
 }
 	return(NULL);
 }
@@ -66,11 +67,14 @@ int	main(int arc, char **arv)
 		ft_exit();
 	fill_data(&data, arv);
 	data.fork = malloc(sizeof(pthread_mutex_t) * data.nof);
+	data.print = malloc(sizeof(pthread_mutex_t) * 2);
 	j = 1;
 	while (j <= data.nof)
 	{
 		pthread_mutex_init(&(data.fork)[j - 1], NULL);
 		j++;
 	}
+	pthread_mutex_init(&(data.print)[0], NULL);
+	pthread_mutex_init(&(data.print)[1], NULL);
 	threads_handler(&data);
 }

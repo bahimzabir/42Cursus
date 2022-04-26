@@ -33,6 +33,7 @@ typedef struct s_philo
 	int	tts;
 	int	tme;
 	pthread_mutex_t	*fork;
+	pthread_mutex_t	*print;
 	t_thread philos;
 }	t_philo;
 

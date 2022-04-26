@@ -31,4 +31,5 @@ void	fill_data(t_philo *data, char	**arv)
 	i++;
 	if (arv[i])
 		(*data).tme = ft_atoi(arv[i]);
+	
 }

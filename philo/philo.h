@@ -19,11 +19,13 @@
 # include <pthread.h>
 # include <string.h>
 
-typedef struct s_thread
+typedef struct s_philosopher
 {
-	int				*id;
-	pthread_t 		*philo;
-} t_thread;
+	int				id;
+	int				tse;
+	int				nte;
+	pthread_t 		philo;
+} t_philosopher;
 
 typedef struct s_philo
 {
@@ -34,7 +36,7 @@ typedef struct s_philo
 	int	tme;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	*print;
-	t_thread philos;
+	t_philosopher	*philos;
 }	t_philo;
 
 void	ft_exit(void);

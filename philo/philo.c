@@ -15,22 +15,20 @@
 void	*ft_actions(void	*arg)
 {
 	t_philo	*th;
-	int		i;
 	th = (t_philo *)arg;
-	i = *(th->philos.id);
 while (1)
 {
-	printf ("philo %d is thinking\n", (i));
-	pthread_mutex_lock(&(th->fork)[i]);
-	printf ("philo %d has taking a fork\n", (i));
-	pthread_mutex_lock(&(th->fork)[(i  + 1) % th->nof]);
-	printf ("philo %d has taking a fork\n", (i));
-	printf ("philo %d is eating\n", (i));
-	usleep(1000 *th->tte);
-	pthread_mutex_unlock(&(th->fork)[i]);
-	pthread_mutex_unlock(&(th->fork)[(i  + 1) % th->nof]);
-	printf ("philo %d is sleeping\n", (i));
-	usleep (1000 *th->tts);
+	printf ("philo %d is thinking\n", (th->philos->id));
+	pthread_mutex_lock(&(th->fork)[th->philos->id]);
+	printf ("philo %d has taking a fork\n", (th->philos->id));
+	pthread_mutex_lock(&(th->fork)[(th->philos->id  + 1) % th->nof]);
+	printf ("philo %d has taking a fork\n", (th->philos->id));
+	printf ("philo %d is eating\n", (th->philos->id));
+	sleep(1);
+	pthread_mutex_unlock(&(th->fork)[th->philos->id]);
+	pthread_mutex_unlock(&(th->fork)[(th->philos->id  + 1) % th->nof]);
+	printf ("philo %d is sleeping\n", (th->philos->id));
+	sleep (2);
 }
 	return(NULL);
 }
@@ -39,22 +37,19 @@ void	threads_handler(t_philo *data)
 {
 	int	j;
 
-	data->philos.philo = malloc(sizeof(t_thread) * data->nof);
 	j = 1;
 	while (j <= data->nof)
 	{
-		data->philos.id = malloc(sizeof(int));
-		*(data->philos.id) = j;
-		pthread_create(&(data->philos.philo[*(data->philos.id) - 1]), NULL, ft_actions, data);
+		data->philos[j - 1].id = j;
+		pthread_create(&(data->philos[j - 1].philo), NULL, ft_actions, data);
 		usleep(20);
 		j++;
 	}
 	j = 1;
 	while (j <= data->nof)
 	{
-		data->philos.id = malloc(sizeof(int));
-		*(data->philos.id) = j;
-		pthread_join((data->philos.philo[*(data->philos.id)]), NULL);
+		data->philos[j - 1].id = j;
+		pthread_join((data->philos[j - 1].philo), NULL);
 		j++;
 	}
 }
@@ -68,6 +63,7 @@ int	main(int arc, char **arv)
 	fill_data(&data, arv);
 	data.fork = malloc(sizeof(pthread_mutex_t) * data.nof);
 	data.print = malloc(sizeof(pthread_mutex_t) * 2);
+	data.philos = malloc (sizeof(t_philosopher) * data.nof);
 	j = 1;
 	while (j <= data.nof)
 	{

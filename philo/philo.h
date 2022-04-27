@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <string.h>
+# include <sys/time.h>
 
 typedef struct s_philosopher
 {
@@ -34,6 +35,7 @@ typedef struct s_philo
 	int	tte;
 	int	tts;
 	int	tme;
+	time_t	inittime;
 	int	*index;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print;
@@ -43,6 +45,7 @@ typedef struct s_philo
 void	ft_exit(void);
 int		ft_atoi(char *s);
 int 	*ft_forks(int	nof);
+time_t	timestamp(t_philo *phi);
 void	ft_philos(t_philo *phi);
 void	fill_data(t_philo *data, char	**arv);
 

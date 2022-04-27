@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_philos.c                                        :+:      :+:    :+:   */
+/*   timestamp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 12:44:11 by azabir            #+#    #+#             */
-/*   Updated: 2022/04/21 12:44:13 by azabir           ###   ########.fr       */
+/*   Created: 2022/04/27 01:45:40 by azabir            #+#    #+#             */
+/*   Updated: 2022/04/27 01:45:41 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void ft_philos(t_philo *phi)
+time_t	timestamp(t_philo *phi)
 {
-	int				j;
-	struct timeval	time;
-	
-	phi->philos->nte = 0;
-	phi->philos = malloc(sizeof(t_philosopher) * phi->nof);
-	phi->fork = malloc(sizeof(pthread_mutex_t) * phi->nof);
-	pthread_mutex_init(&(phi->print), NULL);
-	j = 1;
-	while (j <= phi->nof)
-	{
-		pthread_mutex_init(&(phi->fork)[j - 1], NULL);
-		j++;
-	}
+	struct timeval time;
 	gettimeofday(&time, NULL);
-	phi->inittime = time.tv_usec;
+	return((time.tv_usec - phi->inittime) / 1000);
 }

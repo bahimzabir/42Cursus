@@ -36,14 +36,14 @@ typedef struct s_philo
 	int	tme;
 	int	*index;
 	pthread_mutex_t	*fork;
-	pthread_mutex_t	*print;
+	pthread_mutex_t	print;
 	t_philosopher	*philos;
 }	t_philo;
 
 void	ft_exit(void);
 int		ft_atoi(char *s);
 int 	*ft_forks(int	nof);
-int 	*ft_philos(int	nof);
+void	ft_philos(t_philo *phi);
 void	fill_data(t_philo *data, char	**arv);
 
 #endif

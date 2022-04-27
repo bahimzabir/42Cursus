@@ -12,17 +12,18 @@
 
 #include "../philo.h"
 
-int *ft_philos(int	nof)
+void ft_philos(t_philo *phi)
 {
-	int *i;
 	int	j;
-
-	i = malloc(sizeof(int) * nof);
-	j = 0;
-	while(j < nof)
+	
+	phi->philos->nte = 0;
+	phi->philos = malloc(sizeof(t_philosopher) * phi->nof);
+	phi->fork = malloc(sizeof(pthread_mutex_t) * phi->nof);
+	pthread_mutex_init(&(phi->print), NULL);
+	j = 1;
+	while (j <= phi->nof)
 	{
-		i[j] = j + 1;
+		pthread_mutex_init(&(phi->fork)[j - 1], NULL);
 		j++;
 	}
-	return (i);
 }

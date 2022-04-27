@@ -18,18 +18,20 @@ void	*ft_actions(void	*arg)
 	th = (t_philo *)arg;
 	int	i;
 	i = *(th->index);
-while (1)
+while (th->philos[i].nte < th->tme)
 {
-	printf ("philo %d is thinking\n", (th->philos[i].id));
+	if (i != 0 || th->philos[i].nte != 0)
+		printf ("philo %d is thinking\n", (th->philos[i].id));
 	pthread_mutex_lock(&(th->fork)[th->philos[i].id]);
 	printf ("philo %d has taking a fork\n", (th->philos[i].id));
 	pthread_mutex_lock(&(th->fork)[(th->philos[i].id  + 1) % th->nof]);
 	printf ("philo %d has taking a fork\n", (th->philos[i].id));
 	printf ("philo %d is eating\n", (th->philos[i].id));
 	sleep(1);
+	th->philos[i].nte++;
+	printf ("philo %d is sleeping\n", (th->philos[i].id));
 	pthread_mutex_unlock(&(th->fork)[th->philos[i].id]);
 	pthread_mutex_unlock(&(th->fork)[(th->philos[i].id  + 1) % th->nof]);
-	printf ("philo %d is sleeping\n", (th->philos[i].id));
 	sleep (2);
 }
 	return(NULL);
@@ -45,6 +47,7 @@ void	threads_handler(t_philo *data)
 		data->index = malloc(sizeof(int));
 		*(data->index) = j - 1;
 		data->philos[j - 1].id = j;
+		data->philos[j - 1].nte = 0;
 		pthread_create(&(data->philos[j - 1].philo), NULL, ft_actions, data);
 		usleep(20);
 		j++;
@@ -60,21 +63,10 @@ void	threads_handler(t_philo *data)
 
 int	main(int arc, char **arv)
 {
-	int	j;
 	t_philo	data;
 	if (arc != 6 && arc != 5)
 		ft_exit();
 	fill_data(&data, arv);
-	data.fork = malloc(sizeof(pthread_mutex_t) * data.nof);
-	data.print = malloc(sizeof(pthread_mutex_t) * 2);
-	data.philos = malloc (sizeof(t_philosopher) * data.nof);
-	j = 1;
-	while (j <= data.nof)
-	{
-		pthread_mutex_init(&(data.fork)[j - 1], NULL);
-		j++;
-	}
-	pthread_mutex_init(&(data.print)[0], NULL);
-	pthread_mutex_init(&(data.print)[1], NULL);
+	ft_philos(&data);
 	threads_handler(&data);
 }

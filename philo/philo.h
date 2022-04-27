@@ -40,6 +40,7 @@ typedef struct s_philo
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print;
 	t_philosopher	*philos;
+	struct timeval	time;
 }	t_philo;
 
 void	ft_exit(void);

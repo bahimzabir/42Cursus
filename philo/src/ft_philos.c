@@ -16,8 +16,8 @@ void ft_philos(t_philo *phi)
 {
 	int				j;
 	struct timeval	time;
-	
-	phi->philos->nte = 0;
+
+	write (1, "HERE\n", 5);
 	phi->philos = malloc(sizeof(t_philosopher) * phi->nof);
 	phi->fork = malloc(sizeof(pthread_mutex_t) * phi->nof);
 	pthread_mutex_init(&(phi->print), NULL);
@@ -28,5 +28,5 @@ void ft_philos(t_philo *phi)
 		j++;
 	}
 	gettimeofday(&time, NULL);
-	phi->inittime = time.tv_usec;
+	phi->inittime = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 }

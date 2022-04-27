@@ -16,5 +16,5 @@ time_t	timestamp(t_philo *phi)
 {
 	struct timeval time;
 	gettimeofday(&time, NULL);
-	return((time.tv_usec - phi->inittime) / 1000);
+	return((time.tv_sec * 1000) + (time.tv_usec / 1000) - phi->inittime);
 }

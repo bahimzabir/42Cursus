@@ -44,6 +44,7 @@ typedef struct s_philo
 }	t_philo;
 
 void	ft_exit(void);
+void	ft_msleep(int time);
 int		ft_atoi(char *s);
 int 	*ft_forks(int	nof);
 time_t	timestamp(t_philo *phi);

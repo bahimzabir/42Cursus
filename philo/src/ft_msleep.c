@@ -12,4 +12,14 @@
 
 #include "../philo.h"
 
-
+void	ft_msleep(int time)
+{
+	time_t	sleep;
+	
+	sleep = 0;
+	while (sleep <= time * 10)
+	{
+		usleep(100);
+		sleep++;
+	}
+}

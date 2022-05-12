@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_now.c                                         :+:      :+:    :+:   */
+/*   print_lock.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 14:39:44 by azabir            #+#    #+#             */
-/*   Updated: 2022/05/12 14:39:45 by azabir           ###   ########.fr       */
+/*   Created: 2022/05/12 17:49:28 by azabir            #+#    #+#             */
+/*   Updated: 2022/05/12 17:49:33 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-time_t	time_now(void)
+void	print_lock(t_philo	*th, int i, char *action)
 {
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return(time.tv_sec);
+	pthread_mutex_lock(&th->print);
+	printf ("%ld: philo %d %s\n", timestamp(th), (th->philos[i].id), action);
+	pthread_mutex_unlock(&th->print);
 }

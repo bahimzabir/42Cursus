@@ -27,20 +27,21 @@ void	*ft_actions(void	*arg)
 	while (th->philos[i].nte < th->tme)
 	{
 		if (i != 0 || th->philos[i].nte != 0)
-			printf ("%ld: philo %d is thinking\n", timestamp(th), (th->philos[i].id));
+			print_lock(th, i, "is thinking");
 		pthread_mutex_lock(&(th->fork)[th->philos[i].id]);
-		printf ("%ld: philo %d has taking a fork\n", timestamp(th), (th->philos[i].id));
+		print_lock(th, i, "has taking a fork");
 		pthread_mutex_lock(&(th->fork)[(th->philos[i].id  + 1) % th->nof]);
-		printf ("%ld: philo %d has taking a fork\n", timestamp(th), (th->philos[i].id));
-		printf ("%ld: philo %d is eating\n", timestamp(th), (th->philos[i].id));
-		//usleep(th->tte * 1000);
-		ft_msleep(th->tte);
+		print_lock(th, i, "has taking a fork");
+		print_lock(th, i, "is eating");
+		usleep(th->tte * 1000);
+		//ft_msleep(th->tte);
 		th->philos[i].nte++;
-		printf ("%ld: philo %d is sleeping\n", timestamp(th), (th->philos[i].id));
+		usleep(th->tte * 1000);
+		print_lock(th, i, "is sleeping");
 		pthread_mutex_unlock(&(th->fork)[th->philos[i].id]);
-		pthread_mutex_unlock(&(th->fork)[(th->philos[i].id  + 1) % th->nof]);
-		//usleep(th->tts * 1000);
-		ft_msleep (th->tts);
+		pthread_mutex_unlock(&(th->fork)[(th->philos[i].id  - 1) % th->nof]);
+		usleep(th->tts * 1000);
+		//ft_msleep (th->tts);
 	}
 	return(NULL);
 }

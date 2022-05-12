@@ -51,5 +51,6 @@ int 	*ft_forks(int	nof);
 time_t	timestamp(t_philo *phi);
 void	ft_philos(t_philo *phi);
 void	fill_data(t_philo *data, char	**arv);
+void	print_lock(t_philo	*th, int i, char *action);
 
 #endif

@@ -33,10 +33,10 @@ void	*ft_actions(void	*arg)
 		pthread_mutex_lock(&(th->fork)[(th->philos[i - 1].id  + 1) % th->nof]);
 		print_lock(th, i, "has taking a fork");
 		print_lock(th, i, "is eating");
-		th->philos[i].lte = time_now();
+		th->philos[i - 1].lte = time_now();
 		usleep(th->tte * 1000);
 		//ft_msleep(th->tte);
-		th->philos[i].nte++;
+		th->philos[i -1].nte++;
 		print_lock(th, i, "is sleeping");
 		pthread_mutex_unlock(&(th->fork)[th->philos[i - 1].id]);
 		pthread_mutex_unlock(&(th->fork)[(th->philos[i - 1].id  + 1) % th->nof]);
@@ -52,6 +52,7 @@ void	threads_handler(t_philo *data)
 	int	j;
 
 	j = 1;
+	pthread_create(&(data->health), NULL, health_check, data);
 	while (j <= data->nof)
 	{
 		data->index = malloc(sizeof(int));
@@ -70,7 +71,6 @@ void	threads_handler(t_philo *data)
 		j++;
 		usleep(10);
 	}
-	health_check(data);
 }
 
 int	main(int arc, char **arv)

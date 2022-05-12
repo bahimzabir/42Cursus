@@ -24,6 +24,7 @@ void ft_philos(t_philo *phi)
 	while (j <= phi->nof)
 	{
 		pthread_mutex_init(&(phi->fork)[j - 1], NULL);
+		phi->philos[j - 1].lte = time_now();
 		j++;
 	}
 	gettimeofday(&time, NULL);

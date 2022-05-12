@@ -28,18 +28,17 @@ void	*ft_actions(void	*arg)
 	{
 		if (i != 0 || th->philos[i].nte != 0)
 			print_lock(th, i, "is thinking");
-		pthread_mutex_lock(&(th->fork)[th->philos[i].id]);
-		print_lock(th, i, "has taking a fork");
-		pthread_mutex_lock(&(th->fork)[(th->philos[i].id  + 1) % th->nof]);
-		print_lock(th, i, "has taking a fork");
+		pthread_mutex_lock(&(th->fork)[th->philos[i - 1].id]);
+		print_lock(th, i, "has taking right fork");
+		pthread_mutex_lock(&(th->fork)[(th->philos[i - 1].id  + 1) % th->nof]);
+		print_lock(th, i, "has taking left fork");
 		print_lock(th, i, "is eating");
 		usleep(th->tte * 1000);
 		//ft_msleep(th->tte);
 		th->philos[i].nte++;
-		usleep(th->tte * 1000);
 		print_lock(th, i, "is sleeping");
-		pthread_mutex_unlock(&(th->fork)[th->philos[i].id]);
-		pthread_mutex_unlock(&(th->fork)[(th->philos[i].id  - 1) % th->nof]);
+		pthread_mutex_unlock(&(th->fork)[th->philos[i - 1].id]);
+		pthread_mutex_unlock(&(th->fork)[(th->philos[i - 1].id  + 1) % th->nof]);
 		usleep(th->tts * 1000);
 		//ft_msleep (th->tts);
 	}
@@ -58,7 +57,7 @@ void	threads_handler(t_philo *data)
 		data->philos[j - 1].id = j;
 		data->philos[j - 1].nte = 0;
 		pthread_create(&(data->philos[j - 1].philo), NULL, ft_actions, data);
-		usleep(5);
+		usleep(10);
 		j++;
 	}
 	j = 1;
@@ -67,6 +66,7 @@ void	threads_handler(t_philo *data)
 		data->philos[j - 1].id = j;
 		pthread_join((data->philos[j - 1].philo), NULL);
 		j++;
+		usleep(10);
 	}
 }
 

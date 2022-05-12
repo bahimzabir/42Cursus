@@ -23,7 +23,7 @@
 typedef struct s_philosopher
 {
 	int				id;
-	int				tse;
+	int				lte;
 	int				nte;
 	pthread_t 		philo;
 } t_philosopher;
@@ -35,6 +35,7 @@ typedef struct s_philo
 	int	tte;
 	int	tts;
 	int	tme;
+	int	philos_done;
 	time_t	inittime;
 	int	*index;
 	pthread_mutex_t	*fork;
@@ -50,6 +51,7 @@ void	ft_msleep(int time);
 int 	*ft_forks(int	nof);
 time_t	timestamp(t_philo *phi);
 void	ft_philos(t_philo *phi);
+void	health_check(t_philo *th);
 void	fill_data(t_philo *data, char	**arv);
 void	print_lock(t_philo	*th, int i, char *action);
 

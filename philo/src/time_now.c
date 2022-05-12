@@ -17,5 +17,5 @@ time_t	time_now(void)
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return(time.tv_sec);
+	return(time.tv_usec / 1000);
 }

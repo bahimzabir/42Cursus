@@ -29,10 +29,11 @@ void	*ft_actions(void	*arg)
 		if (i != 0 || th->philos[i].nte != 0)
 			print_lock(th, i, "is thinking");
 		pthread_mutex_lock(&(th->fork)[th->philos[i - 1].id]);
-		print_lock(th, i, "has taking right fork");
+		print_lock(th, i, "has taking a fork");
 		pthread_mutex_lock(&(th->fork)[(th->philos[i - 1].id  + 1) % th->nof]);
-		print_lock(th, i, "has taking left fork");
+		print_lock(th, i, "has taking a fork");
 		print_lock(th, i, "is eating");
+		th->philos[i].lte = time_now();
 		usleep(th->tte * 1000);
 		//ft_msleep(th->tte);
 		th->philos[i].nte++;
@@ -42,6 +43,7 @@ void	*ft_actions(void	*arg)
 		usleep(th->tts * 1000);
 		//ft_msleep (th->tts);
 	}
+	th->philos_done ++;
 	return(NULL);
 }
 
@@ -68,6 +70,7 @@ void	threads_handler(t_philo *data)
 		j++;
 		usleep(10);
 	}
+	health_check(data);
 }
 
 int	main(int arc, char **arv)

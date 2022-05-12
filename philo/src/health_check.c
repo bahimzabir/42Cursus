@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_philos.c                                        :+:      :+:    :+:   */
+/*   health_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 12:44:11 by azabir            #+#    #+#             */
-/*   Updated: 2022/04/21 12:44:13 by azabir           ###   ########.fr       */
+/*   Created: 2022/05/12 20:50:28 by azabir            #+#    #+#             */
+/*   Updated: 2022/05/12 20:50:30 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void ft_philos(t_philo *phi)
+void	health_check(t_philo *th)
 {
-	int				j;
-	struct timeval	time;
+	int	i;
 
-	phi->philos = malloc(sizeof(t_philosopher) * phi->nof);
-	phi->fork = malloc(sizeof(pthread_mutex_t) * phi->nof);
-	pthread_mutex_init(&(phi->print), NULL);
-	j = 1;
-	while (j <= phi->nof)
+	i = 0;
+	while (1)
 	{
-		pthread_mutex_init(&(phi->fork)[j - 1], NULL);
-		j++;
+		if (i == th->nof)
+			i = 0;
+		if (th->philos_done == th->nof)
+			exit(0);
+		if (th->philos[i].lte - time_now() > th->ttd)
+		{
+			print_lock(th, i, "died");
+			exit(1);
+		}
+		i++;
 	}
-	gettimeofday(&time, NULL);
-	phi->inittime = (time.tv_sec * 1000) + (time.tv_usec / 1000);
-	phi->philos_done = 0;
+
+	th = NULL;
 }

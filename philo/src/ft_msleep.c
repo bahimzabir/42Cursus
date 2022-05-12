@@ -14,12 +14,12 @@
 
 void	ft_msleep(int time)
 {
-	time_t	sleep;
+	time_t	start_time;
 	
-	sleep = 0;
-	while (sleep <= time * 10)
+	start_time = time_now();
+	while (time_now() <= start_time + time * 1000)
 	{
-		usleep(100);
-		sleep++;
+		usleep(400);
+		printf ("start time => %ld\n now time => %ld\n #######\n", start_time, time_now());
 	}
 }

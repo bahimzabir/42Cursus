@@ -14,23 +14,16 @@
 
 void	fill_data(t_philo *data, char	**arv)
 {
-	int	i;
-
-	i = 1;
-	if (arv[i])
-		(*data).nof = ft_atoi(arv[i]);
-	i++;
-	if (arv[i])
-		(*data).ttd = ft_atoi(arv[i]);
-	i++;
-	if (arv[i])
-		(*data).tte = ft_atoi(arv[i]);
-	i++;
-	if (arv[i])
-		(*data).tts = ft_atoi(arv[i]);
-	i++;
-	if (arv[i])
-		(*data).tme = ft_atoi(arv[i]);
+	if (arv[1])
+		(*data).nof = ft_atoi(arv[1]);
+	if (arv[2])
+		(*data).ttd = ft_atoi(arv[2]);
+	if (arv[3])
+		(*data).tte = ft_atoi(arv[3]);
+	if (arv[4])
+		(*data).tts = ft_atoi(arv[4]);
+	if (arv[5])
+		(*data).tme = ft_atoi(arv[5]);
 	else
 		(*data).tme = 2147483647;
 	

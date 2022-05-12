@@ -33,11 +33,13 @@ void	*ft_actions(void	*arg)
 		pthread_mutex_lock(&(th->fork)[(th->philos[i].id  + 1) % th->nof]);
 		printf ("%ld: philo %d has taking a fork\n", timestamp(th), (th->philos[i].id));
 		printf ("%ld: philo %d is eating\n", timestamp(th), (th->philos[i].id));
+		//usleep(th->tte * 1000);
 		ft_msleep(th->tte);
 		th->philos[i].nte++;
 		printf ("%ld: philo %d is sleeping\n", timestamp(th), (th->philos[i].id));
 		pthread_mutex_unlock(&(th->fork)[th->philos[i].id]);
 		pthread_mutex_unlock(&(th->fork)[(th->philos[i].id  + 1) % th->nof]);
+		//usleep(th->tts * 1000);
 		ft_msleep (th->tts);
 	}
 	return(NULL);

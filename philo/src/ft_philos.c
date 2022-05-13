@@ -30,4 +30,5 @@ void	ft_philos(t_philo *phi)
 	gettimeofday(&time, NULL);
 	phi->inittime = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	phi->philos_done = 0;
+	phi->all_alive = 1;
 }

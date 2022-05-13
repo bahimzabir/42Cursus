@@ -36,6 +36,7 @@ typedef struct s_philo
 	int				tts;
 	int				tme;
 	pthread_t		health;
+	int				all_alive;
 	int				philos_done;
 	time_t			inittime;
 	int				*index;
@@ -45,14 +46,14 @@ typedef struct s_philo
 	struct timeval	time;
 }	t_philo;
 
-void	ft_exit(void);
 long	time_now(void);
-int		ft_atoi(char *s);
 void	ft_msleep(int time);
 int		*ft_forks(int nof);
 void	*health_check(void *ph);
 time_t	timestamp(t_philo *phi);
 void	ft_philos(t_philo *phi);
+void	ft_exit(int i, t_philo *th);
+int		ft_atoi(char *s, t_philo *data);
 void	fill_data(t_philo *data, char	**arv);
 void	print_lock(t_philo	*th, int i, char *action);
 

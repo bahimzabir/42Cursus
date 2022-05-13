@@ -15,6 +15,7 @@
 void	print_lock(t_philo	*th, int i, char *action)
 {
 	pthread_mutex_lock(&th->print);
-	printf ("%ld: philo %d %s\n", timestamp(th), (th->philos[i].id), action);
+	if (th->all_alive)
+		printf ("%ld: philo %d %s\n", timestamp(th), (th->philos[i].id), action);
 	pthread_mutex_unlock(&th->print);
 }

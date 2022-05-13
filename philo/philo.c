@@ -19,7 +19,8 @@ void	*ft_actions(void	*arg)
 
 	th = (t_philo *)arg;
 	i = *(th->index);
-	while (th->philos[i].nte < th->tme)
+	free(th->index);
+	while (th->philos[i].nte < th->tme && th->all_alive)
 	{
 		if (i != 0 || th->philos[i].nte != 0)
 			print_lock(th, i, "is thinking");
@@ -71,8 +72,9 @@ int	main(int arc, char **arv)
 	t_philo	data;
 
 	if (arc != 6 && arc != 5)
-		ft_exit();
+		ft_exit(1, &data);
 	fill_data(&data, arv);
 	ft_philos(&data);
 	threads_handler(&data);
+	ft_exit(0, &data);
 }

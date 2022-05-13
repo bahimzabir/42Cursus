@@ -24,12 +24,13 @@ void	*health_check(void *ph)
 		if (i == th->nof)
 			i = 0;
 		if (th->philos_done == th->nof)
-			exit(0);
+			ft_exit(0, ph);
 		if (time_now() - th->philos[i].lte >= th->ttd
 			&& th->philos[i].nte != th->tme)
 		{
-			print_lock(th, i, "died");
-			exit(1);
+			th->all_alive = 0;
+			printf ("%ld: philo %d died\n", timestamp(th), (th->philos[i].id));
+			ft_exit(0, ph);
 		}
 		i++;
 	}

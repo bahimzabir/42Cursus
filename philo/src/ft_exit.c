@@ -12,8 +12,13 @@
 
 #include "../philo.h"
 
-void	ft_exit(void)
+void	ft_exit(int i, t_philo *th)
 {
-	write (1, "Error\n", 6);
-	exit(1);
+	if (i == 1)
+	{
+		write (1, "Error\n", 6);
+		exit (i);
+	}
+	pthread_detach(th->health);
+	exit(i);
 }

@@ -16,7 +16,6 @@ void	*health_check(void *ph)
 {
 	int		i;
 	t_philo *th;
-
 	th = (t_philo *)ph;
 	i = 0;
 	while (1)
@@ -25,9 +24,10 @@ void	*health_check(void *ph)
 			i = 0;
 		if (th->philos_done == th->nof)
 			exit(0);
-	/*	printf("%ld\n", th->philos[i].lte);
-		printf("%ld\n", time_now());*/
-		if (th->philos[i].lte - time_now() > th->ttd)
+		/*printf("lte : %ld\n", th->philos[i].lte);
+		printf("now : %ld\n", time_now());
+		printf("now : %d\n", th->ttd);*/
+		if (time_now() - th->philos[i].lte > th->ttd)
 		{
 			print_lock(th, i, "died");
 			exit(1);

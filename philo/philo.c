@@ -12,12 +12,6 @@
 
 #include "philo.h"
 
-/*
-#make actions time more realistic
-#add time to die
-#add bomus
-*/
-
 void	*ft_actions(void	*arg)
 {
 	t_philo	*th;

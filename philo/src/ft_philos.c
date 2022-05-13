@@ -12,10 +12,11 @@
 
 #include "../philo.h"
 
-void ft_philos(t_philo *phi)
+void	ft_philos(t_philo *phi)
 {
 	int				j;
 	struct timeval	time;
+
 	phi->philos = malloc(sizeof(t_philosopher) * phi->nof);
 	phi->fork = malloc(sizeof(pthread_mutex_t) * phi->nof);
 	pthread_mutex_init(&(phi->print), NULL);

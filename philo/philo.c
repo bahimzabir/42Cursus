@@ -21,8 +21,9 @@
 void	*ft_actions(void	*arg)
 {
 	t_philo	*th;
+	int		i;
+
 	th = (t_philo *)arg;
-	int	i;
 	i = *(th->index);
 	while (th->philos[i].nte < th->tme)
 	{
@@ -42,7 +43,7 @@ void	*ft_actions(void	*arg)
 		ft_msleep (th->tts);
 	}
 	th->philos_done ++;
-	return(NULL);
+	return (NULL);
 }
 
 void	threads_handler(t_philo *data)
@@ -74,6 +75,7 @@ void	threads_handler(t_philo *data)
 int	main(int arc, char **arv)
 {
 	t_philo	data;
+
 	if (arc != 6 && arc != 5)
 		ft_exit();
 	fill_data(&data, arv);

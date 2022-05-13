@@ -15,9 +15,9 @@
 void	ft_msleep(int time)
 {
 	time_t	start_time;
-	
+
 	start_time = time_now();
-	while (time_now() < start_time + time )
+	while (time_now() < start_time + time)
 	{
 		usleep(400);
 	}

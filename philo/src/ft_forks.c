@@ -12,14 +12,14 @@
 
 #include "../philo.h"
 
-int *ft_forks(int	nof)
+int	*ft_forks(int nof)
 {
-	int *i;
+	int	*i;
 	int	j;
 
 	i = malloc(sizeof(int) * nof);
 	j = 0;
-	while(j < nof)
+	while (j < nof)
 	{
 		i[j] = 1;
 		j++;

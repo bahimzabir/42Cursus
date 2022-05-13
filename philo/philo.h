@@ -38,7 +38,7 @@ typedef struct s_philo
 	pthread_t		health;
 	int				philos_done;
 	time_t			inittime;
-	int				index;
+	int				*index;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print;
 	t_philosopher	*philos;

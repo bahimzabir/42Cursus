@@ -38,6 +38,7 @@ void	*ft_actions(void	*arg)
 		ft_msleep (th->tts);
 	}
 	th->philos_done ++;
+	pthread_mutex_destroy(&(th->fork)[th->philos[i].id - 1]);
 	return (NULL);
 }
 

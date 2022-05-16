@@ -20,5 +20,6 @@ void	ft_exit(int i, t_philo *th)
 		exit (i);
 	}
 	pthread_detach(th->health);
+	system("leaks philo");
 	exit(i);
 }

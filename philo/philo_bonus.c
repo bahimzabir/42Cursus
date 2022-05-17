@@ -24,17 +24,17 @@ void	*ft_actions(void	*arg)
 	{
 		if (i != 0 || th->philos[i].nte != 0)
 			print_lock(th, i, "is thinking");
-		pthread_mutex_lock(&(th->fork)[th->philos[i].id - 1]);
+		sem_wait((th->proce));
 		print_lock(th, i, "has taking left fork");
-		pthread_mutex_lock(&(th->fork)[(th->philos[i].id) % th->nof]);
+		sem_wait((th->proce));
 		print_lock(th, i, "has taking right fork");
 		th->philos[i].lte = time_now();
 		print_lock(th, i, "is eating");
 		ft_msleep(th->tte);
 		th->philos[i].nte++;
 		print_lock(th, i, "is sleeping");
-		pthread_mutex_unlock(&(th->fork)[(th->philos[i].id) % th->nof]);
-		pthread_mutex_unlock(&(th->fork)[th->philos[i].id - 1]);
+		sem_post((th->proce));
+		sem_post((th->proce));
 		ft_msleep (th->tts);
 	}
 	th->philos_done ++;
@@ -47,7 +47,7 @@ void	threads_handler(t_philo *data)
 
 	j = 1;
 	pthread_create(&(data->health), NULL, health_check, data);
-	sem_init(data->proce, 0, data->nof);
+	data->proce = sem_open("sem_1", O_CREAT , 0644, data->nof);
 	while (j <= data->nof)
 	{
 		data->index = malloc(sizeof(int));
@@ -55,7 +55,7 @@ void	threads_handler(t_philo *data)
 		data->philos[j - 1].id = j;
 		data->philos[j - 1].nte = 0;
 		pthread_create(&(data->philos[j - 1].philo), NULL, ft_actions, data);
-		usleep(10);
+		usleep(300);
 		j++;
 	}
 	j = 1;

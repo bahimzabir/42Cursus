@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-SRC = philo.c src/*.c
+CFLAGS = -Wall -Werror -Wextra -pthread
+SRC = philo_bonus.c src/*.c
 NAME = philo
 OBJS = $(SRC:.c=.o)
 

@@ -54,7 +54,7 @@ void	threads_handler(t_philo *data)
 		data->philos[j - 1].id = j;
 		data->philos[j - 1].nte = 0;
 		pthread_create(&(data->philos[j - 1].philo), NULL, ft_actions, data);
-		usleep(600);
+		usleep(500);
 		j++;
 	}
 	j = 1;

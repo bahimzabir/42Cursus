@@ -14,12 +14,14 @@
 
 void	ft_exit(int i, t_philo *th)
 {
+	
+	sem_unlink("sem_1");
 	if (i == 1)
 	{
 		write (1, "Error\n", 6);
 		exit (i);
 	}
 	pthread_detach(th->health);
-	system("leaks philo");
+	//system("leaks philo");
 	exit(i);
 }

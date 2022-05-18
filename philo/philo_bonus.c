@@ -47,7 +47,7 @@ void	threads_handler(t_philo *data)
 
 	j = 1;
 	pthread_create(&(data->health), NULL, health_check, data);
-	data->proce = sem_open("sem_1", O_CREAT , 0644, data->nof);
+	data->proce = sem_open("sem_1", O_CREAT, 0644, data->nof);
 	while (j <= data->nof)
 	{
 		data->index = malloc(sizeof(int));

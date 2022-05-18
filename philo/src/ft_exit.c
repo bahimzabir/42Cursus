@@ -14,7 +14,6 @@
 
 void	ft_exit(int i, t_philo *th)
 {
-	
 	sem_unlink("sem_1");
 	if (i == 1)
 	{
@@ -22,6 +21,6 @@ void	ft_exit(int i, t_philo *th)
 		exit (i);
 	}
 	pthread_detach(th->health);
-	//system("leaks philo");
+	system("leaks philo");
 	exit(i);
 }

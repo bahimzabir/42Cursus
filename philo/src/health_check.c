@@ -29,7 +29,8 @@ void	*health_check(void *ph)
 			&& th->philos[i].nte != th->tme)
 		{
 			th->all_alive = 0;
-			printf ("%ld: philo %d died\n", timestamp(th), (th->philos[i].id));
+			printf ("\033[0;31m%ld: philo %d died\n\033[0m",
+				timestamp(th), (th->philos[i].id));
 			ft_exit(0, ph);
 		}
 		i++;

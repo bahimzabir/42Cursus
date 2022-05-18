@@ -29,7 +29,7 @@ void	*ft_actions(void	*arg)
 		pthread_mutex_lock(&(th->fork)[(th->philos[i].id) % th->nof]);
 		print_lock(th, i, "has taking right fork");
 		th->philos[i].lte = time_now();
-		print_lock(th, i, "is eating");
+		print_lock(th, i, "\033[0;32mis eating\033[0m");
 		ft_msleep(th->tte);
 		th->philos[i].nte++;
 		print_lock(th, i, "is sleeping");

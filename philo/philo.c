@@ -46,7 +46,6 @@ void	threads_handler(t_philo *data)
 	int	j;
 
 	j = 1;
-	pthread_create(&(data->health), NULL, health_check, data);
 	while (j <= data->nof)
 	{
 		data->index = malloc(sizeof(int));
@@ -57,14 +56,6 @@ void	threads_handler(t_philo *data)
 		usleep(500);
 		j++;
 	}
-	j = 1;
-	while (j <= data->nof)
-	{
-		data->philos[j - 1].id = j;
-		pthread_join((data->philos[j - 1].philo), NULL);
-		j++;
-		usleep(10);
-	}
 }
 
 int	main(int arc, char **arv)
@@ -72,9 +63,16 @@ int	main(int arc, char **arv)
 	t_philo	data;
 
 	if (arc != 6 && arc != 5)
-		ft_exit(1, &data);
-	fill_data(&data, arv);
+		return(0);
+	if (fill_data(&data, arv) == -1)
+	{
+		printf("Error\n");
+		return(1);
+	}
 	ft_philos(&data);
+	pthread_create(&(data.health), NULL, health_check, &data);
 	threads_handler(&data);
-	ft_exit(0, &data);
+	while (data.all_alive && data.philos_done < data.nof);
+	//usleep(1000);
+	return (0);
 }

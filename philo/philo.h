@@ -56,7 +56,7 @@ time_t	timestamp(t_philo *phi);
 void	ft_philos(t_philo *phi);
 void	ft_exit(int i, t_philo *th);
 int		ft_atoi(char *s, t_philo *data);
-void	fill_data(t_philo *data, char	**arv);
+int		fill_data(t_philo *data, char	**arv);
 void	print_lock(t_philo	*th, int i, char *action);
 
 #endif

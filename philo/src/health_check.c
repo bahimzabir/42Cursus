@@ -19,21 +19,20 @@ void	*health_check(void *ph)
 
 	th = (t_philo *)ph;
 	i = 0;
-	while (1)
+	while (th->all_alive != 0)
 	{
 		if (i == th->nof)
 			i = 0;
-		if (th->philos_done == th->nof)
-			ft_exit(0, ph);
 		if (time_now() - th->philos[i].lte >= th->ttd
 			&& th->philos[i].nte != th->tme)
 		{
 			th->all_alive = 0;
 			printf ("\033[0;31m%ld  philo %d died\033[0m\n",
 				timestamp(th), (th->philos[i].id));
-			ft_exit(0, ph);
 		}
 		i++;
 	}
 	th = NULL;
+	//pthread_detach(th->health);
+	return (0);
 }

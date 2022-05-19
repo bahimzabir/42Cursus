@@ -18,9 +18,8 @@ void	ft_exit(int i, t_philo *th)
 	if (i == 1)
 	{
 		write (1, "Error\n", 6);
-		exit (i);
+		return;
 	}
 	pthread_detach(th->health);
-	system("leaks philo");
-	exit(i);
+	return;
 }

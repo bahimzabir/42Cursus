@@ -72,7 +72,11 @@ int	main(int arc, char **arv)
 	ft_philos(&data);
 	pthread_create(&(data.health), NULL, health_check, &data);
 	threads_handler(&data);
-	while (data.all_alive && data.philos_done < data.nof);
-	//usleep(1000);
+	while (data.all_alive && data.philos_done < data.nof)
+	{
+	}
+	free (data.fork);
+	free (data.philos);
+	system("leaks philo");
 	return (0);
 }

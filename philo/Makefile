@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -pthread
 SRC = philo.c src/*.c
 SRCB = philo_bonus.c src/*.c
 NAME = philo

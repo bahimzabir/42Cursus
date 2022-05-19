@@ -24,9 +24,9 @@ void	*health_check(void *ph)
 		if (i == th->nof)
 			i = 0;
 		if (th->philos_done >= th->nof)
-			return(0);
-		if (th->philos_done < th->nof && time_now() - th->philos[i].lte >= th->ttd
-			&& th->philos[i].nte != th->tme)
+			return (0);
+		if (th->philos_done < th->nof && time_now()
+			- th->philos[i].lte >= th->ttd && th->philos[i].nte != th->tme)
 		{
 			th->all_alive = 0;
 			printf ("\033[0;31m%ld  philo %d died\033[0m\n",

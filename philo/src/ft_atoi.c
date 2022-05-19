@@ -40,7 +40,7 @@ int	ft_atoi(char *s, t_philo *data)
 	if (s[i] == '-' || s[i] == '+')
 	{
 		if (s[i] == '-')
-			return(-1);
+			return (-1);
 		i++;
 	}
 	j = ft_mknumber((char *)s + i);

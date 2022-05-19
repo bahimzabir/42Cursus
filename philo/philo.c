@@ -63,11 +63,11 @@ int	main(int arc, char **arv)
 	t_philo	data;
 
 	if (arc != 6 && arc != 5)
-		return(0);
+		return (0);
 	if (fill_data(&data, arv) == -1)
 	{
 		printf("Error\n");
-		return(1);
+		return (1);
 	}
 	ft_philos(&data);
 	pthread_create(&(data.health), NULL, health_check, &data);

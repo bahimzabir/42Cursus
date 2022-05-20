@@ -19,6 +19,7 @@
 # include <pthread.h>
 # include <string.h>
 # include <sys/time.h>
+# include <sys/wait.h>
 # include <semaphore.h>
 
 typedef struct s_philosopher
@@ -43,7 +44,7 @@ typedef struct s_philo
 	int				*index;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print;
-	sem_t			*proce;
+	sem_t			*proce1;
 	t_philosopher	*philos;
 	struct timeval	time;
 }	t_philo;

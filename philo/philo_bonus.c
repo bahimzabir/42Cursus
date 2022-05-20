@@ -15,26 +15,30 @@
 void	*ft_actions(void	*arg)
 {
 	t_philo	*th;
-	int		i;
+	int		eat_times;
+	int		id;
 
 	th = (t_philo *)arg;
-	i = *(th->index);
+	id = *(th->index);
+	eat_times = 0;
 	free(th->index);
-	while (th->philos[i].nte < th->tme && th->all_alive)
+	while (eat_times < th->tme && th->all_alive)
 	{
-		if (i != 0 || th->philos[i].nte != 0)
-			print_lock(th, i, "is thinking");
-		pthread_mutex_lock(&(th->fork)[th->philos[i].id - 1]);
-		print_lock(th, i, "has taking left fork");
-		pthread_mutex_lock(&(th->fork)[(th->philos[i].id) % th->nof]);
-		print_lock(th, i, "has taking right fork");
-		th->philos[i].lte = time_now();
-		print_lock(th, i, "\033[0;32mis eating\033[0m");
+		if (eat_times != 0 || id != 1)
+			printf("philo %d is thinking\n", id);
+		sem_wait((th->proce1));
+		printf("philo %d has taking left fork\n", id);
+		//write (1, "HERE\n", 5);
+		sem_wait((th->proce1));
+		printf("philo %d has taking right fork\n", id);
+		//th->philos[i].lte = time_now();
+		printf("philo %d is eating\n", id);
 		ft_msleep(th->tte);
-		th->philos[i].nte++;
-		print_lock(th, i, "is sleeping");
-		pthread_mutex_unlock(&(th->fork)[(th->philos[i].id) % th->nof]);
-		pthread_mutex_unlock(&(th->fork)[th->philos[i].id - 1]);
+		eat_times++;
+		printf("philo %d is sleeping\n", id);
+		usleep(100);
+		//sem_post((th->proce));
+		//sem_post((th->proce));
 		ft_msleep (th->tts);
 	}
 	th->philos_done ++;
@@ -46,16 +50,19 @@ void	threads_handler(t_philo *data)
 	int	j;
 
 	j = 1;
+	data->proce1 = sem_open("semaphore", 0677, data->nof);
 	while (j <= data->nof)
 	{
 		data->index = malloc(sizeof(int));
-		*(data->index) = j - 1;
-		data->philos[j - 1].id = j;
-		data->philos[j - 1].nte = 0;
-		pthread_create(&(data->philos[j - 1].philo), NULL, ft_actions, data);
+		*(data->index) = j;
+		if (fork() != 0)
+		{
+			ft_actions(data);
+		}
 		usleep(500);
 		j++;
 	}
+	sem_close(data->proce1);
 }
 
 int	main(int arc, char **arv)
@@ -69,14 +76,14 @@ int	main(int arc, char **arv)
 		printf("Error\n");
 		return (1);
 	}
-	ft_philos(&data);
-	pthread_create(&(data.health), NULL, health_check, &data);
-	threads_handler(&data);
-	while (data.all_alive && data.philos_done < data.nof)
+	//ft_philos(&data);
+ 	threads_handler(&data);
+	/*while (data.all_alive && data.philos_done < data.nof)
 	{
-	}
-	free (data.fork);
-	free (data.philos);
+	}*/
+	//free (data.fork);
+	//free (data.philos);
 	//system("leaks philo");
+	sem_unlink("semaphore");
 	return (0);
 }

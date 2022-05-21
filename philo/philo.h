@@ -44,7 +44,7 @@ typedef struct s_philo
 	int				*index;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print;
-	sem_t			*proce1;
+	sem_t			*proce;
 	t_philosopher	*philos;
 	struct timeval	time;
 }	t_philo;

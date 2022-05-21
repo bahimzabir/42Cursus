@@ -12,24 +12,22 @@
 
 #include "philo.h"
 
-void	print_time(t_philo *th,int id, char *action)
+/*void	print_time(t_philo *th,int id, char *action)
 {
 	if (th->all_alive)
 	{
 		printf ("\033[0;34m%ld \033[0m philo %d %s\n", timestamp(th),
 			id, action);
 	}
-}
+}*/
 
-void	*ft_actions(void	*arg, int id)
+void	ft_actions(t_philo	*th, int id)
 {
-	t_philo	*th;
 	int		eat_times;
-	int		last_meal;
 
-	th = (t_philo *)arg;
 	eat_times = 0;
-	last_meal = time_now();
+	th->last_meal = time_now();
+	pthread_create(&(th->health), NULL, proce_health, th);
 	while (eat_times < th->tme && th->all_alive)
 	{
 		if (eat_times != 0 || id != 1)
@@ -38,6 +36,7 @@ void	*ft_actions(void	*arg, int id)
 		sem_wait((th->proce));
 		print_time(th, id, "has taking a fork");
 		print_time(th, id, "has taking a fork");
+		th->last_meal = time_now();
 		print_time(th, id, "\033[0;32mis eating\033[0m");
 		ft_msleep(th->tte);
 		eat_times++;
@@ -47,9 +46,8 @@ void	*ft_actions(void	*arg, int id)
 		ft_msleep (th->tts);
 	}
 	th->philos_done ++;
-	sem_close(th->proce);
 	exit(0);
-	return (NULL);
+	sem_close(th->proce);
 }
 
 void	threads_handler(t_philo *data)
@@ -61,6 +59,8 @@ void	threads_handler(t_philo *data)
 	data->proce = sem_open("proce", O_CREAT ,0677, data->nof);
 	while (j <= data->nof)
 	{
+		data->index = malloc(sizeof(int));
+		*(data->index) = j; 
 		if (fork() == 0)
 		{
 			ft_actions(data, j);
@@ -72,6 +72,7 @@ void	threads_handler(t_philo *data)
 int	main(int arc, char **arv)
 {
 	t_philo	data;
+	int		status;
 
 	if (arc != 6 && arc != 5)
 		return (0);
@@ -89,7 +90,9 @@ int	main(int arc, char **arv)
 	//free (data.philos);
 	//system("leaks philo");
 	sem_unlink("proce");
-	//write (1, "HERE\n", 5);
+	waitpid(-1, &status, 0);
+	if (WIFEXITED(status) && WEXITSTATUS(status) == 1)
+		printf("Death detected\n");
 	while (wait(NULL) != -1);
 	return (0);
 }

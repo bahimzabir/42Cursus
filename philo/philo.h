@@ -21,6 +21,7 @@
 # include <sys/time.h>
 # include <sys/wait.h>
 # include <semaphore.h>
+# include <signal.h>
 
 typedef struct s_philosopher
 {
@@ -37,6 +38,7 @@ typedef struct s_philo
 	int				tte;
 	int				tts;
 	int				tme;
+	long			last_meal;
 	pthread_t		health;
 	int				all_alive;
 	int				philos_done;
@@ -55,8 +57,10 @@ int		*ft_forks(int nof);
 void	*health_check(void *ph);
 time_t	timestamp(t_philo *phi);
 void	ft_philos(t_philo *phi);
+void	*proce_health(void	*arg);
 int		ft_atoi(char *s, t_philo *data);
 int		fill_data(t_philo *data, char	**arv);
+void	print_time(t_philo *th,int id, char *action);
 void	print_lock(t_philo	*th, int i, char *action);
 
 #endif

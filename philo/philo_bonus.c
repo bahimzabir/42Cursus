@@ -47,7 +47,7 @@ void	threads_handler(t_philo *data)
 
 	j = 1;
 	sem_unlink("proce");
-	data->proce = sem_open("proce", O_CREAT ,0677, data->nof);
+	data->proce = sem_open("proce", O_CREAT, 0677, data->nof);
 	sem_unlink("print_pause");
 	data->print_pause = sem_open("print_pause", O_CREAT, 0677, 1);
 	while (j <= data->nof)
@@ -73,16 +73,17 @@ int	main(int arc, char **arv)
 		return (1);
 	}
 	data_init(&data);
- 	threads_handler(&data);
+	threads_handler(&data);
 	waitpid(-1, &status, 0);
 	if (WIFEXITED(status) && WEXITSTATUS(status) == 1)
 		kill_all(&data);
-	while(wait(NULL) != -1);
+	while (wait(NULL) != -1)
+	{
+	}
 	sem_unlink("proce");
 	sem_close(data.print_pause);
 	sem_close(data.proce);
 	free (data.pids);
 	sem_unlink("print_pause");
-	system("leaks philo_bonus");
 	return (0);
 }

@@ -34,6 +34,5 @@ void	*health_check(void *ph)
 		}
 		i++;
 	}
-	th = NULL;
 	return (0);
 }

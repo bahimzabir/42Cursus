@@ -65,7 +65,7 @@ void	data_init(t_philo *data);
 void	*proce_health(void	*arg);
 int		ft_atoi(char *s, t_philo *data);
 int		fill_data(t_philo *data, char	**arv);
-void	print_time(t_philo *th,int id, char *action);
+void	print_time(t_philo *th, int id, char *action);
 void	print_lock(t_philo	*th, int i, char *action);
 
 #endif

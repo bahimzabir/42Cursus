@@ -21,12 +21,14 @@ void	*proce_health(void	*arg)
 	id = (th->id);
 	while (1)
 	{
-		if(time_now() - th->last_meal >= th->ttd)
+		if (time_now() - th->last_meal >= th->ttd)
 		{
 			sem_wait(th->print_pause);
-			printf("\033[0;31m%ld  philo %d died\033[0m\n", timestamp(th),id);
+			th->all_alive = 0;
+			printf("\033[0;31m%ld  philo %d died\033[0m\n", timestamp(th), id);
 			exit(1);
 		}
+		usleep(120);
 	}
-	return(NULL);
+	return (NULL);
 }

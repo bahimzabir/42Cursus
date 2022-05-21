@@ -17,7 +17,7 @@ void	kill_all(t_philo *data)
 	int	index;
 
 	index = 0;
-	while(index < data->nof)
+	while (index < data->nof)
 	{
 		kill(data->pids[index], SIGINT);
 		index++;

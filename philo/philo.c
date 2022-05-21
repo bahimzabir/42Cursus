@@ -77,6 +77,5 @@ int	main(int arc, char **arv)
 	}
 	free (data.fork);
 	free (data.philos);
-	//system("leaks philo");
 	return (0);
 }

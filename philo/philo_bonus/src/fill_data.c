@@ -28,6 +28,9 @@ int	fill_data(t_philo *data, char	**arv)
 		(*data).tme = 2147483647;
 	if ((*data).ttd == -1 || (*data).tte == -1 || (*data).nof == -1
 		|| (*data).tts == -1 || (*data).tme == -1)
+	{
+		printf("Error\n");
 		return (-1);
+	}
 	return (0);
 }

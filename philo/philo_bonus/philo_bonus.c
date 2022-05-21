@@ -68,10 +68,7 @@ int	main(int arc, char **arv)
 	if (arc != 6 && arc != 5)
 		return (0);
 	if (fill_data(&data, arv) == -1)
-	{
-		printf("Error\n");
 		return (1);
-	}
 	data_init(&data);
 	threads_handler(&data);
 	waitpid(-1, &status, 0);
@@ -87,3 +84,7 @@ int	main(int arc, char **arv)
 	sem_unlink("print_pause");
 	return (0);
 }
+
+/* fix that bug 
+./philo_bonus 200 410 200 200 1
+*/

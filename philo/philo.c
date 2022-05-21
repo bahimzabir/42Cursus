@@ -56,6 +56,10 @@ void	threads_handler(t_philo *data)
 		usleep(500);
 		j++;
 	}
+	while (data->all_alive && data->philos_done < data->nof)
+	{
+	}
+	usleep(200);
 }
 
 int	main(int arc, char **arv)
@@ -72,10 +76,4 @@ int	main(int arc, char **arv)
 	ft_philos(&data);
 	pthread_create(&(data.health), NULL, health_check, &data);
 	threads_handler(&data);
-	while (data.all_alive && data.philos_done < data.nof)
-	{
-	}
-	free (data.fork);
-	free (data.philos);
-	return (0);
 }

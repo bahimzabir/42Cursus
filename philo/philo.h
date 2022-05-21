@@ -38,6 +38,8 @@ typedef struct s_philo
 	int				tte;
 	int				tts;
 	int				tme;
+	int				*pids;
+	int				id;
 	long			last_meal;
 	pthread_t		health;
 	int				all_alive;
@@ -47,6 +49,7 @@ typedef struct s_philo
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print;
 	sem_t			*proce;
+	sem_t			*print_pause;
 	t_philosopher	*philos;
 	struct timeval	time;
 }	t_philo;
@@ -54,9 +57,11 @@ typedef struct s_philo
 long	time_now(void);
 void	ft_msleep(int time);
 int		*ft_forks(int nof);
+void	kill_all(t_philo *data);
 void	*health_check(void *ph);
 time_t	timestamp(t_philo *phi);
 void	ft_philos(t_philo *phi);
+void	data_init(t_philo *data);
 void	*proce_health(void	*arg);
 int		ft_atoi(char *s, t_philo *data);
 int		fill_data(t_philo *data, char	**arv);

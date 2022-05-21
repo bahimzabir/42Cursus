@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_time.c                                       :+:      :+:    :+:   */
+/*   kill_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 16:48:18 by azabir            #+#    #+#             */
-/*   Updated: 2022/05/21 16:49:07 by azabir           ###   ########.fr       */
+/*   Created: 2022/05/21 18:49:25 by azabir            #+#    #+#             */
+/*   Updated: 2022/05/21 18:49:27 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	print_time(t_philo *th,int id, char *action)
+void	kill_all(t_philo *data)
 {
-	sem_wait(th->print_pause);
-	if (th->all_alive)
+	int	index;
+
+	index = 0;
+	while(index < data->nof)
 	{
-		printf ("\033[0;34m%ld \033[0m philo %d %s\n", timestamp(th),
-			id, action);
+		kill(data->pids[index], SIGINT);
+		index++;
 	}
-	sem_post(th->print_pause);
 }

@@ -12,15 +12,6 @@
 
 #include "philo.h"
 
-/*void	print_time(t_philo *th,int id, char *action)
-{
-	if (th->all_alive)
-	{
-		printf ("\033[0;34m%ld \033[0m philo %d %s\n", timestamp(th),
-			id, action);
-	}
-}*/
-
 void	ft_actions(t_philo	*th, int id)
 {
 	int		eat_times;
@@ -57,14 +48,14 @@ void	threads_handler(t_philo *data)
 	j = 1;
 	sem_unlink("proce");
 	data->proce = sem_open("proce", O_CREAT ,0677, data->nof);
+	sem_unlink("print_pause");
+	data->print_pause = sem_open("print_pause", O_CREAT, 0677, 1);
 	while (j <= data->nof)
 	{
-		data->index = malloc(sizeof(int));
-		*(data->index) = j; 
-		if (fork() == 0)
-		{
+		(data->id) = j;
+		data->pids[j - 1] = fork();
+		if (data->pids[j - 1] == 0)
 			ft_actions(data, j);
-		}
 		j++;
 	}
 }
@@ -81,18 +72,17 @@ int	main(int arc, char **arv)
 		printf("Error\n");
 		return (1);
 	}
-	ft_philos(&data);
+	data_init(&data);
  	threads_handler(&data);
-	/*while (data.all_alive && data.philos_done < data.nof)
-	{
-	}*/
-	//free (data.fork);
-	//free (data.philos);
-	//system("leaks philo");
-	sem_unlink("proce");
 	waitpid(-1, &status, 0);
 	if (WIFEXITED(status) && WEXITSTATUS(status) == 1)
-		printf("Death detected\n");
-	while (wait(NULL) != -1);
+		kill_all(&data);
+	while(wait(NULL) != -1);
+	sem_unlink("proce");
+	sem_close(data.print_pause);
+	sem_close(data.proce);
+	free (data.pids);
+	sem_unlink("print_pause");
+	system("leaks philo_bonus");
 	return (0);
 }

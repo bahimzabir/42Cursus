@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_time.c                                       :+:      :+:    :+:   */
+/*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: azabir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 16:48:18 by azabir            #+#    #+#             */
-/*   Updated: 2022/05/21 16:49:07 by azabir           ###   ########.fr       */
+/*   Created: 2022/05/21 18:42:13 by azabir            #+#    #+#             */
+/*   Updated: 2022/05/21 18:42:15 by azabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	print_time(t_philo *th,int id, char *action)
+void	data_init(t_philo *data)
 {
-	sem_wait(th->print_pause);
-	if (th->all_alive)
-	{
-		printf ("\033[0;34m%ld \033[0m philo %d %s\n", timestamp(th),
-			id, action);
-	}
-	sem_post(th->print_pause);
+	struct timeval	time;
+
+	data->pids = malloc(sizeof(int) * data->nof);
+	gettimeofday(&time, NULL);
+	data->inittime = (time.tv_sec * 1000) + (time.tv_usec / 1000);
+	data->philos_done = 0;
+	data->all_alive = 1;
 }

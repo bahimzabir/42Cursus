@@ -18,13 +18,13 @@ void	*proce_health(void	*arg)
 	int		id;
 
 	th = (t_philo *)arg;
-	id = *(th->index);
-	free (th->index);
+	id = (th->id);
 	while (1)
 	{
 		if(time_now() - th->last_meal >= th->ttd)
 		{
-			print_time(th, id, "died");
+			sem_wait(th->print_pause);
+			printf("\033[0;31m%ld  philo %d died\033[0m\n", timestamp(th),id);
 			exit(1);
 		}
 	}

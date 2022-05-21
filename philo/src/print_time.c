@@ -15,7 +15,7 @@
 void	print_time(t_philo *th, int id, char *action)
 {
 	sem_wait(th->print_pause);
-	printf ("\033[0;34m%ld \033[0m philo %d %s\n", timestamp(th),
+	printf ("%ld  philo %d %s\n", timestamp(th),
 		id, action);
 	sem_post(th->print_pause);
 }

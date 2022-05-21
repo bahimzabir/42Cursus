@@ -77,10 +77,9 @@ int	main(int arc, char **arv)
 	waitpid(-1, &status, 0);
 	if (WIFEXITED(status) && WEXITSTATUS(status) == 1)
 		kill_all(&data);
-	if (data.tme > 1)
-		while (wait(NULL) != -1)
-		{
-		}
+	while (wait(NULL) != -1)
+	{
+	}
 	sem_unlink("proce");
 	sem_close(data.print_pause);
 	sem_close(data.proce);

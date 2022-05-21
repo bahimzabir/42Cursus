@@ -24,8 +24,8 @@ void	ft_actions(t_philo	*th, int id)
 		if (eat_times != 0 || id != 1)
 			print_time(th, id, "is thinking");
 		sem_wait((th->proce));
-		sem_wait((th->proce));
 		print_time(th, id, "has taking a fork");
+		sem_wait((th->proce));
 		print_time(th, id, "has taking a fork");
 		th->last_meal = time_now();
 		print_time(th, id, "\033[0;32mis eating\033[0m");
@@ -35,8 +35,8 @@ void	ft_actions(t_philo	*th, int id)
 		sem_post((th->proce));
 		sem_post((th->proce));
 		ft_msleep (th->tts);
+		usleep (50);
 	}
-	th->philos_done ++;
 	exit(0);
 	sem_close(th->proce);
 }
@@ -77,9 +77,10 @@ int	main(int arc, char **arv)
 	waitpid(-1, &status, 0);
 	if (WIFEXITED(status) && WEXITSTATUS(status) == 1)
 		kill_all(&data);
-	while (wait(NULL) != -1)
-	{
-	}
+	if (data.tme > 1)
+		while (wait(NULL) != -1)
+		{
+		}
 	sem_unlink("proce");
 	sem_close(data.print_pause);
 	sem_close(data.proce);

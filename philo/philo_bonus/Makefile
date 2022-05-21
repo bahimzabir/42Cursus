@@ -7,9 +7,8 @@ BONUS = philo_bonus
 OBJS = $(SRC:.c=.o)
 OBJSB = $(SRCB:.c=.o)
 
-all: $(NAME)
+all: $(BONUS)
 bonus: $(BONUS)
-b : bonus
 
 $(NAME) : $(SRC)
 	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
@@ -18,7 +17,7 @@ $(BONUS) : $(SRCB)
 	$(CC) $(CFLAGS) $(SRCB) -pthread -o $(BONUS)
 
 clean :
-	rm -rf $(OBJS) $(OBJSB)
+	rm -rf $(OBJSB) $(BONUS)
 fclean : clean
-	rm -rf $(NAME) $(BONUS)
+	rm -rf $(BONUS)
 re : fclean all

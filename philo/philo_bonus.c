@@ -12,8 +12,6 @@
 
 #include "philo.h"
 
-sem_t	*test;
-
 void	print_time(t_philo *th,int id, char *action)
 {
 	if (th->all_alive)
@@ -36,16 +34,16 @@ void	*ft_actions(void	*arg, int id)
 	{
 		if (eat_times != 0 || id != 1)
 			print_time(th, id, "is thinking");
-		sem_wait((test));
-		sem_wait((test));
-		print_time(th, id, "has taking left fork");
-		print_time(th, id, "has taking right fork");
-		print_time(th, id, "is eatting");
+		sem_wait((th->proce));
+		sem_wait((th->proce));
+		print_time(th, id, "has taking a fork");
+		print_time(th, id, "has taking a fork");
+		print_time(th, id, "\033[0;32mis eating\033[0m");
 		ft_msleep(th->tte);
 		eat_times++;
 		print_time(th, id, "is sleeping");
-		sem_post((test));
-		sem_post((test));
+		sem_post((th->proce));
+		sem_post((th->proce));
 		ft_msleep (th->tts);
 	}
 	th->philos_done ++;
@@ -59,18 +57,16 @@ void	threads_handler(t_philo *data)
 	int	j;
 
 	j = 1;
-	sem_unlink("test");
-	test = sem_open("test", O_CREAT ,0677, data->nof);
+	sem_unlink("proce");
+	data->proce = sem_open("proce", O_CREAT ,0677, data->nof);
 	while (j <= data->nof)
 	{
 		if (fork() == 0)
 		{
 			ft_actions(data, j);
 		}
-		//usleep(500);
 		j++;
 	}
-		wait(NULL);
 }
 
 int	main(int arc, char **arv)
@@ -92,6 +88,8 @@ int	main(int arc, char **arv)
 	//free (data.fork);
 	//free (data.philos);
 	//system("leaks philo");
-	sem_unlink("test");
+	sem_unlink("proce");
+	//write (1, "HERE\n", 5);
+	while (wait(NULL) != -1);
 	return (0);
 }

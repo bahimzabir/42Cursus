@@ -88,7 +88,3 @@ int	main(int arc, char **arv)
 	free (data.pids);
 	sem_unlink("print_pause");
 }
-
-/* fix that bug 
-./philo_bonus 200 410 200 200 1
-*/

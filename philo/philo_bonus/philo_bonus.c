@@ -71,18 +71,22 @@ int	main(int arc, char **arv)
 		return (1);
 	data_init(&data);
 	threads_handler(&data);
-	waitpid(-1, &status, 0);
-	if (WIFEXITED(status) && WEXITSTATUS(status) == 1)
-		kill_all(&data);
-	while (wait(NULL) != -1)
+	while (data.philos_done <= data.nof)
 	{
+		waitpid(-1, &status, 0);
+		if (WIFEXITED(status) && WEXITSTATUS(status) == 1)
+		{
+			kill_all(&data);
+			break ;
+		}
+		else if (WEXITSTATUS(status) == 0)
+			data.philos_done ++;
 	}
 	sem_unlink("proce");
 	sem_close(data.print_pause);
 	sem_close(data.proce);
 	free (data.pids);
 	sem_unlink("print_pause");
-	return (0);
 }
 
 /* fix that bug 

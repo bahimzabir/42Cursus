@@ -14,12 +14,14 @@
 
 void	print_lock(t_philo	*th, int i, char *action)
 {
-	pthread_mutex_lock(&th->print);
+	usleep(100);
 	if (th->all_alive)
 	{
+		pthread_mutex_lock(&th->print);
 		printf ("%ld  philo %d %s\n", timestamp(th),
 			(th->philos[i].id), action);
-	}
-	if (th->all_alive)
 		pthread_mutex_unlock(&th->print);
+	}
+	else
+		usleep(500000);
 }

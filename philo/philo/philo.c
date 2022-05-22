@@ -59,7 +59,6 @@ void	threads_handler(t_philo *data)
 	while (data->all_alive && data->philos_done < data->nof)
 	{
 	}
-	usleep(200);
 }
 
 int	main(int arc, char **arv)

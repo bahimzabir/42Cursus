@@ -10,4 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../minishell.h"
+
+int main() {
+	char	*path;
+	char	*buf;
+
+	path = NULL;
+	while (path == NULL) {
+		path = getcwd(buf, 1);
+	}
+	printf("%s\n", path);
+	//system("leaks pwd");
+}
 

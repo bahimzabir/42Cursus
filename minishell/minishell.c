@@ -12,7 +12,18 @@
 
 #include "minishell.h"
 
-int	main(void)
+int main()
 {
+        char *inpt;
+
+        int i = 0;
+
+    inpt = readline("minishell > ");
+    add_history(inpt);
+    printf("%s", inpt);
+    printf("\n");
+    ++i;
+
+        return 0;
 
 }

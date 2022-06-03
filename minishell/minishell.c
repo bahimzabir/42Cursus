@@ -14,16 +14,14 @@
 
 int main()
 {
-        char *inpt;
+    char    *inpt;
+    int     i;
 
-        int i = 0;
-
+    i = 0;
     inpt = readline("minishell > ");
     add_history(inpt);
     printf("%s", inpt);
     printf("\n");
     ++i;
-
-        return 0;
-
+    return 0;
 }
